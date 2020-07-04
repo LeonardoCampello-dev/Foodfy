@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+    --title: #111111;
+    --author: #777777;
+    --paragraph: #444444;
+    --salmon: #FBDFDB;
+    --red: #D54F44;
+}
+
+* {
+    padding: 0;
+    border: none;
+    margin: 0;
+}
+
+html, body {
+    min-height: 100vh;
+    width: 100%;
+  }
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #FFF;
+    height: 100%;
+}
+
+.container-flex {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===================== HEADER ===================== */
+
+header {
+    width: 70%;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.links {
+    font-size: 16px;
+    line-height: 19px;
+    margin-left: 104px;
+}
+
+.links a {
+    text-decoration: none;
+    color: var(--title);
+}
+
+.links a:hover {
+    color: var(--red);
+    font-weight: bold;
+}
+
+.links a + a {
+    margin-left: 32px;
+}
+
+/* ===================== MAIN CARD ===================== */
+
+.main-card {
+    width: 70%;
+    height: 366px;
+    background-color: var(--salmon);
+    border-radius: 30px;
+    margin: 0 auto;
+}
+
+.content {
+    width: 90%;
+    margin: 0 auto;
+    padding: 32px;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content img {
+    margin-top: 32px;
+}
+
+.text {
+    width: 35%;
+}
+
+.text h1 {
+    color: var(--title);
+}
+
+.information p,
+.text p {
+    font-size: 18px;
+    line-height: 28px;
+    color: var(--title);
+    opacity: 0.7;
+    text-align: justify;
+    margin-top: 16px;
+}
+
+/* ===================== MOST ACCESSED ===================== */
+
+.most-accessed {
+    width: 70%;
+    margin: 48px auto;
+}
+
+.recipe-information h2,
+.most-accessed h2 {
+    font-size: 24px;
+    line-height: 28px;
+    color: var(--title);
+}
+
+.cards {
+    width: 100%;
+    margin-top: 32px;
+    box-sizing: border-box;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+}
+
+.card img {
+    width: 100%;
+    height: 140px;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.card h3 {
+    font-size: 18px;
+    line-height: 21px;
+    color: var(--title);
+    margin-top: 16px;
+    cursor: pointer;
+}
+
+.card p,
+.footer p {
+    font-size: 14px;
+    line-height: 16px;
+    color: var(--author);
+    margin-top: 8px;
+}
+
+/* ===================== FOOTER ===================== */ 
+
+footer {
+    width: 100%;
+    background-color: #EEEEEE;
+    margin-top: auto;
+}
+
+.footer {
+    padding: 24px;
+}
+
+.footer p a,
+.footer p {
+    color: #999999;
+    text-align: center;
+}
+
+.footer p a {
+    text-decoration: none;
+}
+
+.footer p a:hover {
+    color: var(--red);
+}
+
+/* ===================== ABOUT ===================== */
+
+.about {
+    width: 70%;
+    margin: 0 auto 48px;
+}
+
+.information {
+    margin-top: 32px;
+}
+
+.details p,
+.information h2 {
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--title);
+}
+
+.information p {
+    color: var(--paragraph);
+    opacity: 1;
+}
+
+/* ===================== RECIPES ===================== */
+
+.recipes {
+    width: 70%;
+    margin: 0 auto 48px;
+}
+
+/* ===================== DETAILS ===================== */
+
+.details {
+    width: 70%;
+    margin: 0 auto 48px;
+}
+
+.details img {
+    width: 100%;
+    min-height: 280px;
+    border-radius: 15px;
+}
+
+.details h1, 
+.details p {
+    text-align: center;
+}
+
+.details h1 {
+    font-size: 36px;
+    line-height: 42px;
+    color: var(--title);
+    margin-top: 40px;
+}
+
+.details p {
+    color: var(--author);
+    margin-top: 8px;
+}
+
+.button {
+    display: flex;
+    align-items: baseline;
+}
+
+.button h2 {
+    margin-top: 32px;
+}
+
+.button a {
+    font-size: 12px;
+    line-height: 14px;
+    color: #999999;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+.invisible {
+    display: none;
+}
+
+.recipe-information ul li {
+    font-size: 18px;
+    line-height: 28px;
+    color: var(--paragraph);
+}
+
+.recipe-information p,
+.recipe-information ul {
+    margin-top: 24px;
+}
+
+.recipe-information p {
+    text-align: justify;
+}
+

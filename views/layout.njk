@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.">
+        <meta name="keywords" content="Receitas, Chefs, Gastronomia">
+        <link rel="stylesheet" href="/styles/main.css">
+        <title>Foodfy</title>
+    </head>
+
+    <body>
+        <div class="container-flex">
+            <header>
+                <a href="/"><img src="/assets/logo.png" alt="Logo da empresa"></a>
+                <div class="links">
+                    <a href="/about">Sobre</a>
+                    <a href="/recipes">Receitas</a>
+                </div>
+            </header>
+
+            {% block content %}{% endblock content %}
+
+            <footer>
+                <div class="footer">
+                    <p>Todos os direitos reservados, receitas <a href="#">Foodfy.</a></p>
+                </div>
+            </footer>
+
+            {% block scripts %}
+            <script src="/details.js"></script>
+            {% endblock scripts %}
+        </div>
+    </body>
+</html>
