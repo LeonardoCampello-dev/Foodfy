@@ -21,11 +21,11 @@ html, body {
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #FFF;
+    background-color: #FFFFFF;
     height: 100%;
 }
 
-.container-flex {
+.flex-container {
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -54,11 +54,14 @@ header {
 
 .links a:hover {
     color: var(--red);
-    font-weight: bold;
 }
 
 .links a + a {
     margin-left: 32px;
+}
+
+.active {
+    font-weight: bold;
 }
 
 /* ===================== MAIN CARD ===================== */

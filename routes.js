@@ -1,12 +1,13 @@
 const express = require('express')
 const { Router } = require('express')
+const admin = require('./controllers/admin')
 
-const data = require('./public/data')
+const data = require('./data')
 
 const routes = express.Router()
 
 routes.get("/", (req, res) => {
-    return res.render("index", { recipes: data })
+    return res.render("index", { recipes: data.recipes })
 })
 
 routes.get("/about", (req, res) => {
@@ -14,13 +15,13 @@ routes.get("/about", (req, res) => {
 })
 
 routes.get("/recipes", (req, res) => {
-    return res.render("recipes/recipes", { recipes: data })
+    return res.render("recipes/recipes", { recipes: data.recipes })
 })
 
 routes.get("/recipes/:id", (req, res) => {
     const { id } = req.params
 
-    const foundRecipe = data.find((recipe) => {
+    const foundRecipe = data.recipes.find((recipe) => {
         return recipe.id == id
     })
 
@@ -28,5 +29,12 @@ routes.get("/recipes/:id", (req, res) => {
 
     return res.render("recipes/details", { recipe: foundRecipe })
 })
+
+
+routes.get("/admin/recipes", admin.index)
+routes.get("/admin/recipes/create", admin.create)
+routes.get("/admin/recipes/:id", admin.show)
+
+routes.post("/admin/recipes", admin.post)
 
 module.exports = routes
