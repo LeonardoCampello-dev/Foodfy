@@ -70,6 +70,15 @@ header {
     line-height: 28px;
 } 
 
+#delete-button {
+    background-color: #DC4747;
+    right: 395px;
+    position: absolute;
+}
+
+#delete-button:hover {
+    background-color: var(--title);
+}
 
 .form button[type="submit"],
 .detail-header a {
@@ -121,6 +130,8 @@ input {
 }
 
 textarea {
+    font-family: 'Roboto', sans-serif;
+    opacity: 0.8;
     resize: none;
     min-height: 257px;
 }

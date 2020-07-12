@@ -2,60 +2,59 @@
 
 {% block content %}
 
-<div class="form">
-    <form action="/admin/recipes" method="POST">
-        <div class="form-header">
-            <h2>Criando receita</h2>
-            <button type="submit">Salvar receita</button>
-        </div>
-
-        <div class="item">
-            <div>Imagem da receita</div>
-            <div>
-                <input type="url" name="image_url" value="{{ recipe.image_url }}" placeholder="http://example.com/image" required>
+    <div class="form">
+        <form action="/admin/recipes" method="POST">
+            <div class="form-header">
+                <h2>Criando receita</h2>
+                <button type="submit">Salvar receita</button>
             </div>
-        </div>
-        
-        <div class="item">
-            <div>Título</div>
-            <div>
-                <input type="text" name="title" value="{{ recipe.title }}" placeholder="Ex: Triplo Bacon Burguer" required>
+
+            <div class="item">
+                <div>Imagem da receita</div>
+                <div>
+                    <input type="url" name="image_url" value="{{ recipe.image_url }}" placeholder="http://example.com/image" required="required">
+                </div>
             </div>
-        </div>
 
-        <div class="item">
-            <div>Autor</div>
-            <div>
-                <input type="text" name="author" value="{{ recipe.autho }}" required>
+            <div class="item">
+                <div>Título</div>
+                <div>
+                    <input type="text" name="title" value="{{ recipe.title }}" placeholder="Ex: Triplo Bacon Burguer" required="required">
+                </div>
             </div>
-        </div>
 
-
-        <div class="item" id="ingredients">
-            <div>Ingredientes</div>
-            <div class="ingredient">
-                <input type="text" name="ingredients[]" value="" required>
+            <div class="item">
+                <div>Autor</div>
+                <div>
+                    <input type="text" name="author" value="{{ recipe.author }}" required="required">
+                </div>
             </div>
-        </div>
-        <a class="add-ingredient">Adicionar novo ingrediente</a>
 
-
-        <div class="item" id="preparations">
-            <div>Modo de preparo</div>
-            <div class="preparation">
-                <input type="text" name="preparation[]" value="" required>
+            <div class="item" id="ingredients">
+                <div>Ingredientes</div>
+                <div class="ingredient">
+                    <input type="text" name="ingredients[]" value="{{ ingredient }}" required="required">
+                </div>
             </div>
-        </div>
-        <a class="add-preparation">Adicionar novo passo</a>
+            <a class="add-ingredient">Adicionar novo ingrediente</a>
 
-        <div class="item">
-            <div>Informações adicionais</div>
-            <div>
-                <textarea name="information" cols="30" rows="10" value=""></textarea>
+            <div class="item" id="preparations">
+                <div>Modo de preparo</div>
+                <div class="preparation">
+                    <input type="text" name="preparation[]" value="{{ step }}" required="required">
+                </div>
             </div>
-        </div>
-    </form>
-</div>
+            <a class="add-preparation">Adicionar novo passo</a>
 
-<script src="/add.js"></script>
+            <div class="item">
+                <div>Informações adicionais</div>
+                <div>
+                    <textarea name="information" cols="30" rows="10">{{ recipe.information }}</textarea>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="/add.js"></script>
+
 {% endblock content %}

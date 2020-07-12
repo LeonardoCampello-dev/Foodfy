@@ -22,7 +22,7 @@
         "Faça no máximo 4 camadas por forma e leve para congelar.",
         "Retire do congelador, frite ou asse e está pronto."
       ],
-      "information": "Preaqueça a chapa, frigideira ou grelha por 10 minutos antes de levar os hambúrgueres. Adicione um pouquinho de óleo ou manteiga e não amasse os hambúrgueres! \r\nVocê sabia que a receita que precede o hambúrguer surgiu no século XIII, na Europa? A ideia de moer a carne chegou em Hamburgo no século XVII, onde um açogueiro resolveu também temperá-la. Assim, a receita foi disseminada nos Estados Unidos por alemães da região. Lá surgiu a ideia de colocar o hambúrguer no meio do pão e adicionar outros ingredientes, como queijom tomates e alface."
+      "information": "Preaqueça a chapa, frigideira ou grelha por 10 minutos antes de levar os hambúrgueres. Adicione um pouquinho de óleo ou manteiga e não amasse os hambúrgueres! \n\n Você sabia que a receita que precede o hambúrguer surgiu no século XIII, na Europa? A ideia de moer a carne chegou em Hamburgo no século XVII, onde um açogueiro resolveu também temperá-la. Assim, a receita foi disseminada nos Estados Unidos por alemães da região. Lá surgiu a ideia de colocar o hambúrguer no meio do pão e adicionar outros ingredientes, como queijom tomates e alface."
     },
     {
       "id": 2,
@@ -140,20 +140,30 @@
     },
     {
       "id": 7,
-      "image_url": "https://static-images.ifood.com.br/image/upload//logosgde/xis%20ob_xisou_ranco.bmp",
-      "title": "XIS TUNADO",
-      "author": "Ouro Branco Gang",
+      "image_url": "https://img.itdg.com.br/tdg/images/recipes/000/001/971/3565/3565_original.jpg?mode=crop&width=710&height=400",
+      "title": "Estrogonofe de Camarão",
+      "author": "Luana Vieira",
       "ingredients": [
-        "Pão",
-        "Munaia Bife",
-        "3kg de batata frita",
-        "Meio litro de gordura"
+        "1 colher (sopa) de manteiga",
+        "1 cebola média ralada",
+        "1/2kg de camarão médio limpo",
+        "Sal e pimenta do reino",
+        "4 colheres (sopa) de conhaque",
+        "100g de cogumelos em conserva picados",
+        "3 colheres (sopa) de catchup",
+        "1 colher (sopa) de mostarda",
+        "1 caixinha de creme de leite"
       ],
       "preparation": [
-        "Soca tudo dentro do pão",
-        "Prensa "
+        "Limpe os camarões, retire as cascas e lave muito bem em água e limão, escorra e reserve.",
+        "Aqueça a manteiga e doure nela a cebola.",
+        "Junte os camarões e mexa bem, tempere com sal e pimenta.",
+        "Aqueça o conhaque em uma concha até este pegar fogo e despeje-o sobre os camarões, flambando-os.",
+        "Junte o cogumelo, o catchup, a mostarda e deixe ferver por cerca de 5 minutos.",
+        "No momento de servir, junte o creme de leite, mexa bem e aqueça sem ferver.",
+        "Sirva o strogonoff acompanhado de arroz branco e batata palha."
       ],
-      "information": "Esteja preparado na hora de comer."
+      "information": "https://www.tudogostoso.com.br/receita/1971-estrogonofe-de-camarao.html"
     }
   ]
 }
