@@ -1,24 +1,27 @@
-[![Image from Gyazo](https://i.gyazo.com/c5b8a887a65a6b7e65abbc8d5d38b71c.png)](https://gyazo.com/c5b8a887a65a6b7e65abbc8d5d38b71c)
 
-# <center> Foodfy 🍕 </center>
+<h1 align="center">
+    <img src="./public/assets/chef.png">
+</h1>
 
-## 📌 Recursos 
+# <center> Foodfy 🍕🍩 </center>
 
-Explore receitas e encontre chefes incríveis.
+## 📌 Resources 
 
-## 🚀 Tecnologias utilizadas
+Explore recipes and find amazing chefs.
 
-As seguintes tecnologias foram utilizadas
+## 🚀 Technologies used
+
+The following technologies were used
 
 - [x] [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 - [x] [Node.js](https://nodejs.org/en/)
 - [x] [Nunjucks](https://mozilla.github.io/nunjucks/)
 
-### 📕 Libraries
+### 📜 **Libraries**
 
 - [x] [Browsersync](https://www.browsersync.io/)
 - [x] [npm-run-all](https://www.npmjs.com/package/npm-run-all)
-
+- [x] [method-override](https://www.npmjs.com/package/method-override)
 
 ## 🎨 Layout
 
@@ -28,26 +31,26 @@ As seguintes tecnologias foram utilizadas
 
 ---
 
-**Sobre**
+**About**
 
 ![about](./public/preview/about.png)
 
 ---
 
-**Receitas**
+**Recipes**
 
 ![recipes](/public/preview/recipes.png)
 
 ---
 
-**Detalhes**
+**Details**
 
 ![details](/public/preview/details.png)
 
 ---
 
-## 📕 Licença 
+## 📜 License 
 
-Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](./LICENSE) para mais detalhes.
+Released in 2020. This project is under the [MIT license](LICENSE).
 
-## Feito com 💖 por Leonardo Campello 🙋‍♂️
+## Made with love by Leonardo Campello 💚 
