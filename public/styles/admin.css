@@ -59,6 +59,7 @@ header {
     display: flex;
     justify-content: space-between;
     justify-items: center;
+    align-items: center;
     margin-bottom: 24px;
 }
 
@@ -80,6 +81,7 @@ header {
     background-color: var(--title);
 }
 
+.index-header a,
 .form button[type="submit"],
 .detail-header a {
     background-color: var(--purple);
@@ -89,11 +91,13 @@ header {
     cursor: pointer;
 }
 
+.index-header a:hover,
 .form button[type="submit"]:hover {
     background-color: var(--paragraph);
     transition: 200ms;
 }
 
+.index-header a,
 .form button[type="submit"],
 .item div:first-child,
 .detail-header a, 
@@ -152,7 +156,11 @@ textarea {
 
 /* ===================== INDEX ===================== */
 
-section.index h2 {
+.index-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin: 48px 0 32px;
 }
 
@@ -219,6 +227,7 @@ section.index h2 {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .detail-header a:hover {

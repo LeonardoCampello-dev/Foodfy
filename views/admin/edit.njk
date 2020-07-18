@@ -3,7 +3,7 @@
 {% block content %}
 
     <div class="form">
-        <form action="/admin/recipes?_method=DELETE" method="POST">
+        <form id="form-delete"action="/admin/recipes?_method=DELETE" method="POST">
             <input type="hidden" name="id" value="{{ recipe.id }}">
             <button type="submit" id="delete-button">Deletar</button>
         </form>
@@ -69,5 +69,6 @@
     </div>
 
     <script src="/add.js"></script>
+    {% include "./confirm.njk" %}
 
 {% endblock content %}
