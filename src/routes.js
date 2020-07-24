@@ -1,8 +1,8 @@
 const express = require('express')
 const { Router } = require('express')
-const admin = require('./controllers/admin')
+const admin = require('./app/controllers/admin')
 
-const data = require('./data')
+const data = require('../data.json')
 
 const routes = express.Router()
 

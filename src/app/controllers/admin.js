@@ -1,5 +1,5 @@
 const fs = require('fs')
-const data = require('../data')
+const data = require('../../../data.json')
 
 
 module.exports = {
