@@ -54,6 +54,7 @@ header {
 
 .links a:hover {
     color: var(--red);
+    transition: 200ms;
 }
 
 .links a + a {
@@ -137,6 +138,7 @@ header {
     border-radius: 15px;
     cursor: pointer;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    object-fit: cover;
 }
 
 .card h3 {
@@ -220,8 +222,9 @@ footer {
 
 .details img {
     width: 100%;
-    min-height: 280px;
+    height: 280px;
     border-radius: 15px;
+    object-fit: cover;
 }
 
 .details h1, 
@@ -257,6 +260,11 @@ footer {
     text-transform: uppercase;
     cursor: pointer;
     margin-left: 8px;
+}
+
+.button a:hover {
+    color: var(--title);
+    transition: 200ms;
 }
 
 .invisible {
