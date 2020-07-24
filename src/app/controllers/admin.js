@@ -1,6 +1,7 @@
 const fs = require('fs')
 const data = require('../../../data.json')
-
+const { date } = require('../../libs/utils')
+const db = require('../../config/db')
 
 module.exports = {
 
@@ -11,25 +12,43 @@ module.exports = {
         return res.render("admin/create")
     },
     post(req, res) {
-        let id = 1
+        const keys = Object.keys(req.body)
 
-        const lastRecipe = data.recipes[data.recipes.length - 1]
-
-        if (lastRecipe) {
-            id = lastRecipe.id + 1
+        for (key of keys) {
+            if (req.body[key] == "") {
+                return res.send("Por favor, preencha todos os campos!")
+            }
         }
 
-        data.recipes.push({
-            id,
-            ...req.body
+        const query = `
+        INSERT INTO recipes (
+            chef_id, 
+            image,
+            title,
+            ingredients,
+            preparation,
+            information, 
+            created_at
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7)
+
+        RETURNING id
+        `
+
+        const values = [
+            req.body.chef_id,
+            req.body.image,
+            req.body.title,
+            req.body.ingredients,
+            req.body.preparation,
+            req.body.information,
+            date(Date.now()).iso
+        ]
+
+        db.query(query, values, (err, results) => {
+            if (err) throw `Database error! ${err}`
+
+            return res.redirect(`/admin/recipes/${results.rows[0].id}`)
         })
-
-        fs.writeFile("data.json", JSON.stringify(data, null, 2), (err) => {
-            if (err) return res.send("Write file error!")
-
-            return res.redirect(`/admin/recipes/${id}`)
-        })
-
     },
     show(req, res) {
         const { id } = req.params

@@ -7,15 +7,15 @@ const data = require('../data.json')
 const routes = express.Router()
 
 routes.get("/", (req, res) => {
-    return res.render("index", { recipes: data.recipes })
+    return res.render("foodfy/index", { recipes: data.recipes })
 })
 
 routes.get("/about", (req, res) => {
-    return res.render("about")
+    return res.render("foodfy/about")
 })
 
 routes.get("/recipes", (req, res) => {
-    return res.render("recipes/recipes", { recipes: data.recipes })
+    return res.render("foodfy/recipes", { recipes: data.recipes })
 })
 
 routes.get("/recipes/:id", (req, res) => {
@@ -27,7 +27,7 @@ routes.get("/recipes/:id", (req, res) => {
 
     if (!foundRecipe) return res.send("Recipe not found!")
 
-    return res.render("recipes/details", { recipe: foundRecipe })
+    return res.render("foodfy/details", { recipe: foundRecipe })
 })
 
 

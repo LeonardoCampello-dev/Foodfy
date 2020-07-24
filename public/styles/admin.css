@@ -33,9 +33,33 @@ header {
     box-sizing: border-box;
 }
 
-.admin-bar {
+.navbar {
     width: 70%;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.navbar a {
+    color: #FFFFFF;
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    color: #999999;
+    transition: 200ms;
+}
+
+.navbar > a {
+    margin-right: 24px;
+}
+
+.navbar img {
+    margin-right: 32px;
 }
 
 .flex-container {
