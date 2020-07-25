@@ -6,10 +6,10 @@ const db = require('../../config/db')
 module.exports = {
 
     index(req, res) {
-        return res.render("admin/index", { recipes: data.recipes })
+        return res.render("admin/recipes/index", { recipes: data.recipes })
     },
     create(req, res) {
-        return res.render("admin/create")
+        return res.render("admin/recipes/create")
     },
     post(req, res) {
         const keys = Object.keys(req.body)
@@ -59,7 +59,7 @@ module.exports = {
 
         if (!foundRecipe) return res.send("Recipe not found!")
 
-        return res.render("admin/show", { recipe: foundRecipe })
+        return res.render("admin/recipes/show", { recipe: foundRecipe })
     },
     edit(req, res) {
         const { id } = req.params
@@ -68,7 +68,7 @@ module.exports = {
             return recipe.id == id
         })
 
-        return res.render("admin/edit", { recipe: foundRecipe })
+        return res.render("admin/recipes/edit", { recipe: foundRecipe })
     },
     put(req, res) {
         const { id } = req.body

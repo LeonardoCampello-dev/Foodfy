@@ -15,7 +15,9 @@
 <section>
     <div class="most-accessed">
         <h2>Mais acessadas</h2>
+
         <div class="cards">
+
             {% for recipe in recipes %}
             <div class="card" id="{{ recipe.id }}">
                 <img src="{{ recipe.image_url }}" alt="{{ recipe.title }}">
@@ -25,6 +27,7 @@
             {% endfor %}
             
         </div>
+        
     </div>
 </section>
 

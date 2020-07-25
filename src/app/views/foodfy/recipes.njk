@@ -4,15 +4,19 @@
 
 <section>
     <div class="recipes">
+        
         <div class="cards">
+            
             {% for recipe in recipes %}
-            <div class="card" id="{{ recipe.id }}">
-                <img src="{{ recipe.image_url }}" alt="{{ recipe.title }}">
-                <h3>{{ recipe.title }}</h3>
-                <p>por {{ recipe.author }}</p>
-            </div>
+                <div class="card" id="{{ recipe.id }}">
+                    <img src="{{ recipe.image_url }}" alt="{{ recipe.title }}">
+                    <h3>{{ recipe.title }}</h3>
+                    <p>por {{ recipe.author }}</p>
+                </div>
             {% endfor %}
+
         </div>
+        
     </div>
 </section>
 

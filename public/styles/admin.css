@@ -25,16 +25,23 @@ body {
     height: 100%;
 }
 
+.flex-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===================== HEADER ===================== */
+
 header {
     width: 100%;
-    min-height: 80px;
+    height: 30px;
     background-color: #222222;
     padding: 24px;
-    box-sizing: border-box;
 }
 
 .navbar {
-    width: 70%;
+    width: 73%;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -62,26 +69,15 @@ header {
     margin-right: 32px;
 }
 
-.flex-container {
-    width: 70%;
-    margin: 0 auto;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
 /* ===================== FORM ===================== */
 
 .form {
-    width: 100%;
     margin: 48px 0;
-    box-sizing: border-box;
 }
 
 .form .form-header {
     display: flex;
     justify-content: space-between;
-    justify-items: center;
     align-items: center;
     margin-bottom: 24px;
 }
@@ -154,7 +150,6 @@ input {
     font-weight: bold;
     box-sizing: border-box;
     color: var(--paragraph);
-
     box-shadow: 2px 2px 5px -4px var(--title);
 }
 
@@ -187,12 +182,16 @@ textarea {
 
 /* ===================== INDEX ===================== */
 
+.index {
+    margin-bottom: 48px;
+}
+
 .index-header {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 48px 0 32px;
+    margin: 48px auto 32px;
 }
 
 .cards {
@@ -200,17 +199,16 @@ textarea {
     display: grid;
     grid-template-columns: 1fr 1fr;
     box-sizing: border-box;
-    gap: 24px 0;
+    gap: 28px 0;
 }
 
 .card {    
-    width: 100%;
-    min-height: 80px;
+    height: 80px;
     display: grid;
-    grid-template-columns: 35% 65%;
+    grid-template-columns: 35% 1fr;
     gap: 0 24px;
+    align-items: center;
 }
-
 
 .card img {
     width: 100%;
@@ -250,8 +248,6 @@ textarea {
 /* ===================== DETAILS ===================== */
 
 .details {
-    width: 100%;
-    box-sizing: border-box;
     margin-top: 48px;
 }
 
@@ -272,7 +268,7 @@ textarea {
     height: 280px;
     border-radius: 15px;
     object-fit: cover;
-    margin: 24px 0 48px;
+    margin: 24px auto 48px;
 }
 
 .details div:nth-child(2) h1,
@@ -310,4 +306,36 @@ textarea {
 
 .recipe-information p {
     margin-bottom: 32px;
+}
+
+/* ===================== CHEFS ===================== */
+
+.container {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.chefs {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.chef {
+    grid-template-columns: 64px 65%;
+}
+
+.chef img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+
+.chef a {
+    margin-top: 8px;
+}
+
+.details div.chef-detail:nth-child(2) img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    box-shadow: 2px 2px 5px -4px var(--title);
 }
