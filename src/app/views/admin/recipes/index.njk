@@ -3,8 +3,10 @@
 {% block content %}
 
 <section class="index">
+    
     <div class="index-header">
         <h2>Gerenciar receitas</h2>
+        
         <a href="/admin/recipes/create">Nova receita</a>
     </div>
 
@@ -13,11 +15,11 @@
         {% for recipe in recipes %}
 
             <div class="card">
-                <img src="{{ recipe.image_url }}" alt="{{ recipe.title }}">
+                <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
                 <div>
                     <h3>{{ recipe.title }}</h3>
                     <p>por
-                        {{ recipe.author }}</p>
+                        {{ recipe.chef_name }}</p>
                     <a href="/admin/recipes/{{ recipe.id }}">Visualizar</a>
                 </div>
             </div>

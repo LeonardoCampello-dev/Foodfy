@@ -6,13 +6,14 @@
 
     <div class="detail-header">
         <h2>Receita: {{ recipe.title }}</h2>
+
         <a href="/admin/recipes/{{ recipe.id }}/edit">Editar receita</a>
     </div>
 
     <div>
-        <img src="{{ recipe.image_url }}" alt="{{ recipe.title }}">
+        <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
         <h1>{{ recipe.title }}</h1>
-        <p>por {{ recipe.author }}</p>
+        <p>por {{ recipe.chef_name }}</p>
     </div>
 
     <div class="recipe-information">

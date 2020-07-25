@@ -2,7 +2,7 @@ const Chef = require('../models/Chef')
 
 module.exports = {
     index(req, res) {
-        Chef.all((chefs) => {
+        Chef.all(chefs => {
             return res.render("admin/chefs/index", { chefs })
         })        
     },
@@ -10,19 +10,19 @@ module.exports = {
         return res.render("admin/chefs/create")
     },
     post(req, res) {
-        Chef.create(req.body, (chef) => {
+        Chef.create(req.body, chef => {
             return res.redirect(`/admin/chefs/${chef.id}`)
         })
     },
     show(req, res) {
-        Chef.find(req.params.id, (chef) => {
+        Chef.find(req.params.id, chef => {
             if (!chef) return res.send("Chefe não encontrado")
 
             return res.render("admin/chefs/show", { chef })
         })        
     },
     edit(req, res) {
-        Chef.find(req.params.id, (chef) => {
+        Chef.find(req.params.id, chef => {
             if (!chef) return res.send("Chefe não encontrado")
 
             return res.render("admin/chefs/edit", { chef })

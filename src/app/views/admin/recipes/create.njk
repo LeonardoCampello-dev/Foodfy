@@ -15,7 +15,7 @@
                 <div>Imagem da receita</div>
                 
                 <div>
-                    <input type="url" name="image_url" value="{{ recipe.image_url }}" placeholder="http://example.com/image" required="required">
+                    <input type="url" name="image" value="{{ recipe.image }}" placeholder="http://example.com/image" required="required">
                 </div>
             </div>
 
@@ -24,14 +24,6 @@
                 
                 <div>
                     <input type="text" name="title" value="{{ recipe.title }}" placeholder="Ex: Triplo Bacon Burguer" required="required">
-                </div>
-            </div>
-
-            <div class="item">
-                <div>Autor</div>
-                
-                <div>
-                    <input type="text" name="author" value="{{ recipe.author }}" required="required">
                 </div>
             </div>
 
