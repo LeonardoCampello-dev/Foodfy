@@ -4,7 +4,6 @@ const { date } = require('../../libs/utils')
 const db = require('../../config/db')
 
 module.exports = {
-
     index(req, res) {
         return res.render("admin/recipes/index", { recipes: data.recipes })
     },

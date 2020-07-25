@@ -2,36 +2,28 @@
 
 {% block content %}
 
-    <div class="form">
+<div class="form">
 
-        <form id="form-delete" action="/admin/chefs?_method=DELETE" method="POST">
-            <input type="hidden" name="id" value="{{ chef.id }}">
-            <button type="submit" id="delete-button">Deletar</button>
-        </form>
-
-        <form action="/admin/chefs" method="POST">
-            <div class="form-header">
-                <h2>Editando chef</h2>
-                <button type="submit">Salvar chef</button>
-            </div>
-
-            <div class="item">
-                <div>Nome</div>
-                <div>
-                    <input type="text" name="name" value="{{ chef.name }}" required="required">
-                </div>
-            </div>
-
-            <div class="item">
-                <div>Avatar</div>
-                <div>
-                    <input type="url" name="avatar_url" value="{{ chef.avatar_url }}" placeholder="http://" required="required">
-                </div>
-            </div>
-        </form>
+    <form id="form-delete" action="/admin/chefs?_method=DELETE" method="POST">
+        <input type="hidden" name="id" value="{{ chef.id }}">
         
-    </div>
+        <button type="submit" id="delete-button">Deletar</button>
+    </form>
 
-    {% include "../confirm.njk" %}
+    <form action="/admin/chefs?_method=PUT" method="POST">
+    
+        <div class="form-header">
+            <h2>Editando chef</h2>
+            
+            <button type="submit">Salvar chef</button>
+        </div>
+
+        {% include "./fields.njk" %}
+        
+    </form>
+    
+</div>
+
+{% include "../confirm.njk" %}
 
 {% endblock content %}

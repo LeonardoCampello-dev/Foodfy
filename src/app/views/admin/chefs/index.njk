@@ -2,64 +2,31 @@
 
 {% block content %}
 
-    <section class="index">
-        <div class="index-header">
-            <h2>Gerenciar chefs</h2>
-            <a href="/admin/recipes/create">Novo chef</a>
-        </div>
+<section class="index">
 
-        <div class="cards chefs">
+    <div class="index-header">
+        <h2>Gerenciar chefs</h2>
+
+        <a href="/admin/chefs/create">Novo chef</a>
+    </div>
+
+    <div class="cards chefs">
+
+        {% for chef in chefs %}
 
             <div class="card chef">
-                <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=625&q=80" alt="">
+                <img src="{{ chef.avatar_url }}" alt="{{ chef.name }}">
                 <div>
-                    <h3>Nome do chef</h3>
-                    <a href="#">Visualizar</a>
+                    <h3>{{ chef. name }}</h3>
+
+                    <a href="/admin/chefs/{{ chef.id }}">Visualizar</a>
                 </div>
             </div>
 
-            <div class="card chef">
-                <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=625&q=80" alt="">
-                <div>
-                    <h3>Nome do chef</h3>
-                    <a href="#">Visualizar</a>
-                </div>
-            </div>
+        {% endfor %}
 
-            <div class="card chef">
-                <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=625&q=80" alt="">
-                <div>
-                    <h3>Nome do chef</h3>
-                    <a href="#">Visualizar</a>
-                </div>
-            </div>
+    </div>
 
-            <div class="card chef">
-                <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=625&q=80" alt="">
-                <div>
-                    <h3>Nome do chef</h3>
-                    <a href="#">Visualizar</a>
-                </div>
-            </div>
-
-            <div class="card chef">
-                <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=625&q=80" alt="">
-                <div>
-                    <h3>Nome do chef</h3>
-                    <a href="#">Visualizar</a>
-                </div>
-            </div>
-
-            <div class="card chef">
-                <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=625&q=80" alt="">
-                <div>
-                    <h3>Nome do chef</h3>
-                    <a href="#">Visualizar</a>
-                </div>
-            </div>
-
-        </div>
-
-    </section>
+</section>
 
 {% endblock content %}

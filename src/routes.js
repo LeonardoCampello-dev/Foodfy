@@ -46,21 +46,14 @@ routes.delete("/admin/recipes", recipes.delete)
 
 // admin chefs
 
-routes.get("/admin/chefs", (req, res) => {
-    return res.render("admin/chefs/index")
-})
+routes.get("/admin/chefs", chefs.index)
+routes.get("/admin/chefs/create", chefs.create)
+routes.get("/admin/chefs/:id", chefs.show)
+routes.get("/admin/chefs/:id/edit", chefs.edit)
 
-routes.get("/admin/chefs/create", (req, res) => {
-    return res.render("admin/chefs/create")
-})
-
-routes.get("/admin/chefs/edit", (req, res) => {
-    return res.render("admin/chefs/edit")
-})
-
-routes.get("/admin/chefs/show", (req, res) => {
-    return res.render("admin/chefs/show", { recipes: data.recipes })
-})
+routes.post("/admin/chefs", chefs.post)
+routes.put("/admin/chefs", chefs.put)
+routes.delete("/admin/chefs", chefs.delete)
 
 
 module.exports = routes

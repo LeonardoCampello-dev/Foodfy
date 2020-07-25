@@ -2,43 +2,46 @@
 
 {% block content %}
 
-    <div class="details">
+<div class="details">
 
-        <div class="detail-header">
-            <h2>Chef: Júlia Kinoto</h2>
-            <a href="/admin/chefs/{{ chef.id }}/edit">Editar chef</a>
-        </div>
+    <div class="detail-header">
+        <h2>Chef: {{ chef.name }}</h2>
+        <a href="/admin/chefs/{{ chef.id }}/edit">Editar chef</a>
+    </div>
 
-        <div class="chef-detail">
-            <img src="https://images.unsplash.com/photo-1565608087341-404b25492fee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" alt="{{ chef.title }}">
-            <h1>Júlia Kinoto</h1>
-            <p>4 receitas</p>
-        </div>
+    <div class="chef-detail">
+        <img src="{{ chef.avatar_url }}" alt="{{ chef.name }}">
+        
+        <h1>{{ chef.name }}</h1>
+        <p>{{ chef.total_recipes }}</p>
+    </div>
+
+</div>
+
+<section class="index">
+    
+    <div class="index-header">
+        <h2>Receitas</h2>
+    </div>
+
+    <div class="cards">
+
+        {% for recipe in recipes %}
+
+            <div class="card">
+                <img src="{{ recipe.image_url }}" alt="{{ recipe.title }}">
+                <div>
+                    <h3>{{ recipe.title }}</h3>
+                    <p>por {{ recipe.author }}</p>
+                    
+                    <a href="/admin/recipes/{{ recipe.id }}">Visualizar</a>
+                </div>
+            </div>
+
+        {% endfor %}
 
     </div>
 
-    <section class="index">
-        <div class="index-header">
-            <h2>Receitas</h2>
-        </div>
-
-        <div class="cards">
-
-            {% for recipe in recipes %}
-
-                <div class="card">
-                    <img src="{{ recipe.image_url }}" alt="{{ recipe.title }}">
-                    <div>
-                        <h3>{{ recipe.title }}</h3>
-                        <p>por
-                            {{ recipe.author }}</p>
-                        <a href="/admin/recipes/{{ recipe.id }}">Visualizar</a>
-                    </div>
-                </div>
-
-            {% endfor %}
-        </div>
-
-    </section>
+</section>
 
 {% endblock content %}

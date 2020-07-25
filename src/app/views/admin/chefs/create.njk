@@ -2,28 +2,18 @@
 
 {% block content %}
 
-    <div class="form">
-        <form action="/admin/chefs" method="POST">
-            <div class="form-header">
-                <h2>Criando chef</h2>
-                <button type="submit">Salvar chef</button>
-            </div>
+<div class="form">
+    <form action="/admin/chefs" method="POST">
+    
+        <div class="form-header">
+            <h2>Criando chef</h2>
+            
+            <button type="submit">Salvar chef</button>
+        </div>
 
-            <div class="item">
-                <div>Nome</div>
-                <div>
-                    <input type="text" name="name" value="{{ chef.name }}" required="required">
-                </div>
-            </div>
+        {% include "./fields.njk" %}
 
-            <div class="item">
-                <div>Avatar</div>
-                <div>
-                    <input type="url" name="avatar_url" value="{{ chef.avatar_url }}" placeholder="http://" required="required">
-                </div>
-            </div>
-
-        </form>
-    </div>
+    </form>
+</div>
 
 {% endblock content %}
