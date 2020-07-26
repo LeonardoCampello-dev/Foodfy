@@ -4,12 +4,12 @@ module.exports = {
     index(req, res) {
         Recipe.all(recipes => {
             return res.render("admin/recipes/index", { recipes })
-        })        
+        })
     },
     create(req, res) {
         Recipe.chefSelectOptions(options => {
             return res.render("admin/recipes/create", { chefSelectOptions: options })
-        })        
+        })
     },
     post(req, res) {
         Recipe.create(req.body, recipe => {
@@ -21,16 +21,16 @@ module.exports = {
             if (!recipe) return res.send("Receita não encontrada")
 
             return res.render("admin/recipes/show", { recipe })
-        })        
+        })
     },
     edit(req, res) {
         Recipe.find(req.params.id, recipe => {
             if (!recipe) return res.send("Receita não encontrada")
 
             Recipe.chefSelectOptions(options => {
-                return res.render("admin/recipes/edit", { recipe, chefSelectOptions: options })  
-            })            
-        })        
+                return res.render("admin/recipes/edit", { recipe, chefSelectOptions: options })
+            })
+        })
     },
     put(req, res) {
         Recipe.update(req.body, () => {

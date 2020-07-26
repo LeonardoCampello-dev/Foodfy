@@ -1,0 +1,27 @@
+{% extends "./layout.njk" %}
+
+{% block content %}
+
+<section>
+
+    <div class="chefs">
+        
+        <div class="cards cards-chefs">
+            
+            {% for chef in chefs %}
+                <div class="card card-chef" id="{{ chef.id }}">
+                    <img src="{{ chef.avatar_url }}" alt="{{ chef.name }}">
+                    <div>
+                        <h3>{{ chef.name }}</h3>
+                        <p>{{ chef.total_recipes }} receita{% if chef.total_recipes > 1 %}s{% endif %}</p>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+        
+    </div>
+    
+</section>
+
+{% endblock content %}

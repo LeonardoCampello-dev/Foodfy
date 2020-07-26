@@ -13,7 +13,7 @@
         <img src="{{ chef.avatar_url }}" alt="{{ chef.name }}">
         
         <h1>{{ chef.name }}</h1>
-        <p>{{ chef.total_recipes }} receitas</p>
+        <p>{{ chef.total_recipes }} receita{% if chef.total_recipes > 1 %}s{% endif %}</p>
     </div>
 
 </div>

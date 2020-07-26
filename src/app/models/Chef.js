@@ -3,7 +3,15 @@ const db = require('../../config/db')
 
 module.exports = {
     all(callback) {
-        db.query(`SELECT * FROM chefs`, (err, results) => {
+        const query = `
+        SELECT chefs.*, count(recipes) AS total_recipes
+        FROM chefs
+        LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
+        GROUP BY chefs.id
+        ORDER BY chefs.name ASC
+        `
+        
+        db.query(query, (err, results) => {
             if (err) throw `Database error! ${err}`
 
             callback(results.rows)
@@ -39,7 +47,7 @@ module.exports = {
         WHERE chefs.id = $1
         GROUP BY chefs.id
         `
-        
+
         db.query(query, [id], (err, results) => {
             if (err) throw `Database error! ${err}`
 

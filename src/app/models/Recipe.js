@@ -9,7 +9,7 @@ module.exports = {
         LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
         ORDER BY title ASC
         `
-        
+
         db.query(query, (err, results) => {
             if (err) throw `Database error! ${err}`
 
@@ -51,7 +51,7 @@ module.exports = {
         LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
         WHERE recipes.id = $1
         `
-        
+
         db.query(query, [id], (err, results) => {
             if (err) throw `Database error! ${err}`
 
@@ -96,7 +96,7 @@ module.exports = {
     chefSelectOptions(callback) {
         db.query(`SELECT name, id FROM chefs`, (err, results) => {
             if (err) throw `Database error! ${err}`
-            
+
             callback(results.rows)
         })
     }

@@ -323,3 +323,30 @@ footer {
     text-align: justify;
 }
 
+/* ===================== CHEFS ===================== */
+
+.chefs {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.card-chefs {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.card-chef {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    align-items: center;
+    gap: 16px;
+}
+
+.card-chef img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+
+.card-chef h3 {
+    margin: 0;
+}

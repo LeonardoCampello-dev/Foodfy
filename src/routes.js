@@ -1,36 +1,17 @@
 const express = require('express')
 const { Router } = require('express')
 
+const foodfy = require('./app/controllers/foodfy')
 const recipes = require('./app/controllers/recipes')
 const chefs = require('./app/controllers/chefs')
 
-const data = require('../data.json')
-
 const routes = express.Router()
 
-routes.get("/", (req, res) => {
-    return res.render("foodfy/index", { recipes: data.recipes })
-})
-
-routes.get("/about", (req, res) => {
-    return res.render("foodfy/about")
-})
-
-routes.get("/recipes", (req, res) => {
-    return res.render("foodfy/recipes", { recipes: data.recipes })
-})
-
-routes.get("/recipes/:id", (req, res) => {
-    const { id } = req.params
-
-    const foundRecipe = data.recipes.find((recipe) => {
-        return recipe.id == id
-    })
-
-    if (!foundRecipe) return res.send("Recipe not found!")
-
-    return res.render("foodfy/details", { recipe: foundRecipe })
-})
+routes.get("/", foodfy.index)
+routes.get("/about", foodfy.about)
+routes.get("/recipes", foodfy.recipes)
+routes.get("/recipes/:id", foodfy.recipeDetails)
+routes.get("/chefs", foodfy.chefs)
 
 
 // admin recipes
