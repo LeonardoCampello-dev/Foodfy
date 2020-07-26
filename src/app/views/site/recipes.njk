@@ -6,6 +6,8 @@
 
     <div class="recipes">
         
+    <div class="pagination" data-page="{{ pagination.page }}" data-total="{{ pagination.total }}" data-filter="{{ filter }}"></div>
+        
         <div class="cards">
             
             {% for recipe in recipes %}
@@ -21,9 +23,5 @@
     </div>
 
 </section>
-
-{% block scripts %}
-<script src="/scripts/redirect.js"></script>
-{% endblock scripts %}
 
 {% endblock content %}
