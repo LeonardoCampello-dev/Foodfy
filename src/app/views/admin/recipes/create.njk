@@ -2,64 +2,80 @@
 
 {% block content %}
 
-    <div class="form">
-        
-        <form action="/admin/recipes" method="POST">
-        
-            <div class="form-header">
-                <h2>Criando receita</h2>
-                <button type="submit">Salvar receita</button>
-            </div>
+<div class="form">
+    
+    <form action="/admin/recipes" method="POST">
+    
+        <div class="form-header">
+            <h2>Criando receita</h2>
 
-            <div class="item">
-                <div>Imagem da receita</div>
-                
-                <div>
-                    <input type="url" name="image" value="{{ recipe.image }}" placeholder="http://example.com/image" required="required">
-                </div>
-            </div>
+            <button type="submit">Salvar receita</button>
+        </div>
 
-            <div class="item">
-                <div>Título</div>
-                
-                <div>
-                    <input type="text" name="title" value="{{ recipe.title }}" placeholder="Ex: Triplo Bacon Burguer" required="required">
-                </div>
-            </div>
-
-            <div class="item" id="ingredients">
-                <div>Ingredientes</div>
-                
-                <div class="ingredient">
-                    <input type="text" name="ingredients[]" value="{{ ingredient }}" required="required">
-                </div>
-            </div>
+        <div class="item">
+            <div>Imagem da receita</div>
             
-            <a class="add-ingredient">Adicionar novo ingrediente</a>
-            <a class="remove-ingredient">Remover ingrediente</a>
-
-            <div class="item" id="preparations">
-                <div>Modo de preparo</div>
-                
-                <div class="preparation">
-                    <input type="text" name="preparation[]" value="{{ step }}" required="required">
-                </div>
+            <div>
+                <input type="url" name="image" value="{{ recipe.image }}" placeholder="http://" required="required">
             </div>
-            
-            <a class="add-preparation">Adicionar novo passo</a>
+        </div>
 
-            <div class="item">
-                <div>Informações adicionais</div>
-                
-                <div>
-                    <textarea name="information" cols="30" rows="10">{{ recipe.information }}</textarea>
-                </div>
-            </div>
+        <div class="item">
+            <div>Título</div>
             
-        </form>
+            <div>
+                <input type="text" name="title" value="{{ recipe.title }}" placeholder="Ex: Triplo Bacon Burguer" required="required">
+            </div>
+        </div>
+
+        <div class="item">
+            <div>Chef</div>
+            <div>
+
+                <select name="chef">
+                    {% for chef in chefSelectOptions %}
+                    <option value="{{ chef.id }}" {% if recipe.chef_id == chef.id %} selected {% endif %}> 
+                    {{ chef.name }}
+                    </option>                        
+                    {% endfor %}
+                </select>
+                
+            </div>
+        </div>
+
+        <div class="item" id="ingredients">
+            <div>Ingredientes</div>
+            
+            <div class="ingredient">
+                <input type="text" name="ingredients[]" value="{{ ingredient }}" required="required">
+            </div>
+        </div>
         
-    </div>
+        <a class="add-ingredient">Adicionar novo ingrediente</a>
+        <a class="remove-ingredient">Remover ingrediente</a>
 
-    <script src="/scripts/add.js"></script>
+        <div class="item" id="preparations">
+            <div>Modo de preparo</div>
+            
+            <div class="preparation">
+                <input type="text" name="preparation[]" value="{{ step }}" required="required">
+            </div>
+        </div>
+        
+        <a class="add-preparation">Adicionar novo passo</a>
+
+        <div class="item">
+            <div>Informações adicionais</div>
+            
+            <div>
+                <textarea name="information" cols="30" rows="10">{{ recipe.information }}</textarea>
+            </div>
+        </div>
+        
+    </form>
+    
+</div>
+
+<script src="/scripts/add.js"></script>
 
 {% endblock content %}

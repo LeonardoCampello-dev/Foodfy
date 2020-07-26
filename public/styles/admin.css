@@ -140,7 +140,8 @@ header {
 
 
 textarea,
-input {
+input,
+select {
     width: 100%;
     padding: 16px;
     border: 1px solid #DDDDDD;

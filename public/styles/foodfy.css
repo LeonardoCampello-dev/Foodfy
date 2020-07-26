@@ -6,6 +6,7 @@
     --paragraph: #444444;
     --salmon: #FBDFDB;
     --red: #D54F44;
+    --purple: #6558C3;
 }
 
 * {
@@ -36,7 +37,8 @@ body {
 header {
     width: 70%;
     padding: 32px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 10% 60% 30%;
     align-items: center;
     margin: 0 auto;
 }
@@ -63,6 +65,41 @@ header {
 
 .active {
     font-weight: bold;
+}
+
+header form {
+    display: grid;
+    grid-template-columns: 1fr 128px;
+    gap: 8px;
+}
+
+header form button[type="submit"] {
+    background-color: var(--purple);
+    color: #FFFFFF;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+header form button[type="submit"]:hover {
+    background-color: var(--paragraph);
+    transition: 200ms;
+}
+
+header form input[type="text"] {
+    padding: 8px 16px;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    outline: none;
+    font-size: 14px;
+    line-height: 16px;
+    box-sizing: border-box;
+    color: var(--paragraph);
+    box-shadow: 2px 2px 5px -4px var(--title);
 }
 
 /* ===================== MAIN CARD ===================== */

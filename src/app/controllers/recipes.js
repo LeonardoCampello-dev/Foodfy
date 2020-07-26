@@ -7,7 +7,9 @@ module.exports = {
         })        
     },
     create(req, res) {
-        return res.render("admin/recipes/create")
+        Recipe.chefSelectOptions(options => {
+            return res.render("admin/recipes/create", { chefSelectOptions: options })
+        })        
     },
     post(req, res) {
         Recipe.create(req.body, recipe => {
@@ -25,7 +27,9 @@ module.exports = {
         Recipe.find(req.params.id, recipe => {
             if (!recipe) return res.send("Receita não encontrada")
 
-            return res.render("admin/recipes/edit", { recipe })
+            Recipe.chefSelectOptions(options => {
+                return res.render("admin/recipes/edit", { recipe, chefSelectOptions: options })  
+            })            
         })        
     },
     put(req, res) {
