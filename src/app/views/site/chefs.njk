@@ -10,7 +10,9 @@
             
             {% for chef in chefs %}
                 <div class="card card-chef" id="{{ chef.id }}">
-                    <img src="{{ chef.avatar_url }}" alt="{{ chef.name }}">
+                    <a href="/chefs/{{ chef.id }}">
+                        <img src="{{ chef.avatar_url }}" alt="{{ chef.name }}">
+                    </a>
                     <div>
                         <h3>{{ chef.name }}</h3>
                         <p>{{ chef.total_recipes }} receita{% if chef.total_recipes > 1 %}s{% endif %}</p>
