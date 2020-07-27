@@ -13,7 +13,7 @@
         <img src="{{ chef.avatar_url }}" alt="{{ chef.name }}">
         
         <h1>{{ chef.name }}</h1>
-        <p>{{ chef.total_recipes }} receita{% if chef.total_recipes > 1 %}s{% endif %}</p>
+        <p>{{ totalRecipes }} receita{% if totalRecipes > 1 %}s{% endif %}</p>
     </div>
 
 </div>
@@ -29,12 +29,12 @@
         {% for recipe in recipes %}
 
             <div class="card">
-                <img src="{{ recipe.image_url }}" alt="{{ recipe.title }}">
+                <img src="{{ recipe.recipes_image }}" alt="{{ recipe.recipes_name }}">
                 <div>
-                    <h3>{{ recipe.title }}</h3>
-                    <p>por {{ recipe.author }}</p>
+                    <h3>{{ recipe.recipes_name   }}</h3>
+                    <p>por {{ chef.name }}</p>
                     
-                    <a href="/admin/recipes/{{ recipe.id }}">Visualizar</a>
+                    <a href="/admin/recipes/{{ recipe.recipes_id }}">Visualizar</a>
                 </div>
             </div>
 

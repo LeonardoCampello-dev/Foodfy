@@ -334,6 +334,11 @@ textarea {
     margin-top: 8px;
 }
 
+.chef-detail {
+    width: 100%;
+    text-align: center;
+}
+
 .details div.chef-detail:nth-child(2) img {
     width: 250px;
     height: 250px;
@@ -345,4 +350,27 @@ textarea {
     background-color: #DC4747;
     right: 375px;
     position: absolute;
+}
+
+/* ===================== PAGINATION ===================== */
+
+.pagination {
+    position: absolute;
+    bottom: 5vh;
+    left: 50%;
+}
+
+.pagination a,
+.pagination span {
+    color: var(--paragraph);
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: 8px;
+}
+
+.pagination a:hover {
+    color: var(--red);
+    border-bottom: 1px solid var(--red);
+    transition: 200ms;
 }

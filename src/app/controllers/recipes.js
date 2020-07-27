@@ -1,10 +1,29 @@
+const Site = require('../models/Site')
 const Recipe = require('../models/Recipe')
 
 module.exports = {
     index(req, res) {
-        Recipe.all(recipes => {
-            return res.render("admin/recipes/index", { recipes })
-        })
+        let { page, limit } = req.query
+
+        page = page || 1
+        limit = limit || 8
+        offset = limit * (page - 1)
+
+        params = {
+            page,
+            limit,
+            offset,
+            callback(recipes) {
+                const pagination = {
+                    total: Math.ceil(recipes[0].total / limit),
+                    page
+                }
+
+                return res.render("admin/recipes/index", { recipes, pagination })
+            }
+        }
+
+        Site.paginate(params)
     },
     create(req, res) {
         Recipe.chefSelectOptions(options => {
