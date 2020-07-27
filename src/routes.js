@@ -12,6 +12,7 @@ routes.get("/about", site.about)
 routes.get("/recipes", site.recipes)
 routes.get("/recipes/:id", site.recipeDetails)
 routes.get("/chefs", site.chefs)
+routes.get("/chefs/:id", site.chefDetails)
 routes.get("/results", site.showResults)
 
 

@@ -26,6 +26,10 @@ body {
     height: 100%;
 }
 
+a {
+    text-decoration: none;
+}
+
 .flex-container {
     height: 100vh;
     display: flex;
@@ -349,6 +353,21 @@ footer {
 
 .card-chef h3 {
     margin: 0;
+}
+
+.chef-detail {
+    text-align: center;
+}
+
+.chef-detail img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+}
+
+.index {
+    width: 70%;
+    margin: 0 auto;
 }
 
 /* ===================== PAGINATION ===================== */

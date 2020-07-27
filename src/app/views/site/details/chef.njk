@@ -3,12 +3,7 @@
 {% block content %}
 
 <div class="details">
-
-    <div class="detail-header">
-        <h2>Chef: {{ chef.name }}</h2>
-        <a href="/admin/chefs/{{ chef.id }}/edit">Editar chef</a>
-    </div>
-
+    
     <div class="chef-detail">
         <img src="{{ chef.avatar_url }}" alt="{{ chef.name }}">
         
@@ -26,7 +21,7 @@
 
 </div>
 
-{% if chef.recipes_name %}
+{% if chef.recipes_name  %}
 
 <section class="index">
     
@@ -39,12 +34,11 @@
         {% for recipe in recipes %}
 
             <div class="card">
-                <img src="{{ recipe.recipes_image }}" alt="{{ recipe.recipes_name }}">
+                <a href="/recipes/{{ recipe.recipes_id }}">
+                    <img src="{{ recipe.recipes_image }}" alt="{{ recipe.recipes_name }}">
+                </a>
                 <div>
                     <h3>{{ recipe.recipes_name   }}</h3>
-                    <p>por {{ chef.name }}</p>
-                    
-                    <a href="/admin/recipes/{{ recipe.recipes_id }}">Visualizar</a>
                 </div>
             </div>
 

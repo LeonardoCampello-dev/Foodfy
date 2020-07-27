@@ -43,12 +43,39 @@ module.exports = {
     },
     recipeDetails(req, res) {
         Recipe.find(req.params.id, recipe => {
+            if (!recipe) return res.send('Receita não encontrada')
+            
             return res.render("site/details/recipe", { recipe })
         })
     },
     chefs(req, res) {
-        Chef.all(chefs => {
-            return res.render("site/chefs", { chefs })
+        let { page, limit } = req.query
+
+        page = page || 1
+        limit = limit || 6
+        offset = limit * (page - 1)
+
+        params = {
+            page,
+            limit,
+            offset,
+            callback(chefs) {
+                const pagination = {
+                    total: Math.ceil(chefs[0].total / limit),
+                    page
+                }
+
+                return res.render("site/chefs", { chefs, pagination })
+            }
+        }
+
+        Chef.paginate(params)
+    },
+    chefDetails(req, res) {
+        Chef.find(req.params.id, (chef, recipes, totalRecipes) => {
+            if (!chef) return res.send('Chefe não encontrado')
+
+            return res.render('site/details/chef', { chef, recipes, totalRecipes })
         })
     },
     showResults(req, res) {

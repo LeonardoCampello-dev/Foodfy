@@ -6,6 +6,8 @@
 
     <div class="chefs">
         
+    <div class="pagination" data-page="{{ pagination.page }}" data-total="{{ pagination.total }}" data-filter="{{ filter }}"></div>
+ 
         <div class="cards cards-chefs">
             
             {% for chef in chefs %}
@@ -15,7 +17,11 @@
                     </a>
                     <div>
                         <h3>{{ chef.name }}</h3>
-                        <p>{{ chef.total_recipes }} receita{% if chef.total_recipes > 1 %}s{% endif %}</p>
+                        <p> 
+                        {% if chef.total_recipes == 1 %} {{ chef.total_recipes }} receita {% endif %}
+                        {% if chef.total_recipes > 1 %} {{ chef.total_recipes }} receitas {% endif %}
+                        {% if chef.total_recipes == 0 %} Nenhuma receita encontrada {% endif %}
+                        </p>
                     </div>
                 </div>
             {% endfor %}

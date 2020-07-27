@@ -2,9 +2,27 @@ const Chef = require('../models/Chef')
 
 module.exports = {
     index(req, res) {
-        Chef.all(chefs => {
-            return res.render("admin/chefs/index", { chefs })
-        })
+        let { page, limit } = req.query
+
+        page = page || 1
+        limit = limit || 6
+        offset = limit * (page - 1)
+
+        params = {
+            page,
+            limit,
+            offset,
+            callback(chefs) {
+                const pagination = {
+                    total: Math.ceil(chefs[0].total / limit),
+                    page
+                }
+
+                return res.render("admin/chefs/index", { chefs, pagination })
+            }
+        }
+
+        Chef.paginate(params)
     },
     create(req, res) {
         return res.render("admin/chefs/create")
