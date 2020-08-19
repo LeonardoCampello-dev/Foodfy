@@ -16,29 +16,25 @@
 </div>
 
 <section>
-    
-    <div class="most-accessed">
 
-        <h2>Mais acessadas</h2>
+    <h2 class="most-accessed">Mais acessadas</h2>
 
-        <div class="cards">
+    <div class="cards">
 
-            {% for recipe in recipes %}
-            <div class="card" id="{{ recipe.id }}">
-                <a href="/recipes/{{ recipe.id }}">
-                    <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
-                </a>
-                <h3>{{ recipe.title }}</h3>
-                <a href="/chefs/{{ recipe.chef_id }}">
-                    <p>por {{ recipe.chef_name }}</p>
-                </a>
-            </div>
-            {% endfor %}
-            
+        {% for recipe in recipes %}
+        <div class="card" id="{{ recipe.id }}">
+            <a href="/recipes/{{ recipe.id }}">
+                <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+            </a>
+            <h3>{{ recipe.title }}</h3>
+            <a href="/chefs/{{ recipe.chef_id }}">
+                <p>por {{ recipe.chef_name }}</p>
+            </a>
         </div>
+        {% endfor %}
         
     </div>
-    
+        
 </section>
 
 {% block scripts %}

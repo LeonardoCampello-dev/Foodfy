@@ -6,7 +6,7 @@
 
     <div class="detail-header">
         <h2>Chef: {{ chef.name }}</h2>
-        <a href="/admin/chefs/{{ chef.id }}/edit">Editar chef</a>
+        <a href="/admin/chefs/{{ chef.id }}/edit" class="purple-button">Editar chef</a>
     </div>
 
     <div class="chef-detail">
@@ -34,14 +34,14 @@
         <h2>Receitas</h2>
     </div>
 
-    <div class="cards">
+    <div class="cards-admin">
 
         {% for recipe in recipes %}
 
             <div class="card">
                 <img src="{{ recipe.recipes_image }}" alt="{{ recipe.recipes_name }}">
                 <div>
-                    <h3>{{ recipe.recipes_name   }}</h3>
+                    <h3>{{ recipe.recipes_name }}</h3>
                     <p>por {{ chef.name }}</p>
                     
                     <a href="/admin/recipes/{{ recipe.recipes_id }}">Visualizar</a>

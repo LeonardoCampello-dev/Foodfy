@@ -5,7 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.">
         <meta name="keywords" content="Receitas, Chefs, Gastronomia">
+        <link rel="stylesheet" href="/styles/global.css">
         <link rel="stylesheet" href="/styles/foodfy.css">
+
         <link rel="icon" href="/assets/favicon.ico" type="image/x-icon"/>
         <title>Foodfy</title>
     </head>
@@ -13,7 +15,7 @@
     <body>
         <div class="flex-container">
             
-            <header>
+            <header class="header-site">
                 <a href="/"><img src="/assets/logo.png" alt="Logo da empresa"></a>
                 <div class="links">
                     <a href="/about">Sobre</a>
@@ -24,16 +26,20 @@
                     <form action="/results" method="GET">
                         <input type="text" name="filter" value="{{ filter }}" placeholder="Buscar uma receita">
 
-                        <button type="submit">Buscar</button>
+                        <button type="submit" class="purple-button">Buscar</button>
                     </form>
                 </div>
             </header>
 
+            <div class="container">
+
             {% block content %}{% endblock content %}
+
+            </div>
 
             <footer>
                 <div class="footer">
-                    <p>Todos os direitos reservados, receitas <a href="https://github.com/LeonardoCampello-dev/Foodfy">Foodfy.</a></p>
+                    <p>Todos os direitos reservados, receitas <a href="https://github.com/LeonardoCampello-dev/Foodfy">Foodfy. 🍕</a></p>
                 </div>
             </footer>
 

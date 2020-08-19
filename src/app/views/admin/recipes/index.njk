@@ -7,10 +7,10 @@
     <div class="index-header">
         <h2>Gerenciar receitas</h2>
         
-        <a href="/admin/recipes/create">Nova receita</a>
+        <a href="/admin/recipes/create" class="purple-button">Nova receita</a>
     </div>
 
-    <div class="cards">
+    <div class="cards-admin">
 
         {% for recipe in recipes %}
 
@@ -18,8 +18,8 @@
                 <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
                 <div>
                     <h3>{{ recipe.title }}</h3>
-                    <p>por
-                        {{ recipe.chef_name }}</p>
+                    <p>por {{ recipe.chef_name }}</p>
+                    
                     <a href="/admin/recipes/{{ recipe.id }}">Visualizar</a>
                 </div>
             </div>

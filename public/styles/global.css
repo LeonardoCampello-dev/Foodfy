@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+    --title: #111111;
+    --author: #777777;
+    --paragraph: #444444;
+    --salmon: #FBDFDB;
+    --red: #D54F44;
+    --purple: #6558C3;
+}
+
+* {
+    padding: 0;
+    border: none;
+    margin: 0;
+
+    text-decoration: none;
+    list-style: none;
+    outline: none;
+
+    box-sizing: border-box;
+}
+
+html, body {
+    min-height: 100vh;
+    width: 100%;
+  }
+
+body {
+    background-color: #fff;
+    height: 100%;
+}
+
+body,
+input,
+textarea,
+select {
+    font-family: 'Roboto', sans-serif;
+}
+
+h2 {
+    color: var(--title);
+    font-size: 24px;
+    line-height: 28px;
+}
+
+.flex-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    width: 70%;
+    margin: 0 auto 48px;
+}
+
+.purple-button {
+    background-color: var(--purple);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    
+    cursor: pointer;
+
+    transition: 0.2s;
+
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: bold;
+}
+
+.purple-button:hover {
+    background-color: var(--paragraph);
+}

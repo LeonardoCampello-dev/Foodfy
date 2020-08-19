@@ -7,7 +7,7 @@
     <form id="form-delete" action="/admin/chefs?_method=DELETE" method="POST">
         <input type="hidden" name="id" value="{{ chef.id }}">
         
-        <button type="submit" id="chef-delete">Deletar</button>
+        <button type="submit" id="chef-delete" class="purple-button">Deletar</button>
     </form>
 
     <form action="/admin/chefs?_method=PUT" method="POST">
@@ -15,7 +15,7 @@
         <div class="form-header">
             <h2>Editando chef</h2>
             
-            <button type="submit">Salvar chef</button>
+            <button type="submit" class="purple-button">Salvar chef</button>
         </div>
 
         {% include "./fields.njk" %}

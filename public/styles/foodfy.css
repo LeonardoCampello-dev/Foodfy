@@ -1,44 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
-
-:root {
-    --title: #111111;
-    --author: #777777;
-    --paragraph: #444444;
-    --salmon: #FBDFDB;
-    --red: #D54F44;
-    --purple: #6558C3;
-}
-
-* {
-    padding: 0;
-    border: none;
-    margin: 0;
-}
-
-html, body {
-    min-height: 100vh;
-    width: 100%;
-  }
-
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #FFFFFF;
-    height: 100%;
-}
-
-a {
-    text-decoration: none;
-}
-
-.flex-container {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
 /* ===================== HEADER ===================== */
 
-header {
+.header-site {
     width: 70%;
     padding: 32px;
     display: grid;
@@ -77,23 +39,6 @@ header form {
     gap: 8px;
 }
 
-header form button[type="submit"] {
-    background-color: var(--purple);
-    color: #FFFFFF;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    line-height: 19px;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-header form button[type="submit"]:hover {
-    background-color: var(--paragraph);
-    transition: 200ms;
-}
-
 header form input[type="text"] {
     padding: 8px 16px;
     border: 1px solid #DDDDDD;
@@ -109,7 +54,7 @@ header form input[type="text"] {
 /* ===================== MAIN CARD ===================== */
 
 .main-card {
-    width: 70%;
+    width: 100%;
     height: 366px;
     background-color: var(--salmon);
     border-radius: 30px;
@@ -151,16 +96,15 @@ header form input[type="text"] {
 
 /* ===================== MOST ACCESSED ===================== */
 
-.most-accessed {
-    width: 70%;
-    margin: 48px auto;
-}
+
 
 .recipe-information h2,
-.most-accessed h2 {
+.most-accessed {
     font-size: 24px;
     line-height: 28px;
     color: var(--title);
+
+    margin-top: 48px;
 }
 
 .cards {
@@ -202,7 +146,7 @@ header form input[type="text"] {
 
 footer {
     width: 100%;
-    background-color: #EEEEEE;
+    background-color: #eee;
     margin-top: auto;
 }
 
@@ -226,10 +170,6 @@ footer {
 
 /* ===================== ABOUT ===================== */
 
-.about {
-    width: 70%;
-    margin: 0 auto 48px;
-}
 
 .information {
     margin-top: 32px;
@@ -247,19 +187,7 @@ footer {
     opacity: 1;
 }
 
-/* ===================== RECIPES ===================== */
-
-.recipes {
-    width: 70%;
-    margin: 0 auto 48px;
-}
-
 /* ===================== DETAILS ===================== */
-
-.details {
-    width: 70%;
-    margin: 0 auto 48px;
-}
 
 .details img {
     width: 100%;
@@ -329,26 +257,23 @@ footer {
 
 /* ===================== CHEFS ===================== */
 
-.chefs {
-    width: 70%;
-    margin: 0 auto;
-}
-
 .card-chefs {
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .card-chef {
     display: grid;
-    grid-template-columns: 64px 1fr;
+    grid-template-columns: 88px 1fr;
     align-items: center;
     gap: 16px;
 }
 
 .card-chef img {
-    width: 64px;
-    height: 64px;
+    width: 88px;
+    height: 88px;
     border-radius: 50%;
+
+    object-fit: cover;
 }
 
 .card-chef h3 {
@@ -363,11 +288,6 @@ footer {
     width: 250px;
     height: 250px;
     border-radius: 50%;
-}
-
-.index {
-    width: 70%;
-    margin: 0 auto;
 }
 
 /* ===================== PAGINATION ===================== */

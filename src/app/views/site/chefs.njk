@@ -3,31 +3,27 @@
 {% block content %}
 
 <section>
+      
+<div class="pagination" data-page="{{ pagination.page }}" data-total="{{ pagination.total }}" data-filter="{{ filter }}"></div>
 
-    <div class="chefs">
+    <div class="cards cards-chefs">
         
-    <div class="pagination" data-page="{{ pagination.page }}" data-total="{{ pagination.total }}" data-filter="{{ filter }}"></div>
- 
-        <div class="cards cards-chefs">
-            
-            {% for chef in chefs %}
-                <div class="card card-chef" id="{{ chef.id }}">
-                    <a href="/chefs/{{ chef.id }}">
-                        <img src="{{ chef.avatar_url }}" alt="{{ chef.name }}">
-                    </a>
-                    <div>
-                        <h3>{{ chef.name }}</h3>
-                        <p> 
-                        {% if chef.total_recipes == 1 %} {{ chef.total_recipes }} receita {% endif %}
-                        {% if chef.total_recipes > 1 %} {{ chef.total_recipes }} receitas {% endif %}
-                        {% if chef.total_recipes == 0 %} Nenhuma receita encontrada {% endif %}
-                        </p>
-                    </div>
+        {% for chef in chefs %}
+            <div class="card card-chef" id="{{ chef.id }}">
+                <a href="/chefs/{{ chef.id }}">
+                    <img src="{{ chef.avatar_url }}" alt="{{ chef.name }}">
+                </a>
+                <div>
+                    <h3>{{ chef.name }}</h3>
+                    <p> 
+                    {% if chef.total_recipes == 1 %} {{ chef.total_recipes }} receita {% endif %}
+                    {% if chef.total_recipes > 1 %} {{ chef.total_recipes }} receitas {% endif %}
+                    {% if chef.total_recipes == 0 %} Nenhuma receita encontrada {% endif %}
+                    </p>
                 </div>
-            {% endfor %}
+            </div>
+        {% endfor %}
 
-        </div>
-        
     </div>
     
 </section>
