@@ -27,34 +27,39 @@ module.exports = {
     create(req, res) {
         return res.render("admin/chefs/create")
     },
-    post(req, res) {
-        Chef.create(req.body, chef => {
-            return res.redirect(`/admin/chefs/${chef.id}`)
-        })
-    },
-    show(req, res) {
-        Chef.find(req.params.id, (chef, recipes, totalRecipes) => {
-            if (!chef) return res.send('Chefe não encontrado')
+    async post(req, res) {
+        let results = await Chef.create(req.body)
+        const chefId = results.rows[0].id
 
-            return res.render('admin/chefs/show', { chef, recipes, totalRecipes })
-        })
+        return res.redirect(`/admin/chefs/${chefId}`)
     },
-    edit(req, res) {
-        Chef.find(req.params.id, chef => {
-            if (!chef) return res.send("Chefe não encontrado")
+    async show(req, res) {
+        let results = await Chef.find(req.params.id)
+        const chef = results.rows[0]
+        const recipes = results.rows
+        const totalRecipes = results.rowCount
 
-            return res.render("admin/chefs/edit", { chef })
-        })
+        if (!chef) return res.send('Chefe não encontrado')
+
+        return res.render('admin/chefs/show', { chef, recipes, totalRecipes })
     },
-    put(req, res) {
-        Chef.update(req.body, () => {
-            return res.redirect(`/admin/chefs/${req.body.id}`)
-        })
+    async edit(req, res) {
+        let results = await Chef.find(req.params.id)
+        const chef = results.rows[0]
+
+        if (!chef) return res.send("Chefe não encontrado")
+
+        return res.render("admin/chefs/edit", { chef })
     },
-    delete(req, res) {
-        Chef.delete(req.body.id, () => {
-            return res.redirect("/admin/chefs")
-        })
+    async put(req, res) {
+        let results = await Chef.update(req.body)
+
+        return res.redirect(`/admin/chefs/${req.body.id}`)
+    },
+    async delete(req, res) {
+        let results = await Chef.delete(req.body.id)
+
+        return res.redirect("/admin/chefs")
     }
 }
 

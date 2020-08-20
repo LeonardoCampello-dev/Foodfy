@@ -25,40 +25,50 @@ module.exports = {
 
         Site.paginate(params)
     },
-    create(req, res) {
-        Recipe.chefSelectOptions(options => {
-            return res.render("admin/recipes/create", { chefSelectOptions: options })
-        })
-    },
-    post(req, res) {
-        Recipe.create(req.body, recipe => {
-            return res.redirect(`/admin/recipes/${req.body.id}`)
-        })
-    },
-    show(req, res) {
-        Recipe.find(req.params.id, recipe => {
-            if (!recipe) return res.send("Receita não encontrada")
+    async create(req, res) {
+        let results = await Recipe.chefSelectOptions()
+        const chefSelectOptions = results.rows
 
-            return res.render("admin/recipes/show", { recipe })
-        })
+        return res.render("admin/recipes/create", { chefSelectOptions })
     },
-    edit(req, res) {
-        Recipe.find(req.params.id, recipe => {
-            if (!recipe) return res.send("Receita não encontrada")
+    async post(req, res) {
+        try {
+            let results = await Recipe.create(req.body)
+            const recipeId = results.rows[0].id
 
-            Recipe.chefSelectOptions(options => {
-                return res.render("admin/recipes/edit", { recipe, chefSelectOptions: options })
-            })
-        })
+            return res.redirect(`/admin/recipes/${recipeId}`)
+
+        } catch (error) {
+            throw new Error(error)
+        }
     },
-    put(req, res) {
-        Recipe.update(req.body, () => {
-            return res.redirect(`/admin/recipes/${req.body.id}`)
-        })
+    async show(req, res) {
+        let results = await Recipe.find(req.params.id)
+        const recipe = results.rows[0]
+
+        if (!recipe) return res.send("Receita não encontrada")
+
+        return res.render("admin/recipes/show", { recipe })
     },
-    delete(req, res) {
-        Recipe.delete(req.body.id, () => {
-            return res.redirect("/admin/recipes")
-        })
+    async edit(req, res) {
+        let results = await Recipe.find(req.params.id)
+        const recipe = results.rows[0]
+
+        if (!recipe) return res.send("Receita não encontrada")
+
+        results = await Recipe.chefSelectOptions()
+        const chefSelectOptions = results.rows
+
+        return res.render("admin/recipes/edit", { recipe, chefSelectOptions })
+    },
+    async put(req, res) {
+        let results = await Recipe.update(req.body)
+
+        return res.redirect(`/admin/recipes/${req.body.id}`)
+    },
+    async delete(req, res) {
+        let results = await Recipe.delete(req.body.id)
+
+        return res.redirect("/admin/recipes")
     }
 }

@@ -3,15 +3,16 @@ const Recipe = require('../models/Recipe')
 const Chef = require('../models/Chef')
 
 module.exports = {
-    index(req, res) {
+    async index(req, res) {
         const { filter } = req.query
 
         if (filter) {
             return res.redirect("/results")
         } else {
-            Recipe.all(recipes => {
-                return res.render("site/index", { recipes })
-            })
+            let results = await Recipe.all()
+            const recipes = results.rows
+
+            return res.render("site/index", { recipes })
         }
     },
     about(req, res) {
@@ -21,7 +22,7 @@ module.exports = {
         let { filter, page, limit } = req.query
 
         page = page || 1
-        limit = limit || 6
+        limit = limit || 9
         offset = limit * (page - 1)
 
         params = {
@@ -41,18 +42,18 @@ module.exports = {
 
         Site.paginate(params)
     },
-    recipeDetails(req, res) {
-        Recipe.find(req.params.id, recipe => {
-            if (!recipe) return res.send('Receita não encontrada')
-            
-            return res.render("site/details/recipe", { recipe })
-        })
+    async recipeDetails(req, res) {
+        let results = await Recipe.find(req.params.id)
+        const recipe = results.rows[0]
+
+        return res.render("site/details/recipe", { recipe })
+
     },
     chefs(req, res) {
         let { page, limit } = req.query
 
         page = page || 1
-        limit = limit || 6
+        limit = limit || 9
         offset = limit * (page - 1)
 
         params = {
@@ -71,18 +72,22 @@ module.exports = {
 
         Chef.paginate(params)
     },
-    chefDetails(req, res) {
-        Chef.find(req.params.id, (chef, recipes, totalRecipes) => {
-            if (!chef) return res.send('Chefe não encontrado')
+    async chefDetails(req, res) {
+        let results = await Chef.find(req.params.id)
+        const chef = results.rows[0]
+        const recipes = results.rows
+        const totalRecipes = results.rowCount
 
-            return res.render('site/details/chef', { chef, recipes, totalRecipes })
-        })
+        if (!chef) return res.send('Chefe não encontrado')
+
+        return res.render('site/details/chef', { chef, recipes, totalRecipes })
     },
-    showResults(req, res) {
+    async showResults(req, res) {
         const { filter } = req.query
 
-        Recipe.findBy(filter, recipes => {
-            return res.render("site/results", { filter, recipes })
-        })
+        let results = await Recipe.findBy(filter)
+        const recipes = results.rows
+
+        return res.render("site/results", { filter, recipes })
     }
 }

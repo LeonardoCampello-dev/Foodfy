@@ -10,14 +10,14 @@ module.exports = {
         GROUP BY chefs.id
         ORDER BY chefs.name ASC
         `
-        
+
         db.query(query, (err, results) => {
             if (err) throw `Database error! ${err}`
 
             callback(results.rows)
         })
     },
-    create(data, callback) {
+    create(data) {
         const query = `
         INSERT INTO chefs (
             name,
@@ -33,13 +33,9 @@ module.exports = {
             date(Date.now()).iso
         ]
 
-        db.query(query, values, (err, results) => {
-            if (err) throw `Database error! ${err}`
-
-            callback(results.rows[0])
-        })
+        return db.query(query, values)
     },
-    find(id, callback) {
+    find(id) {
         const query = `
         SELECT chefs.*, recipes.title AS recipes_name, recipes.image AS recipes_image, recipes.id AS recipes_id
         FROM chefs 
@@ -47,13 +43,9 @@ module.exports = {
         WHERE chefs.id = $1
         `
 
-        db.query(query, [id], (err, results) => {
-            if (err) throw `Database error! ${err}`
-
-            callback(results.rows[0], results.rows, results.rowCount)
-        })
+        return db.query(query, [id])
     },
-    update(data, callback) {
+    update(data) {
         const query = `
         UPDATE chefs SET
             name=($1),
@@ -67,18 +59,10 @@ module.exports = {
             data.id
         ]
 
-        db.query(query, values, (err, results) => {
-            if (err) throw `Database error! ${err}`
-
-            callback()
-        })
+        return db.query(query, values)
     },
-    delete(id, callback) {
-        db.query(`DELETE FROM chefs WHERE id = $1`, [id], (err, results) => {
-            if (err) throw `Database error! ${err}`
-
-            return callback()
-        })
+    delete(id) {
+        return db.query(`DELETE FROM chefs WHERE id = $1`, [id])
     },
     paginate(params) {
         let { callback, limit, offset } = params
