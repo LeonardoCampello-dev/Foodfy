@@ -1,4 +1,3 @@
-
 function paginate(selectedPage, totalPages) {
 
     let pages = [],
@@ -13,7 +12,7 @@ function paginate(selectedPage, totalPages) {
         if (firstAndLastPage || pagesBeforeSelectedPage && pagesAfterSelectedPage) {
 
             if (oldPage && currentPage - oldPage > 2) {
-                pages.push("...")
+                pages.push('...')
             }
 
             if (oldPage && currentPage - oldPage == 2) {
@@ -36,11 +35,11 @@ function createPagination(pagination) {
     const total = +pagination.dataset.total
     const pages = paginate(page, total)
 
-    let elements = ""
+    let elements = ''
 
     for (let page of pages) {
 
-        if (String(page).includes("...")) {
+        if (String(page).includes('...')) {
             elements += `<span>${page}</span>`
         } else {
             if (filter) {
@@ -54,8 +53,8 @@ function createPagination(pagination) {
     pagination.innerHTML = elements
 }
 
-const pagination = document.querySelector(".pagination")
+const pagination = document.querySelector('.pagination')
 
-if(pagination) {
+if (pagination) {
     createPagination(pagination)
 }

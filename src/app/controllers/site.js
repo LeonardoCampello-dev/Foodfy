@@ -7,16 +7,16 @@ module.exports = {
         const { filter } = req.query
 
         if (filter) {
-            return res.redirect("/results")
+            return res.redirect('/results')
         } else {
             let results = await Recipe.all()
             const recipes = results.rows
 
-            return res.render("site/index", { recipes })
+            return res.render('site/index.njk', { recipes })
         }
     },
     about(req, res) {
-        return res.render("site/about")
+        return res.render('site/about.njk')
     },
     recipes(req, res) {
         let { filter, page, limit } = req.query
@@ -36,7 +36,7 @@ module.exports = {
                     page
                 }
 
-                return res.render("site/recipes", { recipes, filter, pagination })
+                return res.render('site/recipes.njk', { recipes, filter, pagination })
             }
         }
 
@@ -46,7 +46,7 @@ module.exports = {
         let results = await Recipe.find(req.params.id)
         const recipe = results.rows[0]
 
-        return res.render("site/details/recipe", { recipe })
+        return res.render('site/details/recipe.njk', { recipe })
 
     },
     chefs(req, res) {
@@ -66,7 +66,7 @@ module.exports = {
                     page
                 }
 
-                return res.render("site/chefs", { chefs, pagination })
+                return res.render('site/chefs.njk', { chefs, pagination })
             }
         }
 
@@ -88,6 +88,6 @@ module.exports = {
         let results = await Recipe.findBy(filter)
         const recipes = results.rows
 
-        return res.render("site/results", { filter, recipes })
+        return res.render('site/results.njk', { filter, recipes })
     }
 }

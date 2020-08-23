@@ -8,11 +8,11 @@ for (let section of recipeInformation) {
         if (visible.classList.contains('visible')) {
             visible.classList.add('invisible')
             visible.classList.remove('visible')
-            showAndHide.textContent = "Mostrar"
+            showAndHide.textContent = 'Mostrar'
         } else {
             visible.classList.remove('invisible')
             visible.classList.add('visible')
-            showAndHide.textContent = "Esconder"
+            showAndHide.textContent = 'Esconder'
         }
     })
 }

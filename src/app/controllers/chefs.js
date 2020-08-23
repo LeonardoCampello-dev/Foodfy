@@ -18,14 +18,14 @@ module.exports = {
                     page
                 }
 
-                return res.render("admin/chefs/index", { chefs, pagination })
+                return res.render('admin/chefs/index.njk', { chefs, pagination })
             }
         }
 
         Chef.paginate(params)
     },
     create(req, res) {
-        return res.render("admin/chefs/create")
+        return res.render('admin/chefs/create.njk')
     },
     async post(req, res) {
         let results = await Chef.create(req.body)
@@ -41,15 +41,15 @@ module.exports = {
 
         if (!chef) return res.send('Chefe não encontrado')
 
-        return res.render('admin/chefs/show', { chef, recipes, totalRecipes })
+        return res.render('admin/chefs/show.njk', { chef, recipes, totalRecipes })
     },
     async edit(req, res) {
         let results = await Chef.find(req.params.id)
         const chef = results.rows[0]
 
-        if (!chef) return res.send("Chefe não encontrado")
+        if (!chef) return res.send('Chefe não encontrado')
 
-        return res.render("admin/chefs/edit", { chef })
+        return res.render('admin/chefs/edit.njk', { chef })
     },
     async put(req, res) {
         let results = await Chef.update(req.body)
@@ -59,7 +59,7 @@ module.exports = {
     async delete(req, res) {
         let results = await Chef.delete(req.body.id)
 
-        return res.redirect("/admin/chefs")
+        return res.redirect('/admin/chefs')
     }
 }
 

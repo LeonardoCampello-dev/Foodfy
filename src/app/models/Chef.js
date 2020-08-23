@@ -67,7 +67,7 @@ module.exports = {
     paginate(params) {
         let { callback, limit, offset } = params
 
-        let query = "",
+        let query = '',
             totalQuery = `(
                 SELECT count(*)
                 FROM chefs 

@@ -22,6 +22,7 @@
     <div class="cards">
 
         {% for recipe in recipes %}
+        
         <div class="card" id="{{ recipe.id }}">
             <a href="/recipes/{{ recipe.id }}">
                 <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
@@ -31,14 +32,11 @@
                 <p>por {{ recipe.chef_name }}</p>
             </a>
         </div>
+        
         {% endfor %}
         
     </div>
         
 </section>
-
-{% block scripts %}
-<script src="/scripts/redirect.js"></script>
-{% endblock scripts %}
 
 {% endblock content %}

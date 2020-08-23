@@ -19,7 +19,7 @@ module.exports = {
                     page
                 }
 
-                return res.render("admin/recipes/index", { recipes, pagination })
+                return res.render('admin/recipes/index.njk', { recipes, pagination })
             }
         }
 
@@ -29,7 +29,7 @@ module.exports = {
         let results = await Recipe.chefSelectOptions()
         const chefSelectOptions = results.rows
 
-        return res.render("admin/recipes/create", { chefSelectOptions })
+        return res.render('admin/recipes/create.njk', { chefSelectOptions })
     },
     async post(req, res) {
         try {
@@ -46,20 +46,20 @@ module.exports = {
         let results = await Recipe.find(req.params.id)
         const recipe = results.rows[0]
 
-        if (!recipe) return res.send("Receita não encontrada")
+        if (!recipe) return res.send('Receita não encontrada')
 
-        return res.render("admin/recipes/show", { recipe })
+        return res.render('admin/recipes/show.njk', { recipe })
     },
     async edit(req, res) {
         let results = await Recipe.find(req.params.id)
         const recipe = results.rows[0]
 
-        if (!recipe) return res.send("Receita não encontrada")
+        if (!recipe) return res.send('Receita não encontrada')
 
         results = await Recipe.chefSelectOptions()
         const chefSelectOptions = results.rows
 
-        return res.render("admin/recipes/edit", { recipe, chefSelectOptions })
+        return res.render('admin/recipes/edit.njk', { recipe, chefSelectOptions })
     },
     async put(req, res) {
         let results = await Recipe.update(req.body)
@@ -69,6 +69,6 @@ module.exports = {
     async delete(req, res) {
         let results = await Recipe.delete(req.body.id)
 
-        return res.redirect("/admin/recipes")
+        return res.redirect('/admin/recipes.njk')
     }
 }

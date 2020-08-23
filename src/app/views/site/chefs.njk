@@ -4,11 +4,17 @@
 
 <section>
       
-<div class="pagination" data-page="{{ pagination.page }}" data-total="{{ pagination.total }}" data-filter="{{ filter }}"></div>
+    <div 
+        class="pagination" 
+        data-page="{{ pagination.page }}" 
+        data-total="{{ pagination.total }}" 
+        data-filter="{{ filter }}"
+    ></div>
 
     <div class="cards cards-chefs">
         
         {% for chef in chefs %}
+
             <div class="card card-chef" id="{{ chef.id }}">
                 <a href="/chefs/{{ chef.id }}">
                     <img src="{{ chef.avatar_url }}" alt="{{ chef.name }}">
@@ -22,6 +28,7 @@
                     </p>
                 </div>
             </div>
+            
         {% endfor %}
 
     </div>
