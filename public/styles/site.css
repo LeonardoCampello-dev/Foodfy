@@ -213,16 +213,16 @@ footer {
     margin-top: 8px;
 }
 
-.button {
+.add-button {
     display: flex;
     align-items: baseline;
 }
 
-.button h2 {
+.add-button h2 {
     margin-top: 32px;
 }
 
-.button a {
+.add-button a {
     font-size: 12px;
     line-height: 14px;
     color: var(--red);
@@ -231,7 +231,7 @@ footer {
     margin-left: 8px;
 }
 
-.button a:hover {
+.add-button a:hover {
     color: var(--title);
     transition: 200ms;
 }

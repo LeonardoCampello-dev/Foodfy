@@ -27,9 +27,14 @@
                 </div>
                 <div>
                     <form action="/results" method="GET">
-                        <input type="text" name="filter" value="{{ filter }}" placeholder="Buscar uma receita">
+                        <input 
+                            type="text" 
+                            name="filter" 
+                            value="{{ filter }}" 
+                            placeholder="Buscar uma receita"
+                        >
 
-                        <button type="submit" class="purple-button">Buscar</button>
+                        <button type="submit" class="button">Buscar</button>
                     </form>
                 </div>
             </header>
@@ -47,8 +52,7 @@
             </footer>
 
             {% block scripts %}
-            <script src="/scripts/redirect.js"></script>
-            <script src="/scripts/menu.js"></script>
+            <script src="/scripts/scripts.js"></script>
             <script src="/scripts/pagination.js"></script>
             {% endblock scripts %}
 

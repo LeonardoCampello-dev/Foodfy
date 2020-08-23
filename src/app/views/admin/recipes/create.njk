@@ -15,21 +15,26 @@
         <div class="item">
             <div>Imagem da receita</div>
             
-            <div id="photos-upload">
-                <input 
-                    type="file" 
-                    name="photos" 
-                    id="photos-input"
-                    multiple
-                    accept="images/*"
-                >
+            <div class="photos-container">
 
-                <p>
-                    <i class="material-icons">add_photo_alternate</i>
-                </p>
+                <div id="photos-upload">
+                    <input 
+                        type="file" 
+                        name="photos" 
+                        id="photos-input"
+                        multiple
+                        accept="images/*"
+                        onchange="PhotosUpload.handleFileInput(event)"
+                    >
+
+                    <p>
+                        <i class="material-icons">add_photo_alternate</i>
+                    </p>
+                </div>
+
+                <div id="photos-preview"></div>
+
             </div>
-
-            <div class="photos-preview"></div>
         </div>
 
         <div class="item">
@@ -77,7 +82,7 @@
             </div>
         </div>
         
-        <a class="add-ingredient">Adicionar novo ingrediente</a>
+        <a class="add-ingredient" onclick="Fields.addIngredient()">Adicionar novo ingrediente</a>
 
         <div class="item" id="preparations">
             <div>Modo de preparo</div>
@@ -92,7 +97,7 @@
             </div>
         </div>
         
-        <a class="add-preparation">Adicionar novo passo</a>
+        <a class="add-preparation" onclick="Fields.addPreparation()">Adicionar novo passo</a>
 
         <div class="item">
             <div>Informações adicionais</div>
@@ -105,7 +110,5 @@
     </form>
     
 </div>
-
-<script src="/scripts/fields.js"></script>
 
 {% endblock content %}

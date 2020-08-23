@@ -1,7 +1,12 @@
 <div class="item">
     <div>Nome</div>
     <div>
-        <input type="text" name="name" value="{{ chef.name }}" required="required">
+        <input 
+            type="text" 
+            name="name" 
+            value="{{ chef.name }}" 
+            required="required"
+        >
     </div>
 </div>
 
@@ -13,11 +18,11 @@
             type="file" 
             name="photos" 
             id="photos-input"
-            multiple
             accept="images/*"
         >
 
         <a class="button">Enviar avatar</a>
     </div>
+
 
 <input type="hidden" name="id" value="{{ chef.id }}">
