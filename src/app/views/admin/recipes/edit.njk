@@ -20,100 +20,10 @@
             </div>
         </div>
 
-        <div class="item">
-            <div>Imagem da receita</div>
-            
-            <div>
-                <input type="url" name="image" value="{{ recipe.image }}" placeholder="http://" required="required">
-            </div>
-        </div>
-
-        <div class="item">
-            <div>Título</div>
-            
-            <div>
-                <input 
-                    type="text" 
-                    name="title" 
-                    value="{{ recipe.title }}" 
-                    placeholder="Ex: Triplo Bacon Burguer" 
-                    required="required"
-                >
-            </div>
-        </div>
-
-        <div class="item">
-            <div>Chef</div>
-            
-            <div>
-
-                <select name="chef">
-                    {% for chef in chefSelectOptions %}
-                    
-                    <option value="{{ chef.id }}" 
-                    {% if recipe.chef_id == chef.id %} 
-                        selected 
-                    {% endif %}> 
-
-                    {{ chef.name }}
-                    </option>                        
-                    
-                    {% endfor %}
-                </select>
-                
-            </div>
-        </div>
-
-        <div class="item" id="ingredients">
-            <div>Ingredientes</div>
-            
-            {% for ingredient in recipe.ingredients %}
-                <div class="ingredient">
-                    <input 
-                        type="text" 
-                        name="ingredients[]" 
-                        value="{{ ingredient }}" 
-                        required="required"
-                    >
-                </div>
-            {% endfor %}
-        </div>
-        
-        <a class="add-ingredient">Adicionar novo ingrediente</a>
-
-        <div class="item" id="preparations">
-            <div>Modo de preparo</div>
-            
-            {% for step in recipe.preparation %}
-                <div class="preparation">
-                    <input 
-                        type="text" 
-                        name="preparation[]" 
-                        value="{{ step }}" 
-                        required="required"
-                    >
-                </div>
-            {% endfor %}
-        </div>
-        
-        <a class="add-preparation">Adicionar novo passo</a>
-
-        <div class="item">
-            <div>Informações adicionais</div>
-            
-            <div>
-                <textarea name="information" cols="30" rows="10">{{ recipe.information }}</textarea>
-            </div>
-        </div>
-
-        <input type="hidden" name="id" value="{{ recipe.id }}">
+        {% include "./fields.njk" %}
         
     </form>
     
 </div>
-
-<script src="/fields.js"></script>
-
-{% include "../confirm.njk" %}
 
 {% endblock content %}

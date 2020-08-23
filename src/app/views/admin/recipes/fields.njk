@@ -1,0 +1,143 @@
+<div class="item">
+    <div>Imagem da receita</div>
+    
+    <div class="photos-container">
+
+        <div id="photos-upload">
+            <input 
+                type="file" 
+                name="photos" 
+                id="photos-input"
+                multiple
+                accept="images/*"
+                onchange="PhotosUpload.handleFileInput(event)"
+            >
+
+            <p>
+                <i class="material-icons">add_photo_alternate</i>
+            </p>
+        </div>
+
+        <div id="photos-preview"></div>
+
+    </div>
+</div>
+
+<div class="item">
+    <div>Título</div>
+    
+    <div>
+        <input 
+            type="text" 
+            name="title" 
+            value="{{ recipe.title }}" 
+            placeholder="Ex: Triplo Bacon Burguer" 
+            required="required"
+        >
+    </div>
+</div>
+
+<div class="item">
+    <div>Chef</div>
+    
+    <div>
+
+        <select name="chef">
+            {% for chef in chefSelectOptions %}
+            
+            <option value="{{ chef.id }}" 
+            {% if recipe.chef_id == chef.id %} 
+                selected 
+            {% endif %}> 
+
+            {{ chef.name }}
+            </option>                        
+            
+            {% endfor %}
+        </select>
+        
+    </div>
+</div>
+
+<div class="item" id="ingredients">
+    <div>Ingredientes</div>
+    
+    {% if recipe.id %}
+    
+    {% for ingredient in recipe.ingredients %}
+
+    <div class="ingredient">
+        <input 
+            type="text" 
+            name="ingredients[]" 
+            value="{{ ingredient }}" 
+            required="required"
+        >
+    </div>
+
+    {% endfor %}
+
+    {% else %}
+
+    <div class="ingredient">
+        <input 
+            type="text" 
+            name="ingredients[]" 
+            value="{{ ingredient }}" 
+            required="required"
+        >
+    </div>
+    
+    {% endif %}
+
+</div>
+
+<a class="add-ingredient" onclick="Fields.addIngredient()">Adicionar novo ingrediente</a>
+
+<div class="item" id="preparations">
+    <div>Modo de preparo</div>
+
+    {% if recipe.id %}
+    
+    {% for step in recipe.preparation %}
+    
+    <div class="preparation">
+        <input 
+            type="text" 
+            name="preparation[]" 
+            value="{{ step }}" 
+            required="required"
+        >
+    </div>
+
+    {% endfor %}
+
+    {% else %}
+    
+    <div class="preparation">
+        <input 
+            type="text" 
+            name="preparation[]" 
+            value="{{ step }}" 
+            required="required"
+        >
+    </div>
+
+    {% endif %}
+    
+</div>
+
+<a class="add-preparation" onclick="Fields.addPreparation()">Adicionar novo passo</a>
+
+<div class="item">
+    <div>Informações adicionais</div>
+    
+    <div>
+        <textarea name="information" cols="30" rows="10">{{ recipe.information }}</textarea>
+    </div>
+</div>
+
+<input type="hidden" name="id" value="{{ recipe.id }}">
+
+
+{% include "../confirm.njk" %}
