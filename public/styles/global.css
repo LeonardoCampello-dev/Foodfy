@@ -55,7 +55,7 @@ h2 {
     margin: 0 auto 48px;
 }
 
-.purple-button {
+.button {
     background-color: var(--purple);
     color: #fff;
     padding: 8px 16px;
@@ -68,8 +68,12 @@ h2 {
     font-size: 16px;
     line-height: 19px;
     font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.purple-button:hover {
+.button:hover {
     background-color: var(--paragraph);
 }

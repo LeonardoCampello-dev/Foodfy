@@ -39,8 +39,6 @@ header.header-admin {
     margin-right: 32px;
 }
 
-/* ===================== FORM ===================== */
-
 .page-header {
     display: flex;
     justify-content: space-between;
@@ -48,6 +46,8 @@ header.header-admin {
 
     margin-bottom: 24px;
 }
+
+/* ===================== FORM ===================== */
 
 #delete-button {
     right: 395px;
@@ -119,6 +119,49 @@ textarea {
     margin-top: 16px;
 }
 
+/* ===================== PHOTOS UPLOAD ===================== */
+
+.item #photos-upload {
+    width: 149px;
+
+    border: 1px solid #ddd;
+    border-radius: 4px;
+
+    display: block;
+    overflow: hidden;
+
+    position: relative;
+}
+
+.item #photos-upload p {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item #photos-upload p i {
+    color: #777;
+    font-size: 40px;
+
+    padding: 56px;
+}
+
+.item #photos-input {
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+
+    top: 0;
+    left: 0;
+
+    cursor: pointer;
+
+    overflow: hidden;
+    position: absolute;
+}
 
 /* ===================== INDEX ===================== */
 
@@ -191,5 +234,7 @@ textarea {
     bottom: 5vh;
     left: 50%;
 }
+
+
 
 
