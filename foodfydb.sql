@@ -1,0 +1,30 @@
+CREATE TABLE "files" (
+"id" SERIAL PRIMARY KEY,
+"name" text NOT NULL,
+"path" text NOT NULL
+);
+
+CREATE TABLE "chefs" (
+"id" SERIAL PRIMARY KEY,
+"file_id" integer NOT NULL REFERENCES "files" (id),
+"name" text NOT NULL,
+"created_at" timestamp DEFAULT (now()),
+"updated_at" timestamp DEFAULT (now())
+);
+
+CREATE TABLE "recipes" (
+"id" SERIAL PRIMARY KEY,
+"chef_id" integer NOT NULL REFERENCES "chefs"(id),
+"title" text NOT NULL,
+"ingredients" text[] NOT NULL,
+"preparation" text[] NOT NULL,
+"information" text NOT NULL,
+"created_at" timestamp DEFAULT (now()),
+"updated_at" timestamp DEFAULT (now())
+);
+
+CREATE TABLE "recipe_files" (
+"id" SERIAL PRIMARY KEY,
+"recipe_id" integer REFERENCES recipes(id) ON DELETE CASCADE,
+"file_id" integer REFERENCES files(id)
+);
