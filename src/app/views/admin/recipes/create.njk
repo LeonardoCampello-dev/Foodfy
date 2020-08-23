@@ -6,7 +6,7 @@
     
     <form action="/admin/recipes" method="POST">
     
-        <div class="form-header">
+        <div class="page-header">
             <h2>Criando receita</h2>
 
             <button type="submit" class="purple-button">Salvar receita</button>
@@ -15,16 +15,32 @@
         <div class="item">
             <div>Imagem da receita</div>
             
-            <div>
-                <input type="url" name="image" value="{{ recipe.image }}" placeholder="http://" required="required">
+            <div id="photos-upload">
+                <input 
+                    type="file" 
+                    name="photos" 
+                    id="photos-input"
+                    multiple
+                    accept="images/*"
+                >
+
+                <p>Selecione até 5 imagens da receita</p>
             </div>
+
+            <div class="photos-preview"></div>
         </div>
 
         <div class="item">
             <div>Título</div>
             
             <div>
-                <input type="text" name="title" value="{{ recipe.title }}" placeholder="Ex: Triplo Bacon Burguer" required="required">
+                <input 
+                    type="text" 
+                    name="title" 
+                    value="{{ recipe.title }}" 
+                    placeholder="Ex: Triplo Bacon Burguer" 
+                    required="required"
+                >
             </div>
         </div>
 
@@ -34,7 +50,10 @@
 
                 <select name="chef">
                     {% for chef in chefSelectOptions %}
-                    <option value="{{ chef.id }}" {% if recipe.chef_id == chef.id %} selected {% endif %}> 
+                    <option value="{{ chef.id }}" 
+                    {% if recipe.chef_id == chef.id %} 
+                        selected 
+                    {% endif %}> 
                     {{ chef.name }}
                     </option>                        
                     {% endfor %}
@@ -47,7 +66,12 @@
             <div>Ingredientes</div>
             
             <div class="ingredient">
-                <input type="text" name="ingredients[]" value="{{ ingredient }}" required="required">
+                <input 
+                    type="text" 
+                    name="ingredients[]" 
+                    value="{{ ingredient }}" 
+                    required="required"
+                >
             </div>
         </div>
         
@@ -57,7 +81,12 @@
             <div>Modo de preparo</div>
             
             <div class="preparation">
-                <input type="text" name="preparation[]" value="{{ step }}" required="required">
+                <input 
+                    type="text" 
+                    name="preparation[]" 
+                    value="{{ step }}" 
+                    required="required"
+                >
             </div>
         </div>
         

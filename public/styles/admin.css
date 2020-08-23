@@ -41,16 +41,12 @@ header.header-admin {
 
 /* ===================== FORM ===================== */
 
-.form-header {
-    margin-bottom: 24px;
-}
-
-.form-header, 
-.index-header,
-.detail-header {
+.page-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    margin-bottom: 24px;
 }
 
 #delete-button {
@@ -126,10 +122,6 @@ textarea {
 
 /* ===================== INDEX ===================== */
 
-.index-header {
-    margin: 0 auto 32px;
-}
-
 .cards-admin {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -172,8 +164,7 @@ textarea {
 }
 
 .card a:hover,
-.card-chef a:hover,
-.detail-header a:hover {
+.card-chef a:hover {
     color: var(--paragraph);
 }
 

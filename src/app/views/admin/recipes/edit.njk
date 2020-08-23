@@ -12,7 +12,7 @@
 
     <form action="/admin/recipes?_method=PUT" method="POST">
     
-        <div class="form-header">
+        <div class="page-header">
             <h2>Editando receita</h2>
             
             <div>
@@ -32,7 +32,13 @@
             <div>Título</div>
             
             <div>
-                <input type="text" name="title" value="{{ recipe.title }}" placeholder="Ex: Triplo Bacon Burguer" required="required">
+                <input 
+                    type="text" 
+                    name="title" 
+                    value="{{ recipe.title }}" 
+                    placeholder="Ex: Triplo Bacon Burguer" 
+                    required="required"
+                >
             </div>
         </div>
 
@@ -43,9 +49,15 @@
 
                 <select name="chef">
                     {% for chef in chefSelectOptions %}
-                    <option value="{{ chef.id }}" {% if recipe.chef_id == chef.id %} selected {% endif %}> 
+                    
+                    <option value="{{ chef.id }}" 
+                    {% if recipe.chef_id == chef.id %} 
+                        selected 
+                    {% endif %}> 
+
                     {{ chef.name }}
                     </option>                        
+                    
                     {% endfor %}
                 </select>
                 
@@ -57,7 +69,12 @@
             
             {% for ingredient in recipe.ingredients %}
                 <div class="ingredient">
-                    <input type="text" name="ingredients[]" value="{{ ingredient }}" required="required">
+                    <input 
+                        type="text" 
+                        name="ingredients[]" 
+                        value="{{ ingredient }}" 
+                        required="required"
+                    >
                 </div>
             {% endfor %}
         </div>
@@ -69,7 +86,12 @@
             
             {% for step in recipe.preparation %}
                 <div class="preparation">
-                    <input type="text" name="preparation[]" value="{{ step }}" required="required">
+                    <input 
+                        type="text" 
+                        name="preparation[]" 
+                        value="{{ step }}" 
+                        required="required"
+                    >
                 </div>
             {% endfor %}
         </div>
