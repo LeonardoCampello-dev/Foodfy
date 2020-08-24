@@ -1,5 +1,6 @@
 const Site = require('../models/Site')
 const Recipe = require('../models/Recipe')
+const File = require('../models/File')
 
 module.exports = {
     index(req, res) {
@@ -36,8 +37,10 @@ module.exports = {
             let results = await Recipe.create(req.body)
             const recipeId = results.rows[0].id
 
-            return res.redirect(`/admin/recipes/${recipeId}`)
+            const filesPromises = req.files.map(file => File.createRecipeFiles({ ...file, recipe_id: recipeId }))
+            await Promise.all(filesPromises)
 
+            res.redirect(`/admin/recipes/${recipeId}`)
         } catch (error) {
             throw new Error(error)
         }

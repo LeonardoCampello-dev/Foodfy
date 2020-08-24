@@ -16,24 +16,22 @@ module.exports = {
         const query = `
         INSERT INTO recipes (
             chef_id,
-            image,
             title,
             ingredients,
             preparation,
             information,
             created_at
-        ) VALUES ($1, $2, $3, $4, $5, $6, $7)
+        ) VALUES ($1, $2, $3, $4, $5, $6)
         RETURNING id
         `
 
         const values = [
             data.chef,
-            data.image,
             data.title,
             data.ingredients,
             data.preparation,
             data.information,
-            date(Date.now()).iso,
+            date(Date.now()).iso
         ]
 
         return db.query(query, values)
@@ -48,7 +46,7 @@ module.exports = {
 
         return db.query(query, [id])
     },
-    findBy(filter, callback) {
+    findBy(filter) {
         const query = `
         SELECT recipes.*, chefs.name AS chef_name
         FROM recipes
