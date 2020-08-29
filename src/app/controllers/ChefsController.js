@@ -41,7 +41,7 @@ module.exports = {
 
             return res.redirect(`admin/chefs/${chefId}`)
         } catch (error) {
-            throw new Error(error)
+            console.error(error)
         }
     },
     async show(req, res) {
@@ -60,12 +60,47 @@ module.exports = {
 
         if (!chef) return res.send('Chefe não encontrado')
 
-        return res.render('admin/chefs/edit.njk', { chef })
+        results = await Chef.files(chef.file_id)
+        let files = results.rows
+
+        files = files.map(file => ({
+            ...file,
+            src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
+        }))
+
+        return res.render('admin/chefs/edit.njk', { chef, files })
     },
     async put(req, res) {
-        let results = await Chef.update(req.body)
+        try {
+            const keys = Object.keys(req.body)
 
-        return res.redirect(`/admin/chefs/${req.body.id}`)
+            for (key of keys) {
+                if (req.body[key] == '' && key != 'removed_files') {
+                    return res.send('Por favor, preencha todos os campos.')
+                }
+            }
+
+            if (req.files.length != 0) {
+                const newFilePromise = req.files.map(file => File.create(file))
+
+                const results = await newFilePromise[0]
+                file_id = results.rows[0].id
+            }
+
+            if (req.removed_files) {
+                const removedFiles = req.body.removed_files.split(',')
+                const lastIndex = removedFiles.length - 1
+                removedFiles.splice(lastIndex, 1)
+
+                await removedFiles.map(id => Chef.fileDelete(id))
+            }
+
+            let results = await Chef.update(req.body, file_id)
+
+            return res.redirect(`/admin/chefs/${req.body.id}`)
+        } catch (error) {
+            console.error(error)
+        }
     },
     async delete(req, res) {
         let results = await Chef.delete(req.body.id)

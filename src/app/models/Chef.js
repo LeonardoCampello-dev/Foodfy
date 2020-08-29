@@ -1,5 +1,6 @@
 const { date } = require('../../libs/utils')
 const db = require('../../config/db')
+const fs = require('fs')
 
 module.exports = {
     all(callback) {
@@ -36,7 +37,7 @@ module.exports = {
     },
     find(id) {
         const query = `
-        SELECT chefs.*, recipes.title AS recipes_name, recipes.image AS recipes_image, recipes.id AS recipes_id
+        SELECT chefs.*, recipes.title AS recipes_name, recipes.id AS recipes_id
         FROM chefs 
         LEFT JOIN recipes ON (chefs.id = recipes.chef_id)
         WHERE chefs.id = $1
@@ -47,14 +48,14 @@ module.exports = {
     update(data) {
         const query = `
         UPDATE chefs SET
-            name=($1),
-            avatar_url=($2)
+            file_id = ($1)
+            name=($2)
         WHERE id = $3
         `
 
         const values = [
+            file_id,
             data.name,
-            data.avatar_url,
             data.id
         ]
 
@@ -85,5 +86,16 @@ module.exports = {
 
             callback(results.rows)
         })
+    },
+    files(id) {
+        return db.query(`SELECT files.path FROM files WHERE files.id = $1`, [id])
+    },
+    async fileDelete(id) {
+        const results = await db.query(`SELECT * FROM files WHERE id = $1`, [id])
+        const file = results.rows[0]
+
+        fs.unlinkSync(file.path)
+
+        return db.query(`DELETE FROM files WHERE id = $1`, [id])
     }
 }

@@ -61,17 +61,15 @@ module.exports = {
         const query = `
         UPDATE recipes SET
             chef_id=($1),
-            image=($2),
-            title=($3),
-            ingredients=($4),
-            preparation=($5),
-            information=($6)
-        WHERE id = $7
+            title=($2),
+            ingredients=($3),
+            preparation=($4),
+            information=($5)
+        WHERE id = $6
         `
 
         const values = [
             data.chef,
-            data.image,
             data.title,
             data.ingredients,
             data.preparation,
@@ -86,5 +84,20 @@ module.exports = {
     },
     chefSelectOptions() {
         return db.query(`SELECT name, id FROM chefs`)
+    },
+    files(id) {
+        try {
+            const query = `
+            SELECT files.*
+            FROM files
+            LEFT JOIN recipe_files ON (files.id = recipe_files.file_id)
+            WHERE recipe_files.recipe_id = $1
+            `
+
+            return db.query(query, [id])
+
+        } catch (error) {
+            console.error(error)
+        }
     }
 }

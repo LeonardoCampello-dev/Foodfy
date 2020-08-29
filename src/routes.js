@@ -2,42 +2,42 @@ const express = require('express')
 const { Router } = require('express')
 const multer = require('./app/middlewares/multer')
 
-const site = require('./app/controllers/site')
-const recipes = require('./app/controllers/recipes')
-const chefs = require('./app/controllers/chefs')
+const HomeController = require('./app/controllers/HomeController')
+const RecipesController = require('./app/controllers/RecipesController')
+const ChefsController = require('./app/controllers/ChefsController')
 
 const routes = express.Router()
 
-routes.get('/', site.index)
-routes.get('/about', site.about)
-routes.get('/recipes', site.recipes)
-routes.get('/recipes/:id', site.recipeDetails)
-routes.get('/chefs', site.chefs)
-routes.get('/chefs/:id', site.chefDetails)
-routes.get('/results', site.showResults)
+routes.get('/', HomeController.index)
+routes.get('/about', HomeController.about)
+routes.get('/recipes', HomeController.recipes)
+routes.get('/recipes/:id', HomeController.recipeDetails)
+routes.get('/chefs', HomeController.chefs)
+routes.get('/chefs/:id', HomeController.chefDetails)
+routes.get('/results', HomeController.showResults)
 
 
-// admin recipes
+// admin RecipesController
 
-routes.get('/admin/recipes', recipes.index)
-routes.get('/admin/recipes/create', recipes.create)
-routes.get('/admin/recipes/:id', recipes.show)
-routes.get('/admin/recipes/:id/edit', recipes.edit)
+routes.get('/admin/recipes', RecipesController.index)
+routes.get('/admin/recipes/create', RecipesController.create)
+routes.get('/admin/recipes/:id', RecipesController.show)
+routes.get('/admin/recipes/:id/edit', RecipesController.edit)
 
-routes.post('/admin/recipes', multer.array('photos', 5), recipes.post)
-routes.put('/admin/recipes', multer.array('photos', 5), recipes.put)
-routes.delete('/admin/recipes', recipes.delete)
+routes.post('/admin/recipes', multer.array('photos', 5), RecipesController.post)
+routes.put('/admin/recipes', multer.array('photos', 5), RecipesController.put)
+routes.delete('/admin/recipes', RecipesController.delete)
 
-// admin chefs
+// admin ChefsController
 
-routes.get('/admin/chefs', chefs.index)
-routes.get('/admin/chefs/create', chefs.create)
-routes.get('/admin/chefs/:id', chefs.show)
-routes.get('/admin/chefs/:id/edit', chefs.edit)
+routes.get('/admin/chefs', ChefsController.index)
+routes.get('/admin/chefs', ChefsController.create)
+routes.get('/admin/chefs/:id', ChefsController.show)
+routes.get('/admin/chefs/:id/edit', ChefsController.edit)
 
-routes.post('/admin/chefs', multer.array('photos', 1), chefs.post)
-routes.put('/admin/chefs', multer.array('photos', 1), chefs.put)
-routes.delete('/admin/chefs', chefs.delete)
+routes.post('/admin/chefs', multer.array('photos', 1), ChefsController.post)
+routes.put('/admin/chefs', multer.array('photos', 1), ChefsController.put)
+routes.delete('/admin/chefs', ChefsController.delete)
 
 
 module.exports = routes

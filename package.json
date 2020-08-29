@@ -8,9 +8,6 @@
     "nodemon": "nodemon server.js",
     "browsersync": "browser-sync start --proxy http://localhost:5000 --files 'public,src/app/views'"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
     "method-override": "^3.0.0",

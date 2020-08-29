@@ -39,6 +39,7 @@ const PhotosUpload = {
     photosPreview: document.querySelector('#photos-preview'),
     uploadLimit: 5,
     files: [],
+    removedFiles: document.querySelector('input[name="removed_files"]'),
     handleFileInput(e) {
         const { files: fileList } = event.target
         PhotosUpload.input = e.target
@@ -126,6 +127,16 @@ const PhotosUpload = {
         PhotosUpload.files.splice(index, 1)
         PhotosUpload.input.files = PhotosUpload.getAllFiles()
 
+        photoDiv.remove()
+    },
+    removeOldPhoto(e) {
+        const photoDiv = event.target.parentNode
+
+        if (photoDiv.id) {
+            if (PhotosUpload.removedFiles) PhotosUpload.removedFiles.value += `${photoDiv.id},`
+        }
+
+        console.log(PhotosUpload.removedFiles)
         photoDiv.remove()
     }
 }

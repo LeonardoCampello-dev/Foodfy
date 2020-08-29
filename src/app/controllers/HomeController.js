@@ -1,4 +1,4 @@
-const Site = require('../models/Site')
+const Site = require('../models/Home')
 const Recipe = require('../models/Recipe')
 const Chef = require('../models/Chef')
 
