@@ -60,15 +60,14 @@ module.exports = {
 
         if (!chef) return res.send('Chefe não encontrado')
 
-        results = await Chef.files(chef.file_id)
-        let files = results.rows
+        let avatar = await Chef.files(chef.file_id)
 
-        files = files.map(file => ({
+        avatar = avatar.map(file => ({
             ...file,
             src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
         }))
 
-        return res.render('admin/chefs/edit.njk', { chef, files })
+        return res.render('admin/chefs/edit.njk', { chef, avatar })
     },
     async put(req, res) {
         try {
