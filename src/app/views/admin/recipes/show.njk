@@ -5,15 +5,56 @@
 <div class="details">
 
     <div class="page-header">
-        <h2>Receita: {{ recipe.title }}</h2>
+        <h2>
+            Receita: {{ recipe.title }} 
+            <span>
+                <i class="material-icons">restaurant</i>
+            </span>
+        </h2>
 
         <a href="/admin/recipes/{{ recipe.id }}/edit" class="button">Editar receita</a>
     </div>
 
-    <div>
-        <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
-        <h1>{{ recipe.title }}</h1>
-        <p>por {{ recipe.chef_name }}</p>
+    <div class="lightbox">
+        <img src="{{ files[0].src }}" alt="{{ files[0].name }}">
+
+        <a 
+            href="#" 
+            class="lightbox-close"
+            onclick="Lightbox.close()"
+        >
+            <i class="material-icons">close</i>
+        </a>
+    </div>
+
+    <div class="photos">
+    
+        <img 
+            src="{{ files[0].src }}" 
+            alt="{{ recipe.title }}" 
+            class="highlight"
+            onclick="Lightbox.open()"
+        >
+
+        {% if files %}
+        <div class="gallery-photos">
+            
+            {% for image in files %}
+
+            <img 
+                src="{{ image.src }}" 
+                alt="{{ image.name }}"
+                onclick="ImageGallery.setImage(event)"
+                {% if loop.index0 == 0 %} 
+                class="image-active" 
+                {% endif %}
+            >
+
+            {% endfor %}
+            
+        </div>
+        {% endif %}
+
     </div>
 
     <div class="recipe-information">

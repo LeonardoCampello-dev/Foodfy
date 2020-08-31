@@ -50,7 +50,7 @@ header.header-admin {
 /* ===================== FORM ===================== */
 
 #delete-button {
-    right: 395px;
+    right: 405px;
 }
 
 #delete-button,
@@ -266,11 +266,18 @@ textarea {
     color: var(--paragraph);
 }
 
-/* ===================== DETAILS ===================== */
+/* ===================== DETAILS ICON ===================== */
 
-.details div:nth-child(2) img {
-    margin-top: 24px;
+.page-header h2 {
+    display: flex;
+    align-items: baseline;
 }
+
+.page-header h2 span {
+    color: var(--red);
+    margin-left: 8px;
+}
+
 
 /* ===================== CHEFS ===================== */
 
@@ -279,7 +286,7 @@ textarea {
 }
 
 #chef-delete {
-    right: 375px;
+    right: 385px;
 }
 
 /* ===================== PAGINATION ===================== */

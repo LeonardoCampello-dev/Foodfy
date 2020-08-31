@@ -140,3 +140,35 @@ const PhotosUpload = {
         photoDiv.remove()
     }
 }
+
+const ImageGallery = {
+    highlight: document.querySelector('.photos .highlight'),
+    previews: document.querySelectorAll('.photos .gallery-photos img'),
+    setImage(e) {
+        const image = e.target
+
+        ImageGallery.previews.forEach(preview => preview.classList.remove('image-active'))
+        image.classList.add('image-active')
+
+        ImageGallery.highlight.src = image.src
+        Lightbox.image.src = image.src
+    }
+}
+
+const Lightbox = {
+    target: document.querySelector('.lightbox'),
+    image: document.querySelector('.lightbox img'),
+    closeButton: document.querySelector('.lightbox a.lightbox-close'),
+    open() {
+        Lightbox.target.style.opacity = 1
+        Lightbox.target.style.top = 0
+        Lightbox.target.style.bottom = 0
+        Lightbox.closeButton.style.top = 0
+    },
+    close() {
+        Lightbox.target.style.opacity = 0
+        Lightbox.target.style.top = '-100%'
+        Lightbox.target.style.bottom = 'initial'
+        Lightbox.closeButton.style.top = '-80px'
+    }
+}

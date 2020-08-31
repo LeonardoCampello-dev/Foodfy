@@ -3,8 +3,49 @@
 {% block content %}
 
 <div class="details">
+
+    <div class="lightbox">
+        <img src="{{ files[0].src }}" alt="{{ files[0].name }}">
+
+        <a 
+            href="#" 
+            class="lightbox-close"
+            onclick="Lightbox.close()"
+        >
+            <i class="material-icons">close</i>
+        </a>
+    </div>
+
+    <div class="photos">
     
-    <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+        <img 
+            src="{{ files[0].src }}" 
+            alt="{{ recipe.title }}" 
+            class="highlight"
+            onclick="Lightbox.open()"
+        >
+
+        {% if files %}
+        <div class="gallery-photos">
+            
+            {% for image in files %}
+
+            <img 
+                src="{{ image.src }}" 
+                alt="{{ image.name }}"
+                onclick="ImageGallery.setImage(event)"
+                {% if loop.index0 == 0 %} 
+                class="image-active" 
+                {% endif %}
+            >
+
+            {% endfor %}
+            
+        </div>
+        {% endif %}
+
+    </div>
+    
     <h1>{{ recipe.title }}</h1>
     <p>por {{ recipe.chef_name }}</p>
     
@@ -48,6 +89,7 @@
 {% block scripts %}
 
 <script src="/scripts/showAndHide.js"></script>
+<script src="/scripts/scripts.js"></script>
 
 {% endblock scripts %}
 

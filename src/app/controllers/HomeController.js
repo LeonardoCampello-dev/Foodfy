@@ -46,7 +46,13 @@ module.exports = {
         let results = await Recipe.find(req.params.id)
         const recipe = results.rows[0]
 
-        return res.render('site/details/recipe.njk', { recipe })
+        results = await Recipe.files(recipe.id)
+        files = results.rows.map(file => ({
+            ...file,
+            src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
+        }))
+
+        return res.render('site/details/recipe.njk', { recipe, files })
 
     },
     chefs(req, res) {

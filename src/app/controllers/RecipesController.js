@@ -58,7 +58,13 @@ module.exports = {
 
         if (!recipe) return res.send('Receita não encontrada')
 
-        return res.render('admin/recipes/show.njk', { recipe })
+        results = await Recipe.files(recipe.id)
+        files = results.rows.map(file => ({
+            ...file,
+            src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
+        }))
+
+        return res.render('admin/recipes/show.njk', { recipe, files })
     },
     async edit(req, res) {
         let results = await Recipe.find(req.params.id)

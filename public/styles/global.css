@@ -65,9 +65,10 @@ h2 {
 
     transition: 0.2s;
 
-    font-size: 16px;
+    font-size: 14px;
     line-height: 19px;
     font-weight: bold;
+    text-transform: uppercase;
 
     display: flex;
     align-items: center;
