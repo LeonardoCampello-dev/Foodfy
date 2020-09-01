@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
-    --title: #111111;
-    --author: #777777;
+    --title: #222121;
+    --author: #7c7b7b;
     --paragraph: #444444;
-    --salmon: #FBDFDB;
+    --salmon: #ffbfb7;
     --red: #D54F44;
-    --purple: #6558C3;
+    --purple: #594ead;
 }
 
 * {
@@ -63,10 +63,11 @@ h2 {
     
     cursor: pointer;
 
-    transition: 0.2s;
+    transition: .2s;
 
     font-size: 14px;
     line-height: 19px;
+    
     font-weight: bold;
     text-transform: uppercase;
 
