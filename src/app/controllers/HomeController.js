@@ -3,44 +3,69 @@ const Recipe = require('../models/Recipe')
 const Chef = require('../models/Chef')
 
 module.exports = {
-    async index(req, res) {
-        const { filter } = req.query
+    async home(req, res) {
+        const recipes = await Recipe.all()
 
-        if (filter) {
-            return res.redirect('/results')
-        } else {
-            let results = await Recipe.all()
-            const recipes = results.rows
+        if (!recipes) return res.send('Receitas não encontradas')
 
-            return res.render('site/index.njk', { recipes })
+        async function getImage(recipeId) {
+            let results = await Recipe.recipeFiles(recipeId) 
+            results = results.map(recipe => `${req.protocol}://${req.headers.host}${recipe.path.replace('public', '')}`)
+
+            return results[0]
         }
+
+        const recipesPromises = recipes.map(async recipe => {
+            recipe.image = await getImage(recipe.id)
+
+            return recipe
+        })
+
+        const recipeFixed = await Promise.all(recipesPromises)
+
+        return res.render('site/index.njk', { recipes: recipeFixed })
     },
     about(req, res) {
         return res.render('site/about.njk')
     },
-    recipes(req, res) {
-        let { filter, page, limit } = req.query
+    async recipes(req, res) {
+        let { page, limit, filter } = req.query
 
         page = page || 1
-        limit = limit || 9
+        limit = limit || 6
         offset = limit * (page - 1)
 
         params = {
-            filter,
             page,
             limit,
-            offset,
-            callback(recipes) {
-                const pagination = {
-                    total: Math.ceil(recipes[0].total / limit),
-                    page
-                }
-
-                return res.render('site/recipes.njk', { recipes, filter, pagination })
-            }
+            offset
         }
 
-        Site.paginate(params)
+        let recipes = await Recipe.paginate(params)
+
+        const pagination = {
+            total: Math.ceil(recipes[0].total / limit),
+            page
+        }
+
+        if (!recipes) return res.send('Receitas não encontradas')
+        
+        async function getImage(recipeId) {
+            let results = await Recipe.recipeFiles(recipeId)
+            results = results.map(recipe => `${req.protocol}://${req.headers.host}${recipe.path.replace('public', '')}`)
+
+            return results[0]
+        }
+
+        const recipesPromises = recipes.map(async recipe => {
+            recipe.image = await getImage(recipe.id)
+
+            return recipe
+        })
+
+        const recipesFixed = await Promise.all(recipesPromises)
+
+        return res.render('site/recipes.njk', { recipes: recipesFixed, pagination, filter })
     },
     async recipeDetails(req, res) {
         let results = await Recipe.find(req.params.id)
@@ -56,28 +81,44 @@ module.exports = {
 
         return res.render('site/details/recipe.njk', { recipe, files })
     },
-    chefs(req, res) {
+    async chefs(req, res) {
         let { page, limit } = req.query
 
         page = page || 1
-        limit = limit || 9
+        limit = limit || 6
         offset = limit * (page - 1)
 
-        params = {
+        const params = {
             page,
             limit,
-            offset,
-            callback(chefs) {
-                const pagination = {
-                    total: Math.ceil(chefs[0].total / limit),
-                    page
-                }
-
-                return res.render('site/chefs.njk', { chefs, pagination })
-            }
+            offset
         }
 
-        Chef.paginate(params)
+        const chefs = await Chef.paginate(params)
+
+        const pagination = {
+            total: Math.ceil(chefs[0].total / limit),
+            page
+        }
+
+        if (!chefs) return res.send('Chefes não encontrados')
+
+        async function getImage(chefId) {
+            let results = await Chef.getAvatar(chefId)
+
+            return results.path
+        }
+
+        const chefsPromises = chefs.map(async chef => {
+            chef.image = await getImage(chef.id)
+            chef.image = `${req.protocol}://${req.headers.host}${chef.image.replace('public', '')}`
+
+            return chef
+        })
+
+        const chefAvatar = await Promise.all(chefsPromises)
+
+        return res.render('site/chefs.njk', { chefs: chefAvatar, pagination })
     },
     async chefDetails(req, res) {
         const chefId = req.params.id

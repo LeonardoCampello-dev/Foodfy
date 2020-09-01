@@ -17,14 +17,19 @@
 
             <div class="card card-chef" id="{{ chef.id }}">
                 <a href="/chefs/{{ chef.id }}">
-                    <img src="{{ chef.avatar_url }}" alt="{{ chef.name }}">
+                    <img src="{{ chef.image }}" alt="{{ chef.name }}">
                 </a>
                 <div>
                     <h3>{{ chef.name }}</h3>
-                    <p> 
-                    {% if chef.total_recipes == 1 %} {{ chef.total_recipes }} receita {% endif %}
-                    {% if chef.total_recipes > 1 %} {{ chef.total_recipes }} receitas {% endif %}
-                    {% if chef.total_recipes == 0 %} Nenhuma receita encontrada {% endif %}
+                    <p>
+                        {% if chef.total_recipes == 1 %}
+                            Uma receita
+                        {% elif chef.total_recipes > 1%}
+                            {{chef.total_recipes}}
+                            receitas
+                        {% else %}
+                            Nenhuma receita encontrada
+                        {% endif %}
                     </p>
                 </div>
             </div>

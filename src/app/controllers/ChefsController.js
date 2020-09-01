@@ -1,31 +1,46 @@
 const Chef = require('../models/Chef')
 const File = require('../models/File')
-const db = require('../../config/db')
 const Recipe = require('../models/Recipe')
 
 module.exports = {
-    index(req, res) {
+    async index(req, res) {
         let { page, limit } = req.query
 
         page = page || 1
         limit = limit || 6
         offset = limit * (page - 1)
 
-        params = {
+        const params = {
             page,
             limit,
-            offset,
-            callback(chefs) {
-                const pagination = {
-                    total: Math.ceil(chefs[0].total / limit),
-                    page
-                }
-
-                return res.render('admin/chefs/index.njk', { chefs, pagination })
-            }
+            offset
         }
 
-        Chef.paginate(params)
+        const chefs = await Chef.paginate(params)
+
+        const pagination = {
+            total: Math.ceil(chefs[0].total / limit),
+            page
+        }
+
+        if (!chefs) return res.send('Chefes não encontrados')
+
+        async function getImage(chefId) {
+            let results = await Chef.getAvatar(chefId)
+
+            return results.path
+        }
+
+        const chefsPromises = chefs.map(async chef => {
+            chef.image = await getImage(chef.id)
+            chef.image = `${req.protocol}://${req.headers.host}${chef.image.replace('public', '')}`
+
+            return chef
+        })
+
+        const chefAvatar = await Promise.all(chefsPromises)
+
+        return res.render('admin/chefs/index.njk', { chefs: chefAvatar, pagination })
     },
     create(req, res) {
         return res.render('admin/chefs/create.njk')

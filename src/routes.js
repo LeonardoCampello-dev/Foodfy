@@ -8,7 +8,7 @@ const ChefsController = require('./app/controllers/ChefsController')
 
 const routes = express.Router()
 
-routes.get('/', HomeController.index)
+routes.get('/', HomeController.home)
 routes.get('/about', HomeController.about)
 routes.get('/recipes', HomeController.recipes)
 routes.get('/recipes/:id', HomeController.recipeDetails)
