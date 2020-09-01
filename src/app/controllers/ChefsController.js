@@ -1,5 +1,7 @@
 const Chef = require('../models/Chef')
 const File = require('../models/File')
+const db = require('../../config/db')
+const Recipe = require('../models/Recipe')
 
 module.exports = {
     index(req, res) {
@@ -45,14 +47,36 @@ module.exports = {
         }
     },
     async show(req, res) {
-        let results = await Chef.find(req.params.id)
+        const chefId = req.params.id
+
+        let results = await Chef.find(chefId)
         const chef = results.rows[0]
-        const recipes = results.rows
-        const totalRecipes = results.rowCount
 
         if (!chef) return res.send('Chefe não encontrado')
 
-        return res.render('admin/chefs/show.njk', { chef, recipes, totalRecipes })
+        const chefRecipes = await Chef.findChefRecipes(chefId)
+        const thereIsRecipe = chefRecipes[0].id
+
+        if (thereIsRecipe != null) {
+            async function getImage(recipeId) {
+                let results = await Recipe.files(recipeId)
+                return results[0].path
+            }
+
+            const recipesPromises = chefRecipes.map(async recipe => {
+                recipe.image = await getImage(recipe.id)
+                recipe.image = `${req.protocol}://${req.headers.host}${recipe.image.replace('public', '')}`
+
+                return recipe
+            })
+
+            recipes = await Promise.all(recipesPromises)
+        }
+
+        chefAvatar = await Chef.getAvatar(chefId)
+        chefAvatar.path = `${req.protocol}://${req.headers.host}${chefAvatar.path.replace('public', '')}`
+
+        return res.render('admin/chefs/show.njk', { chef, recipes, chefAvatar })
     },
     async edit(req, res) {
         let results = await Chef.find(req.params.id)
@@ -105,6 +129,6 @@ module.exports = {
         let results = await Chef.delete(req.body.id)
 
         return res.redirect('/admin/chefs')
-    }
+    },
 }
 

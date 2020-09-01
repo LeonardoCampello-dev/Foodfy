@@ -46,14 +46,15 @@ module.exports = {
         let results = await Recipe.find(req.params.id)
         const recipe = results.rows[0]
 
+        if (!recipe) return res.send('Receita não encontrada')
+
         results = await Recipe.files(recipe.id)
-        files = results.rows.map(file => ({
+        files = results.map(file => ({
             ...file,
             src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
         }))
 
         return res.render('site/details/recipe.njk', { recipe, files })
-
     },
     chefs(req, res) {
         let { page, limit } = req.query
@@ -79,14 +80,36 @@ module.exports = {
         Chef.paginate(params)
     },
     async chefDetails(req, res) {
-        let results = await Chef.find(req.params.id)
+        const chefId = req.params.id
+
+        let results = await Chef.find(chefId)
         const chef = results.rows[0]
-        const recipes = results.rows
-        const totalRecipes = results.rowCount
 
         if (!chef) return res.send('Chefe não encontrado')
 
-        return res.render('site/details/chef', { chef, recipes, totalRecipes })
+        const chefRecipes = await Chef.findChefRecipes(chefId)
+        const thereIsRecipe = chefRecipes[0].id
+
+        if (thereIsRecipe != null) {
+            async function getImage(recipeId) {
+                let results = await Recipe.files(recipeId)
+                return results[0].path
+            }
+
+            const recipesPromises = chefRecipes.map(async recipe => {
+                recipe.image = await getImage(recipe.id)
+                recipe.image = `${req.protocol}://${req.headers.host}${recipe.image.replace('public', '')}`
+
+                return recipe
+            })
+
+            recipes = await Promise.all(recipesPromises)
+        }
+
+        chefAvatar = await Chef.getAvatar(chefId)
+        chefAvatar.path = `${req.protocol}://${req.headers.host}${chefAvatar.path.replace('public', '')}`
+
+        return res.render('site/details/chef.njk', { chef, recipes, chefAvatar })
     },
     async showResults(req, res) {
         const { filter } = req.query

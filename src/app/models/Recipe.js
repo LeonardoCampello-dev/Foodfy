@@ -100,24 +100,19 @@ module.exports = {
             console.error(error)
         }
     },
-    recipeFiles(id) {
-        const subquery = `(   
-            SELECT files.path
-            FROM FILES
-            LEFT JOIN recipe_files ON (files.id = recipe.files.file_id)
+    async files(id) {
+        try {
+            const query = `
+            SELECT files.* FROM files
+            LEFT JOIN recipe_files ON (files.id = recipe_files.file_id)
             WHERE recipe_files.recipe_id = $1
-            LIMIT 1
-        )
-        `
-        
-        const query = `
-        SELECT *, ${subquery}
-        FROM recipes
-        LEFT JOIN recipe_files ON (recipes.id = recipe_files.recipe_id)  
-        WHERE recipes.id = $1
-        LIMIT 1
-        `
+            `
 
-        return db.query(query, [id])
+            const results = await db.query(query, [id])
+
+            return results.rows
+        } catch (error) {
+            console.error(error)
+        }
     }
 }

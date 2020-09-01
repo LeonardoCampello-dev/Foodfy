@@ -5,14 +5,15 @@
 <div class="details">
     
     <div class="chef-detail">
-        <img src="{{ chef.avatar_url }}" alt="{{ chef.name }}">
+        <img src="{{ chefAvatar.path }}" alt="{{ chef.name }}">
         
         <h1>{{ chef.name }}</h1>
         <p>
-            {% if chef.totalRecipes == 1 %}
-                {{ totalRecipes}} receita
-            {% elseif totalRecipes > 1 %}
-                {{ totalRecipes}} receitas
+            {% if chef.total_recipes == 1 %}
+                Uma receita
+            {% elif chef.total_recipes > 1%}
+                {{chef.total_recipes}}
+                receitas
             {% else %}
                 Nenhuma receita encontrada
             {% endif %}
@@ -21,7 +22,7 @@
 
 </div>
 
-{% if chef.recipes_name  %}
+{% if chef.total_recipes >= 1 %}
 
 <section class="index">
     
@@ -34,11 +35,11 @@
         {% for recipe in recipes %}
 
             <div class="card">
-                <a href="/recipes/{{ recipe.recipes_id }}">
-                    <img src="{{ recipe.recipes_image }}" alt="{{ recipe.recipes_name }}">
+                <a href="/recipes/{{ recipe.id }}">
+                    <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
                 </a>
                 <div>
-                    <h3>{{ recipe.recipes_name   }}</h3>
+                    <h3>{{ recipe.title }}</h3>
                 </div>
             </div>
 

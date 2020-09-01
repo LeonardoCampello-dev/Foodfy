@@ -289,6 +289,10 @@ textarea {
     right: 385px;
 }
 
+.index .chef-recipes {
+    margin: 24px 0 16px 0;
+}
+
 /* ===================== PAGINATION ===================== */
 
 .pagination {

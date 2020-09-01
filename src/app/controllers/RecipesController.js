@@ -59,7 +59,7 @@ module.exports = {
         if (!recipe) return res.send('Receita não encontrada')
 
         results = await Recipe.files(recipe.id)
-        files = results.rows.map(file => ({
+        files = results.map(file => ({
             ...file,
             src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
         }))
@@ -78,7 +78,7 @@ module.exports = {
 
         // get files
         results = await Recipe.files(recipe.id)
-        let files = results.rows
+        let files = results
 
         files = files.map(file => ({
             ...file,

@@ -50,7 +50,7 @@ module.exports = {
     update(data) {
         const query = `
         UPDATE chefs SET
-            file_id = ($1)
+            file_id = ($1),
             name=($2)
         WHERE id = $3
         `
@@ -105,5 +105,35 @@ module.exports = {
         fs.unlinkSync(file.path)
 
         return db.query(`DELETE FROM files WHERE id = $1`, [id])
+    },
+    async findChefRecipes(id) {
+        try {
+            const query = `
+            SELECT * FROM chefs 
+            LEFT JOIN recipes ON (recipes.chef_id = chefs.id) 
+            WHERE chefs.id = $1
+            `
+
+            const results = await db.query(query, [id])
+
+            return results.rows
+        } catch (error) {
+            console.error(error)
+        }
+    },
+    async getAvatar(id) {
+        try {
+            const query = `
+            SELECT files.* FROM files 
+            LEFT JOIN chefs ON (chefs.file_id = files.id)
+            WHERE chefs.id = $1
+            `
+
+            const results = await db.query(query, [id])
+
+            return results.rows[0]
+        } catch (error) {
+            console.error(error)
+        }
     }
 }
