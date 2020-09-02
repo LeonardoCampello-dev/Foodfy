@@ -31,7 +31,7 @@ routes.delete('/admin/recipes', RecipesController.delete)
 // admin ChefsController
 
 routes.get('/admin/chefs', ChefsController.index)
-routes.get('/admin/chefs', ChefsController.create)
+routes.get('/admin/chefs/create', ChefsController.create)
 routes.get('/admin/chefs/:id', ChefsController.show)
 routes.get('/admin/chefs/:id/edit', ChefsController.edit)
 

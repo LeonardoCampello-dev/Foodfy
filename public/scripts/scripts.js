@@ -97,6 +97,7 @@ const PhotosUpload = {
     getContainer(image) {
         const div = document.createElement('div')
         div.classList.add('photo')
+        div.classList.add('chef-avatar')
 
         div.onclick = PhotosUpload.removePhoto
 

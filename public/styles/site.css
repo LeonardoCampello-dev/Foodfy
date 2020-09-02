@@ -409,6 +409,11 @@ footer {
 
 .chef-detail {
     text-align: center;
+    
+    padding-bottom: 24px;
+    margin-bottom: 8px;
+    
+    border-bottom: 2px solid rgba(0, 0, 0, .3);
 }
 
 .chef-detail img {
