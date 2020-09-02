@@ -1,4 +1,3 @@
-const Home = require('../models/Home')
 const Recipe = require('../models/Recipe')
 const File = require('../models/File')
 
@@ -24,7 +23,7 @@ module.exports = {
         }
 
         if (!recipes) return res.send('Receitas não encontradas')
-        
+
         async function getImage(recipeId) {
             let results = await Recipe.recipeFiles(recipeId)
             results = results.map(recipe => `${req.protocol}://${req.headers.host}${recipe.path.replace('public', '')}`)
@@ -43,8 +42,7 @@ module.exports = {
         return res.render('admin/recipes/index.njk', { recipes: recipesFixed, pagination })
     },
     async create(req, res) {
-        let results = await Recipe.chefSelectOptions()
-        const chefSelectOptions = results.rows
+        let chefSelectOptions = await Recipe.chefSelectOptions()
 
         return res.render('admin/recipes/create.njk', { chefSelectOptions })
     },
@@ -69,8 +67,7 @@ module.exports = {
         }
     },
     async show(req, res) {
-        let results = await Recipe.find(req.params.id)
-        const recipe = results.rows[0]
+        let recipe = await Recipe.find(req.params.id)
 
         if (!recipe) return res.send('Receita não encontrada')
 
@@ -83,8 +80,7 @@ module.exports = {
         return res.render('admin/recipes/show.njk', { recipe, files })
     },
     async edit(req, res) {
-        let results = await Recipe.find(req.params.id)
-        const recipe = results.rows[0]
+        let recipe = await Recipe.find(req.params.id)
 
         if (!recipe) return res.send('Receita não encontrada')
 

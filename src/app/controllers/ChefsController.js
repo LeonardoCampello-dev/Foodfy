@@ -64,8 +64,7 @@ module.exports = {
     async show(req, res) {
         const chefId = req.params.id
 
-        let results = await Chef.find(chefId)
-        const chef = results.rows[0]
+        let chef = await Chef.find(chefId)
 
         if (!chef) return res.send('Chefe não encontrado')
 
@@ -94,8 +93,7 @@ module.exports = {
         return res.render('admin/chefs/show.njk', { chef, recipes, chefAvatar })
     },
     async edit(req, res) {
-        let results = await Chef.find(req.params.id)
-        const chef = results.rows[0]
+        let chef = await Chef.find(req.params.id)
 
         if (!chef) return res.send('Chefe não encontrado')
 
@@ -133,7 +131,7 @@ module.exports = {
                 await removedFiles.map(id => Chef.fileDelete(id))
             }
 
-            let results = await Chef.update(req.body, file_id)
+            await Chef.update(req.body, file_id)
 
             return res.redirect(`/admin/chefs/${req.body.id}`)
         } catch (error) {

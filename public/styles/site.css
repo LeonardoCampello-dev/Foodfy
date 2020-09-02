@@ -131,6 +131,10 @@ header form input[type="text"] {
     object-fit: cover;
 }
 
+.card img:hover {
+    transform: translateY(-2px);
+}
+
 .card h3 {
     color: var(--title);
     font-size: 18px;
