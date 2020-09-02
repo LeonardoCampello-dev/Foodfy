@@ -32,35 +32,81 @@ The following technologies were used
 - [x] [method-override](https://www.npmjs.com/package/method-override)
 - [x] [node-postgres](https://www.npmjs.com/package/pg) 
 - [x] [nodemon](https://www.npmjs.com/package/nodemon) 
+- [x] [multer](https://www.npmjs.com/package/multer)
 
 ## 🎨 Layout
 
-**Home**
+**Home** 🏠
 
-![index](./.github/Home.png)
-
----
-
-**Recipes**
-
-![recipes](././.github/Recipes.gif)
+![home](./.github/Home.png)
 
 ---
 
-**Details**
+**Recipes** 🥘
 
-![details](./.github/Details.png)
+![recipes](./.github/Recipes.png)
 
 ---
 
-**Chefs**
+**Recipe** 🍝
 
-![chefs](.github/Chefs.gif)
+![recipe](./.github/Recipe.png)
+
+---
+
+**Chefs** 👩‍🍳👨‍🍳
+
+![chefs](./.github/Chefs.png)
+
+---
+
+**Chef** 👨‍🍳
+
+![chef](./.github/Chef.png)
+
+---
+
+**Filter** 🔎
+
+![filter](.github/Filter.png)
+
+---
+
+**Not found** 🌋
+
+![not-found](.github/Invalid.png)
+
+---
+
+**GIF demonstration** 🎥
+
+![gif](./.github/Foodfy.gif)
+
+---
+
+## Project installation 👷‍♂️
+
+First you need to have [Node.js](https://nodejs.org/en/) installed, then **run the following command:**
+
+``` bash 
+## To clone the project
+git clone https://github.com/LeonardoCampello-dev/Foodfy.git
+```
+
+``` bash 
+## To install the dependencies
+npm install
+```
+
+``` bash 
+## Running project
+npm start
+```
 
 ---
 
 ## 📜 License 
 
-Released in 2020. This project is under the [MIT license](LICENSE).
+Released in 2020. This project is under the [MIT license](/LICENSE).
 
 ## Made with love by Leonardo Campello 💚 
