@@ -6,8 +6,10 @@
 
     <div class="recipes">
         
-        <h2>Buscando por "{{ filter }}"</h2>
+        {% if filter %}
         
+        <h2>Buscando por "{{ filter }}"</h2>
+
         <div class="cards">
             
             {% for recipe in recipes %}
@@ -21,7 +23,22 @@
             {% endfor %}
 
         </div>
+
+        {% else %}
         
+            <div class="not-found">
+                
+                <img src="/assets/not-found.svg" alt="Receitas não encontradas">
+
+                <h2>
+                    Nenhuma receita encontrada
+                    <i class="material-icons">sentiment_very_dissatisfied</i>
+                </h2>
+
+            </div>        
+        
+        {% endif %}
+                
     </div>
 
 </section>

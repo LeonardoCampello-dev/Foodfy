@@ -63,7 +63,7 @@ module.exports = {
         }
 
     },
-    findBy(filter) {
+    async findBy(filter) {
         const query = `
         SELECT recipes.*, chefs.name AS chef_name
         FROM recipes
@@ -72,7 +72,9 @@ module.exports = {
         ORDER BY recipes.title
         `
 
-        return db.query(query)
+        const results = await db.query(query)
+
+        return results.rows
     },
     update(data) {
         try {

@@ -85,8 +85,7 @@ module.exports = {
         if (!recipe) return res.send('Receita não encontrada')
 
         // get chefs
-        results = await Recipe.chefSelectOptions()
-        const chefSelectOptions = results.rows
+        chefSelectOptions = await Recipe.chefSelectOptions()
 
         // get files
         results = await Recipe.files(recipe.id)

@@ -20,9 +20,9 @@ module.exports = {
             return recipe
         })
 
-        const recipeFixed = await Promise.all(recipesPromises)
+        const recipesFixed = await Promise.all(recipesPromises)
 
-        return res.render('site/index.njk', { recipes: recipeFixed })
+        return res.render('site/index.njk', { recipes: recipesFixed })
     },
     about(req, res) {
         return res.render('site/about.njk')
@@ -152,9 +152,23 @@ module.exports = {
     async showResults(req, res) {
         const { filter } = req.query
 
-        let results = await Recipe.findBy(filter)
-        const recipes = results.rows
+        let recipes = await Recipe.findBy(filter)
 
-        return res.render('site/results.njk', { filter, recipes })
+        async function getImage(recipeId) {
+            let results = await Recipe.recipeFiles(recipeId)
+            results = results.map(recipe => `${req.protocol}://${req.headers.host}${recipe.path.replace('public', '')}`)
+
+            return results[0]
+        }
+
+        const recipesPromises = recipes.map(async recipe => {
+            recipe.image = await getImage(recipe.id)
+
+            return recipe
+        })
+
+        const recipesFixed = await Promise.all(recipesPromises)
+
+        return res.render('site/results.njk', { recipes: recipesFixed, filter })
     }
 }

@@ -7,7 +7,12 @@
     <div class="chef-detail">
         <img src="{{ chefAvatar.path }}" alt="{{ chef.name }}">
         
-        <h1>{{ chef.name }}</h1>
+        <h1>
+            {{ chef.name }}
+            <span>
+                <img src="/assets/chef-icon.svg" alt="Ícone chefe">
+            </span>
+        </h1>
         <p>
             {% if chef.total_recipes == 1 %}
                 Uma receita
