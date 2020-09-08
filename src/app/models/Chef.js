@@ -136,7 +136,7 @@ module.exports = {
         FROM chefs
         LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
         GROUP BY chefs.id
-        ORDER BY chefs.name ASC
+        ORDER BY updated_at DESC
         LIMIT $1 OFFSET $2
         `
 

@@ -8,7 +8,7 @@ module.exports = {
             SELECT recipes.*, chefs.name AS chef_name
             FROM recipes
             LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
-            ORDER BY title ASC
+            ORDER BY updated_at DESC
             `
 
             const results = await db.query(query)
@@ -181,6 +181,7 @@ module.exports = {
             FROM recipes
             LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
             ${filterQuery}
+            ORDER BY updated_at DESC
             LIMIT $1 OFFSET $2
             `
 
