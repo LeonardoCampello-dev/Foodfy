@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400&display=swap');
-
 :root {
     --title: #222121;
     --author: #7c7b7b;
@@ -78,4 +76,28 @@ h2 {
 
 .button:hover {
     background-color: var(--paragraph);
+}
+
+footer {
+    background-color: #ddd;
+    width: 100%;
+    margin-top: auto;
+}
+
+.footer {
+    padding: 24px;
+}
+
+.footer p a,
+.footer p {
+    color: #777;
+    text-align: center;
+}
+
+.footer p a {
+    text-decoration: none;
+}
+
+.footer p a:hover {
+    color: var(--red);
 }

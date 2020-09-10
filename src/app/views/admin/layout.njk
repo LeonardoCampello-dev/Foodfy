@@ -6,30 +6,15 @@
         <meta name="description" content="Foodfy admin">
         <meta name="keywords" content="Admin, create, edit">
         
-        <link rel="stylesheet" href="/styles/global.css">
-        <link rel="stylesheet" href="/styles/admin.css">
-        <link rel="stylesheet" href="/styles/site.css">
-        
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        
-        <link rel="icon" href="/assets/admin-fav-icon.ico" type="image/x-icon"/>
-        
+        {% include "./parts/styles.njk" %}
+
         <title>Admin mode</title>
     </head>
 
     <body>
         <div class="flex-container">
 
-            <header class="header-admin">
-                <div class="navbar">
-                    <a href="/admin/recipes">
-                        <img src="/assets/logo-white.png" alt="Logo">
-                    </a>
-                    
-                    <a href="/admin/recipes">Receitas</a>
-                    <a href="/admin/chefs">Chefes</a>
-                </div>
-            </header>
+            {% include "./parts/header.njk" %}
 
             <div class="container admin">
                 {% block content %}{% endblock content %}
