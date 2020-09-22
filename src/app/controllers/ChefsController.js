@@ -62,49 +62,57 @@ module.exports = {
         }
     },
     async show(req, res) {
-        const chefId = req.params.id
+        try {
+            const chefId = req.params.id
 
-        let chef = await Chef.find(chefId)
+            let chef = await Chef.find(chefId)
 
-        if (!chef) return res.send('Chefe não encontrado')
+            if (!chef) return res.send('Chefe não encontrado')
 
-        const chefRecipes = await Chef.findChefRecipes(chefId)
-        const thereIsRecipe = chefRecipes[0].id
+            const chefRecipes = await Chef.findChefRecipes(chefId)
+            const thereIsRecipe = chefRecipes[0].id
 
-        if (thereIsRecipe != null) {
-            async function getImage(recipeId) {
-                let results = await Recipe.files(recipeId)
-                return results[0].path
+            if (thereIsRecipe != null) {
+                async function getImage(recipeId) {
+                    let results = await Recipe.files(recipeId)
+                    return results[0].path
+                }
+
+                const recipesPromises = chefRecipes.map(async recipe => {
+                    recipe.image = await getImage(recipe.id)
+                    recipe.image = `${req.protocol}://${req.headers.host}${recipe.image.replace('public', '')}`
+
+                    return recipe
+                })
+
+                recipes = await Promise.all(recipesPromises)
             }
 
-            const recipesPromises = chefRecipes.map(async recipe => {
-                recipe.image = await getImage(recipe.id)
-                recipe.image = `${req.protocol}://${req.headers.host}${recipe.image.replace('public', '')}`
+            chefAvatar = await Chef.getAvatar(chefId)
+            chefAvatar.path = `${req.protocol}://${req.headers.host}${chefAvatar.path.replace('public', '')}`
 
-                return recipe
-            })
-
-            recipes = await Promise.all(recipesPromises)
+            return res.render('admin/chefs/show.njk', { chef, recipes, chefAvatar })
+        } catch (error) {
+            console.error(error)
         }
-
-        chefAvatar = await Chef.getAvatar(chefId)
-        chefAvatar.path = `${req.protocol}://${req.headers.host}${chefAvatar.path.replace('public', '')}`
-
-        return res.render('admin/chefs/show.njk', { chef, recipes, chefAvatar })
     },
     async edit(req, res) {
-        let chef = await Chef.find(req.params.id)
+        try {
+            let chef = await Chef.find(req.params.id)
 
-        if (!chef) return res.send('Chefe não encontrado')
+            if (!chef) return res.send('Chefe não encontrado')
 
-        let avatar = await Chef.files(chef.file_id)
+            let avatar = await Chef.files(chef.file_id)
 
-        avatar = avatar.map(file => ({
-            ...file,
-            src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
-        }))
+            avatar = avatar.map(file => ({
+                ...file,
+                src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
+            }))
 
-        return res.render('admin/chefs/edit.njk', { chef, avatar })
+            return res.render('admin/chefs/edit.njk', { chef, avatar })
+        } catch (error) {
+            console.error(error)
+        }
     },
     async put(req, res) {
         try {
@@ -139,9 +147,13 @@ module.exports = {
         }
     },
     async delete(req, res) {
-        let results = await Chef.delete(req.body.id)
+        try {
+            await Chef.delete(req.body.id)
 
-        return res.redirect('/admin/chefs')
+            return res.redirect('/admin/chefs')
+        } catch (error) {
+            console.error(error)
+        }
     },
 }
 

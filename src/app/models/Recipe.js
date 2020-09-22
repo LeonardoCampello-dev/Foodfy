@@ -61,7 +61,6 @@ module.exports = {
         } catch (error) {
             console.error(error)
         }
-
     },
     async findBy(filter) {
         const query = `
@@ -116,7 +115,7 @@ module.exports = {
 
             return results.rows
         } catch (error) {
-
+            console.error(error)
         }
     },
     async files(id) {

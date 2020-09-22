@@ -6,6 +6,9 @@ header.header-admin {
     padding: 24px;
 
     margin-bottom: 32px;
+
+    display: flex;
+    align-items: center;
 }
 
 .navbar {
@@ -16,7 +19,8 @@ header.header-admin {
     align-items: center;
 }
 
-.navbar a {
+.navbar a,
+.logout button {
     color: #fff;
     font-size: 15px;
     line-height: 18px;
@@ -24,10 +28,13 @@ header.header-admin {
     font-weight: bold;
     text-transform: uppercase;
 
-    transition: .2s
+    transition: .2s;
+
+    background-color: initial;
 }
 
-.navbar a:hover {
+.navbar a:hover,
+.logout button:hover {
     color: var(--red);
 }
 
@@ -54,7 +61,8 @@ header.header-admin {
 }
 
 #delete-button,
-#chef-delete {
+#chef-delete,
+#user-delete {
     background-color: var(--paragraph);
     
     position: absolute;
@@ -63,7 +71,8 @@ header.header-admin {
 }
 
 #delete-button:hover,
-#chef-delete:hover {
+#chef-delete:hover,
+#user-delete:hover {
     background-color: #DC4747;
 }
 
@@ -300,6 +309,40 @@ textarea {
     bottom: 5vh;
     left: 50%;
 }
+
+/* ===================== USERS ===================== */
+
+.users-fields {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 48px;
+}
+
+.checkbox-admin {
+    width: 150px;
+    
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-admin input {
+    box-shadow: none;
+}
+
+.checkbox-admin div:last-child {
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: bold;  
+}
+
+#user-delete {
+    right: 412px;
+}
+
+
+
+
 
 
 

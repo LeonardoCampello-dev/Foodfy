@@ -132,13 +132,13 @@ module.exports = {
 
 
             query = `
-        SELECT chefs.*, ${totalQuery}, count(recipes) AS total_recipes
-        FROM chefs
-        LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
-        GROUP BY chefs.id
-        ORDER BY updated_at DESC
-        LIMIT $1 OFFSET $2
-        `
+            SELECT chefs.*, ${totalQuery}, count(recipes) AS total_recipes
+            FROM chefs
+            LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
+            GROUP BY chefs.id
+            ORDER BY updated_at DESC
+            LIMIT $1 OFFSET $2
+            `
 
             const results = await db.query(query, [limit, offset])
 

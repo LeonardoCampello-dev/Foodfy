@@ -22,7 +22,7 @@ const UsersController = require('../app/controllers/UsersController')
 // routes.get('/profile', UsersController.profile)
 // routes.get('/', UserController.list)
 
-// routes.get('/register', UserController.create)
+routes.get('/register', UsersController.create)
 // routes.post('/register', UserController.post)
 
 // routes.get('/:id', UserController.show)
