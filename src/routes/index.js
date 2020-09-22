@@ -3,11 +3,13 @@ const routes = express.Router()
 
 const HomeController = require('../app/controllers/HomeController')
 
-const recipes = require('./recipes')
+const users = require('./users')
 const chefs = require('./chefs')
+const recipes = require('./recipes')
 
-routes.use('/admin/recipes', recipes)
+routes.use('/admin/users', users)
 routes.use('/admin/chefs', chefs)
+routes.use('/admin/recipes', recipes)
 
 // Home routes 
 routes.get('/', HomeController.home)
