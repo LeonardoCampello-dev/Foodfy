@@ -340,6 +340,14 @@ textarea {
     right: 412px;
 }
 
+.input-error {
+    border: 1px solid var(--red);
+}
+
+.input-error::placeholder {
+    color: var(--red);
+}
+
 
 
 
