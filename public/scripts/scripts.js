@@ -189,7 +189,7 @@ const Validate = {
 
         const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
-        if (!value.match(mailFormat)) error = 'Digite o email corretamente!'
+        if (!value.match(mailFormat)) error = 'Formato de email inválido!'
 
         return {
             error,
@@ -206,6 +206,7 @@ const Validate = {
         const errorDiv = input.parentNode.querySelector('.error')
 
         input.classList.remove('input-error')
+        input.placeholder = 'Digite o email'
 
         if (errorDiv)
             errorDiv.remove()
