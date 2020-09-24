@@ -18,7 +18,7 @@ module.exports = {
             console.error(error)
         }
     },
-    create(data) {
+    async create(data) {
         try {
             const query = `
             INSERT INTO recipes (
@@ -41,7 +41,8 @@ module.exports = {
                 date(Date.now()).iso
             ]
 
-            return db.query(query, values)
+            const results = await db.query(query, values)
+            return results.rows[0].id
         } catch (error) {
             console.error(error)
         }

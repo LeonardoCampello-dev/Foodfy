@@ -59,11 +59,12 @@ module.exports = {
             const keys = Object.keys(req.body)
 
             for (key of keys) {
-                if (req.body[key] == '' && key != 'id') return res.send('Por favor, preencha todos os campos.')
+                if (req.body[key] == '' && key != 'id') return res.render('admin/recipes/create.njk', {
+                    error: 'Por favor, preencha todos os campos!'
+                })
             }
 
-            let results = await Recipe.create(req.body)
-            const recipeId = results.rows[0].id
+            let recipeId = await Recipe.create(req.body)
 
             const filesPromises = req.files.map(file =>
                 File.createRecipeFiles({ ...file, recipe_id: recipeId }))
@@ -72,6 +73,9 @@ module.exports = {
             res.redirect(`/admin/recipes/${recipeId}`)
         } catch (error) {
             console.error(error)
+            return res.render('admin/recipes/create.njk', {
+                error: 'Erro ao criar receita!'
+            })
         }
     },
     async show(req, res) {
@@ -91,12 +95,12 @@ module.exports = {
         try {
             let recipe = await Recipe.find(req.params.id)
 
-            if (!recipe) return res.send('Receita não encontrada')
+            if (!recipe) return res.render('admin/recipes/edit.njk', {
+                error: 'Receita não encontrada!'
+            })
 
-            // get chefs
             chefSelectOptions = await Recipe.chefSelectOptions()
 
-            // get files
             results = await Recipe.files(recipe.id)
             let files = results
 
@@ -142,6 +146,9 @@ module.exports = {
             return res.redirect(`/admin/recipes/${req.body.id}`)
         } catch (error) {
             console.error(error)
+            return res.render('admin/recipes/edit.njk', {
+                error: 'Erro ao atualizar receita!'
+            })
         }
     },
     async delete(req, res) {
@@ -151,6 +158,9 @@ module.exports = {
             return res.redirect('/admin/recipes.njk')
         } catch (error) {
             console.error(error)
+            return res.render('admin/recipes/edit.njk', {
+                error: 'Erro ao deletar receita!'
+            })
         }
     }
 }

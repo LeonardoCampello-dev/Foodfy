@@ -47,14 +47,24 @@ module.exports = {
     },
     async post(req, res) {
         try {
-            if (req.files.length == 0) return res.send('Por favor, insira uma imagem.')
+            const keys = Object.keys(req.body)
+
+            for (key of keys) {
+                if (req.body[key] == '' && key != 'id') return res.render('admin/chefs/create.njk', {
+                    error: 'Por favor, preencha todos os campos!'
+                })
+            }
+
+            if (req.files.length == 0) res.render('admin/chefs/create.njk', {
+                chef: req.body,
+                error: 'Por favor, insira uma imagem!'
+            })
 
             const filePromise = req.files.map(file => File.create({ ...file }))
             let results = await filePromise[0]
             const fileId = results.rows[0].id
 
-            results = await Chef.create(req.body, fileId)
-            const chefId = results.rows[0].id
+            chefId = await Chef.create(req.body, fileId)
 
             return res.redirect(`admin/chefs/${chefId}`)
         } catch (error) {
@@ -67,7 +77,9 @@ module.exports = {
 
             let chef = await Chef.find(chefId)
 
-            if (!chef) return res.send('Chefe não encontrado')
+            if (!chef) return res.render('admin/chefs/show.njk', {
+                error: 'Chefe não encontrado!'
+            })
 
             const chefRecipes = await Chef.findChefRecipes(chefId)
             const thereIsRecipe = chefRecipes[0].id
@@ -120,7 +132,9 @@ module.exports = {
 
             for (key of keys) {
                 if (req.body[key] == '' && key != 'removed_files') {
-                    return res.send('Por favor, preencha todos os campos.')
+                    return res.render('admin/chefs/edit.njk', {
+                        error: 'Por favor, preencha todos os campos!'
+                    })
                 }
             }
 
@@ -144,6 +158,9 @@ module.exports = {
             return res.redirect(`/admin/chefs/${req.body.id}`)
         } catch (error) {
             console.error(error)
+            return res.render('admin/chefs/edit.njk', {
+                error: 'Erro ao atualizar o chefe!'
+            })
         }
     },
     async delete(req, res) {
@@ -153,6 +170,9 @@ module.exports = {
             return res.redirect('/admin/chefs')
         } catch (error) {
             console.error(error)
+            return res.render('admin/chefs/edit.njk', {
+                error: 'Erro ao deletar o chefe!'
+            })
         }
     },
 }
