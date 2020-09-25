@@ -19,7 +19,7 @@ module.exports = {
 
         if (user) return res.render('admin/users/create.njk', {
             user: req.body,
-            error: 'Erro ao criar usuário!'
+            error: 'Usuário já existe!'
         })
 
         next()

@@ -1,6 +1,6 @@
 const db = require('../../config/db')
 const { hash } = require('bcrypt')
-const fs = require('fs')
+const crypto = require('crypto')
 
 module.exports = {
     async all() {
@@ -40,12 +40,12 @@ module.exports = {
         RETURNING id
         `
 
-        const encryptedPassword = await hash(data.password, 8)
+        const newPassword = crypto.randomBytes(10).toString('hex')
 
         const values = [
             data.name,
             data.email,
-            encryptedPassword,
+            newPassword,
             data.is_admin
         ]
 
