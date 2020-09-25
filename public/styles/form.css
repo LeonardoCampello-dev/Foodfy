@@ -1,0 +1,73 @@
+/* ===================== FORM ===================== */
+
+#delete-button {
+    right: 405px;
+}
+
+#delete-button,
+#chef-delete,
+#user-delete {
+    background-color: var(--paragraph);
+    
+    position: absolute;
+
+    transition: .2s
+}
+
+#delete-button:hover,
+#chef-delete:hover,
+#user-delete:hover {
+    background-color: #DC4747;
+}
+
+.item {
+    margin-top: 32px;
+}
+
+.item div:first-child {
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: bold;
+    
+    margin-bottom: 12px;
+}
+
+
+textarea,
+input,
+select {
+    width: 100%;
+    padding: 16px;
+    
+    border: 1px solid #efefef;
+    border-radius: 4px;
+    
+    color: var(--paragraph);
+    font-size: 16px;
+    font-weight: bold;
+
+    box-shadow: 2px 2px 5px -4px var(--title);
+}
+
+textarea {
+    opacity: .8;
+    resize: none;
+    min-height: 257px;
+}
+
+.ingredient,
+.preparation {
+    margin-top: 8px;
+}
+
+
+.add-ingredient, 
+.add-preparation {
+    color: var(--purple);
+    display: inline-block;
+    font-weight: bold;
+    
+    cursor: pointer;
+    
+    margin-top: 16px;
+}

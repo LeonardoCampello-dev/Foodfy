@@ -1,0 +1,41 @@
+/* ===================== MESSAGES ===================== */
+
+@keyframes hidemessage {
+    to {
+        top: -50px;
+        opacity: 0;
+    }
+}
+
+.messages {
+    color: #eee;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 366px;
+    height: 140px;
+    padding: 24px;
+    
+    border-radius: 4px;
+    
+    position: absolute;
+
+    top: 24px;
+    right: 24px;
+
+    opacity: 1;
+    animation: hidemessage .5s 3s ease-in-out forwards;
+}
+
+.messages.error {
+    background-color: var(--red);
+}
+
+.messages.success {
+    background-color: var(--green);
+}
