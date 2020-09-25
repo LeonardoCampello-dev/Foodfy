@@ -70,7 +70,7 @@ module.exports = {
                 File.createRecipeFiles({ ...file, recipe_id: recipeId }))
             await Promise.all(filesPromises)
 
-            res.redirect(`/admin/recipes/${recipeId}`)
+            res.redirect(`/admin/recipes/${recipeId}?success=Receitada criada!`)
         } catch (error) {
             console.error(error)
             return res.render('admin/recipes/create.njk', {
@@ -155,7 +155,7 @@ module.exports = {
         try {
             await Recipe.delete(req.body.id)
 
-            return res.redirect('/admin/recipes.njk')
+            return res.redirect('/admin/recipes')
         } catch (error) {
             console.error(error)
             return res.render('admin/recipes/edit.njk', {

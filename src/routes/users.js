@@ -8,27 +8,27 @@ const UserValidator = require('../app/validators/user')
 
 // // Login - Logout
 
-// routes.get('/login', SessionController.loginForm)
+routes.get('/login', SessionController.loginForm)
 // routes.post('/login', SessionController.login)
 // routes.post('/logout', SessionController.logout)
 
 // // Reset password - Forgot
 
-// routes.get('/forgot-password', SessionController.forgotForm)
-// routes.get('/reset-password', SessionController.resetForm)
+routes.get('/forgot-password', SessionController.forgotForm)
+routes.get('/reset-password', SessionController.resetForm)
 // routes.post('/forgot-password', SessionController.forgot)
 // routes.post('/reset-password', SessionController.reset)
 
 // // Users
 
 // routes.get('/profile', UsersController.profile)
-// routes.get('/', UserController.list)
+routes.get('/', UsersController.list)
 
 routes.get('/register', UsersController.create)
 routes.post('/register', UserValidator.post, UsersController.post)
 
-// routes.get('/:id', UserController.show)
-// routes.put('/', UserController.put)
-// routes.delete('/', UserController.delete)
+// routes.get('/:id', UsersController.show)
+// routes.put('/', UsersController.put)
+// routes.delete('/', UsersController.delete)
 
 module.exports = routes

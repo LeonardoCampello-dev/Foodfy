@@ -3,6 +3,15 @@ const { hash } = require('bcrypt')
 const fs = require('fs')
 
 module.exports = {
+    async all() {
+        const query = `
+        SELECT * FROM users
+        ORDER BY updated_at DESC
+        `
+
+        const results = await db.query(query)
+        return results.rows
+    },
     async findOne(filters) {
         let query = `SELECT * FROM users`
 
