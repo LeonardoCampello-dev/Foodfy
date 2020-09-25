@@ -1,13 +1,13 @@
 const session = require('express-session')
 const pgSession = require('connect-pg-simple')(session)
 
-const db = require('./db')
+const foodfydb = require('./db')
 
 module.exports = session({
     store: new pgSession({
-        pool: db
+        pool: foodfydb
     }),
-    secret: 'f00dfys3cr3t@@@',
+    secret: 'f00dfy-s3cr3t@',
     resave: false,
     saveUninitialized: false,
     cookie: {

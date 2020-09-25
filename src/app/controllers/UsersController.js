@@ -13,6 +13,9 @@ module.exports = {
     async post(req, res) {
         try {
             const userId = await User.create(req.body)
+
+            req.session.userId = userId
+
             const user = await User.findOne({
                 where: { id: userId }
             })
@@ -44,5 +47,10 @@ module.exports = {
                 error: 'Erro ao criar usuário!'
             })
         }
+    },
+    show(req, res) {
+        const user = req.user
+
+        return res.render('admin/users/edit.njk', { user })
     },
 }

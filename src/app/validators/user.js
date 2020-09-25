@@ -24,4 +24,19 @@ module.exports = {
 
         next()
     },
+    async show(req, res, next) {
+        const { id } = req.params
+
+        const user = await User.findOne({
+            where: { id }
+        })
+
+        if (!user) return res.render('admin/users/show.njk', {
+            error: 'Usuário não encontrado!'
+        })
+
+        req.user = user
+
+        next()
+    },
 }
