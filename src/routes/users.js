@@ -5,13 +5,13 @@ const SessionController = require('../app/controllers/SessionController')
 const UsersController = require('../app/controllers/UsersController')
 
 const UserValidator = require('../app/validators/user')
-const { onlyUsers } = require('../app/middlewares/session')
+const { onlyUsers, isLoggedRedirectToList, isAdmin, ifAdmin } = require('../app/middlewares/session')
 
 // // Login - Logout
 
-routes.get('/login', SessionController.loginForm)
+routes.get('/login', isLoggedRedirectToList, SessionController.loginForm)
 // routes.post('/login', SessionController.login)
-// routes.post('/logout', SessionController.logout)
+routes.post('/logout', SessionController.logout)
 
 // // Reset password - Forgot
 
@@ -23,12 +23,12 @@ routes.get('/reset-password', SessionController.resetForm)
 // // Users
 
 // routes.get('/profile', UsersController.profile)
-routes.get('/', UsersController.list)
+routes.get('/', onlyUsers, UsersController.list)
 
-routes.get('/register', UsersController.create)
+routes.get('/register', onlyUsers, isAdmin, UsersController.create)
 routes.post('/register', UserValidator.post, UsersController.post)
 
-routes.get('/:id', UserValidator.show, UsersController.show)
+routes.get('/:id', UserValidator.show, isAdmin, UsersController.show)
 // routes.put('/', UsersController.put)
 // routes.delete('/', UsersController.delete)
 
