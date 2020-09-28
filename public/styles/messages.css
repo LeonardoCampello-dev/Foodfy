@@ -30,6 +30,8 @@
 
     opacity: 1;
     animation: hidemessage .5s 3s ease-in-out forwards;
+
+    z-index: 999;
 }
 
 .messages.error {

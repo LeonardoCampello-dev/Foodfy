@@ -1,3 +1,4 @@
+const { put } = require('../controllers/UsersController')
 const User = require('../models/User')
 
 module.exports = {
@@ -33,6 +34,26 @@ module.exports = {
 
         if (!user) return res.render('admin/users/show.njk', {
             error: 'Usuário não encontrado!'
+        })
+
+        req.user = user
+
+        next()
+    },
+    async put(req, res, next) {
+        const keys = Object.keys(req.body)
+
+        for (key of keys) {
+            if (req.body[key] == '') {
+                return res.render('admin/users/edit.njk', {
+                    user: req.body,
+                    error: 'Por favor, preencha todos os campos!'
+                })
+            }
+        }
+
+        const user = await User.findOne({
+            where: { id: req.body.id }
         })
 
         req.user = user

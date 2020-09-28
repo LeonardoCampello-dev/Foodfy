@@ -2,6 +2,13 @@ const User = require('../models/User')
 const mailer = require('../../libs/mailer')
 
 module.exports = {
+    async profile(req, res) {
+        const user = await User.findOne({
+            where: { id: req.session.userId }
+        })
+
+        return res.render('admin/users/profile.njk', { user })
+    },
     async list(req, res) {
         const users = await User.all()
 
@@ -53,4 +60,37 @@ module.exports = {
 
         return res.render('admin/users/edit.njk', { user })
     },
+    async put(req, res) {
+        try {
+            const { user } = req
+            const { name, email, is_admin } = req.body
+
+            await User.update(user.id, {
+                name,
+                email,
+                is_admin
+            })
+
+            return res.redirect('/admin/users')
+        } catch (error) {
+            console.error(error)
+            return res.render('admin/users/edit.njk', {
+                user: req.body,
+                error: 'Erro ao atualizar o usuário!'
+            })
+        }
+    },
+    async delete(req, res) {
+        try {
+            await User.delete(req.body.id)
+
+            return res.redirect('/admin/users')
+        } catch (error) {
+            console.error(error)
+            return res.render('admin/users/edit.njk', {
+                user: req.body,
+                error: 'Erro ao deletar o usuário!'
+            })
+        }
+    }
 }

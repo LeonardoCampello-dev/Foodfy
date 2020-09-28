@@ -76,7 +76,7 @@ module.exports = {
 
         return results.rows
     },
-    update(data) {
+    async update(data) {
         try {
             const query = `
             UPDATE recipes SET
@@ -97,15 +97,18 @@ module.exports = {
                 data.id
             ]
 
-            return db.query(query, values)
+            await db.query(query, values)
+
+            return
         } catch (error) {
             console.error(error)
         }
-
     },
-    delete(id) {
+    async delete(id) {
         try {
-            return db.query(`DELETE FROM recipes WHERE id = $1`, [id])
+            await db.query(`DELETE FROM recipes WHERE id = $1`, [id])
+
+            return
         } catch (error) {
             console.error(error)
         }
