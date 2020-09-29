@@ -1,3 +1,5 @@
+const Recipe = require('../models/Recipe')
+
 module.exports = {
     onlyUsers(req, res, next) {
         if (!req.session.userId)
@@ -27,6 +29,15 @@ module.exports = {
     },
     ifAdmin(req, res, next) {
         if (!req.session.isAdmin) return res.redirect('/admin/users/profile')
+
+        next()
+    },
+    async isTheOwner(req, res, next) {
+        const recipe = await Recipe.find(req.params.id)
+
+        console.log(recipe)
+        if (req.session.userId !== recipe.user_id)
+            return res.redirect(`${req.headers.referer}`)
 
         next()
     }
