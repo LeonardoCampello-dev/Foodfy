@@ -35,7 +35,6 @@ module.exports = {
     async isTheOwner(req, res, next) {
         const recipe = await Recipe.find(req.params.id)
 
-        console.log(recipe)
         if (req.session.userId !== recipe.user_id)
             return res.redirect(`${req.headers.referer}`)
 

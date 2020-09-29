@@ -40,7 +40,11 @@ module.exports = {
 
         const chefAvatar = await Promise.all(chefsPromises)
 
-        return res.render('admin/chefs/index.njk', { chefs: chefAvatar, pagination })
+        return res.render('admin/chefs/index.njk', {
+            chefs: chefAvatar,
+            pagination,
+            success: req.query.success
+        })
     },
     create(req, res) {
         return res.render('admin/chefs/create.njk')
@@ -66,7 +70,7 @@ module.exports = {
 
             chefId = await Chef.create(req.body, fileId)
 
-            return res.redirect(`admin/chefs/${chefId}`)
+            return res.redirect(`admin/chefs/${chefId}?success=Chefe registrado!`)
         } catch (error) {
             console.error(error)
         }
@@ -103,7 +107,12 @@ module.exports = {
             chefAvatar = await Chef.getAvatar(chefId)
             chefAvatar.path = `${req.protocol}://${req.headers.host}${chefAvatar.path.replace('public', '')}`
 
-            return res.render('admin/chefs/show.njk', { chef, recipes, chefAvatar })
+            return res.render('admin/chefs/show.njk', {
+                chef,
+                recipes,
+                chefAvatar,
+                success: req.query.success
+            })
         } catch (error) {
             console.error(error)
         }
@@ -155,7 +164,7 @@ module.exports = {
 
             await Chef.update(req.body, file_id)
 
-            return res.redirect(`/admin/chefs/${req.body.id}`)
+            return res.redirect(`/admin/chefs/${req.body.id}?success=Chefe atualizado!`)
         } catch (error) {
             console.error(error)
             return res.render('admin/chefs/edit.njk', {
@@ -167,7 +176,7 @@ module.exports = {
         try {
             await Chef.delete(req.body.id)
 
-            return res.redirect('/admin/chefs')
+            return res.redirect('/admin/chefs?success=Chefe removido!')
         } catch (error) {
             console.error(error)
             return res.render('admin/chefs/edit.njk', {

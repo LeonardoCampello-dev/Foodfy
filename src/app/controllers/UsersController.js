@@ -12,7 +12,10 @@ module.exports = {
     async list(req, res) {
         const users = await User.all()
 
-        return res.render('admin/users/index.njk', { users })
+        return res.render('admin/users/index.njk', {
+            users,
+            success: req.query.success
+        })
     },
     create(req, res) {
         return res.render('admin/users/create.njk')
@@ -46,7 +49,7 @@ module.exports = {
                 `
             })
 
-            return res.redirect('/admin/users')
+            return res.redirect('/admin/users?success=Usuário registrado!')
         } catch (error) {
             console.error(error)
             return res.render('admin/users/create.njk', {
@@ -58,7 +61,10 @@ module.exports = {
     show(req, res) {
         const user = req.user
 
-        return res.render('admin/users/edit.njk', { user })
+        return res.render('admin/users/edit.njk', {
+            user,
+            success: req.query.success
+        })
     },
     async put(req, res) {
         try {
@@ -71,7 +77,7 @@ module.exports = {
                 is_admin
             })
 
-            return res.redirect('/admin/users')
+            return res.redirect('/admin/users?success=Usuário atualizado!')
         } catch (error) {
             console.error(error)
             return res.render('admin/users/edit.njk', {
@@ -84,7 +90,7 @@ module.exports = {
         try {
             await User.delete(req.body.id)
 
-            return res.redirect('/admin/users')
+            return res.redirect('/admin/users?success=Usuário removido!')
         } catch (error) {
             console.error(error)
             return res.render('admin/users/edit.njk', {

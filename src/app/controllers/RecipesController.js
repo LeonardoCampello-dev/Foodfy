@@ -40,7 +40,11 @@ module.exports = {
 
             const recipesFixed = await Promise.all(recipesPromises)
 
-            return res.render('admin/recipes/index.njk', { recipes: recipesFixed, pagination })
+            return res.render('admin/recipes/index.njk', {
+                recipes: recipesFixed,
+                pagination,
+                success: req.query.success
+            })
         } catch (error) {
             console.error(error)
         }
@@ -89,7 +93,11 @@ module.exports = {
             src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
         }))
 
-        return res.render('admin/recipes/show.njk', { recipe, files })
+        return res.render('admin/recipes/show.njk', {
+            recipe,
+            files,
+            success: req.query.success
+        })
     },
     async edit(req, res) {
         try {
@@ -143,7 +151,7 @@ module.exports = {
 
             await Recipe.update(req.body)
 
-            return res.redirect(`/admin/recipes/${req.body.id}`)
+            return res.redirect(`/admin/recipes/${req.body.id}?success=Receita atualizada!`)
         } catch (error) {
             console.error(error)
             return res.render('admin/recipes/edit.njk', {
@@ -155,7 +163,7 @@ module.exports = {
         try {
             await Recipe.delete(req.body.id)
 
-            return res.redirect('/admin/recipes')
+            return res.redirect('/admin/recipes?success=Receita removida!')
         } catch (error) {
             console.error(error)
             return res.render('admin/recipes/edit.njk', {

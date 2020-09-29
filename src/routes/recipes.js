@@ -14,6 +14,6 @@ routes.get('/:id/edit', onlyUsers, isTheOwner, RecipesController.edit)
 
 routes.post('/', multer.array('photos', 5), RecipesController.post)
 routes.put('/', multer.array('photos', 5), RecipesController.put)
-routes.delete('/', isTheOwner, RecipesController.delete)
+routes.delete('/', RecipesController.delete)
 
 module.exports = routes
