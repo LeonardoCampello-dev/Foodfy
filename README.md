@@ -5,7 +5,6 @@
 
 <h1 align="center"> Foodfy 🍕 </h1>
 
-[![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)](https://github.com/Naereen/badges/)
 ![GitHub repo size](https://img.shields.io/github/repo-size/LeonardoCampello-dev/Foodfy?color=red)
 ![License](https://img.shields.io/github/license/LeonardoCampello-dev/Foodfy?color=red)
 ![GitHub watchers](https://img.shields.io/github/watchers/LeonardoCampello-dev/Foodfy?color=red)
@@ -27,12 +26,14 @@ The following technologies were used
 
 ### 📜 **Libraries**
 
-- [x] [Browsersync](https://www.browsersync.io/)
+- [x] [browsersync](https://www.browsersync.io/)
 - [x] [npm-run-all](https://www.npmjs.com/package/npm-run-all)
 - [x] [method-override](https://www.npmjs.com/package/method-override)
 - [x] [node-postgres](https://www.npmjs.com/package/pg) 
 - [x] [nodemon](https://www.npmjs.com/package/nodemon) 
 - [x] [multer](https://www.npmjs.com/package/multer)
+- [x] [nodemailer](https://nodemailer.com/about/) 
+- [x] [express-session](https://www.npmjs.com/package/express-session) 
 
 ## 🎨 Layout
 
@@ -72,9 +73,27 @@ The following technologies were used
 
 ---
 
-**Not found** 🌋
+**Login** ✅
 
-![not-found](.github/Invalid.png)
+![login](./.github/Login.png)
+
+---
+
+**Forgot password** 🔑
+
+![forgot](./.github/Forgot.png)
+
+---
+
+**Sending emails** 📩
+
+![sending-emails](./.github/Emails.png)
+
+---
+
+**Success / error messages** ❌
+
+![sending-emails](./.github/Messages.png)
 
 ---
 
