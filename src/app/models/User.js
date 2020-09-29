@@ -61,12 +61,12 @@ module.exports = {
         Object.keys(fields).map((key, index, array) => {
             if ((index + 1) < array.length) {
                 query = `${query}
-                ${key} = '${fields[key]}',
+                    ${key} = '${fields[key]}',
                 `
             } else {
                 query = `${query}
-                ${key} = '${fields[key]}'
-                WHERE id = ${id}
+                    ${key} = '${fields[key]}'
+                    WHERE id = ${id}
                 `
             }
         })

@@ -18,8 +18,8 @@ routes.post('/logout', SessionController.logout)
 
 routes.get('/forgot-password', SessionController.forgotForm)
 routes.get('/reset-password', SessionController.resetForm)
-// routes.post('/forgot-password', SessionController.forgot)
-// routes.post('/reset-password', SessionController.reset)
+routes.post('/forgot-password', SessionValidator.forgot, SessionController.forgot)
+routes.post('/reset-password', SessionValidator.reset, SessionController.reset)
 
 // // Users
 

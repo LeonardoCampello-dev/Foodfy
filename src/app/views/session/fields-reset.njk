@@ -31,12 +31,11 @@
     <div>
         <input 
             type="password" 
-            name="password" 
-            value="{{ user.password }}" 
+            name="passwordRepeat" 
             placeholder="Repita a nova senha"
         >
     </div>
 </div>
 
-
+<input type="hidden" name="token" value="{{ token }}">
 
