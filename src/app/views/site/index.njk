@@ -1,23 +1,23 @@
 {% extends "./layout.njk" %}
 
+{% import "parts/lottie.njk" as lottie %}
+
 {% block content %}
 
 <div class="main-card">
-    
+
     <div class="content">
         <div class="text">
             <h1>
                 As melhores receitas
-                <span>
-                    <img src="/assets/icons/pizza.svg" alt="Ícone pizza">
-                </span>
+                <div class="pizza-animation"></div>
             </h1>
-            
+
             <p>Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.</p>
         </div>
         <img src="/assets/chef.png" alt="Chef">
     </div>
-    
+
 </div>
 
 <section>
@@ -27,21 +27,26 @@
     <div class="cards">
 
         {% for recipe in recipes %}
-        
-        <div class="card" id="{{ recipe.id }}">
-            <a href="/recipes/{{ recipe.id }}">
-                <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
-            </a>
-            <h3>{{ recipe.title }}</h3>
-            <a href="/chefs/{{ recipe.chef_id }}">
-                <p>por {{ recipe.chef_name }}</p>
-            </a>
-        </div>
-        
+
+            <div class="card" id="{{ recipe.id }}">
+                <a href="/recipes/{{ recipe.id }}">
+                    <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+                </a>
+                <h3>{{ recipe.title }}</h3>
+                <a href="/chefs/{{ recipe.chef_id }}">
+                    <p>por
+                        {{ recipe.chef_name }}</p>
+                </a>
+            </div>
+
         {% endfor %}
-        
+
     </div>
-        
+
 </section>
+
+<script src="/scripts/lottie.min.js"></script>
+
+{{ lottie.animation('.text .pizza-animation', true, 'pizza') }}
 
 {% endblock content %}

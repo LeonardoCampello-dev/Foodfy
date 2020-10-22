@@ -43,7 +43,8 @@ module.exports = {
             return res.render('admin/recipes/index.njk', {
                 recipes: recipesFixed,
                 pagination,
-                success: req.query.success
+                success: req.query.success,
+                error: req.query.error
             })
         } catch (error) {
             console.error(error)

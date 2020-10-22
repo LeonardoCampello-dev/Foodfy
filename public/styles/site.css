@@ -88,16 +88,15 @@ header form input[type="text"] {
 }
 
 .text {
-    width: 40%;
+    width: 50%;
 }
 
 .text h1 {
     color: var(--title);
-}
 
-.text h1 span img {
-    width: 32px;
-    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .information p,
@@ -111,6 +110,10 @@ header form input[type="text"] {
     opacity: .7;
     
     margin-top: 16px;
+}
+
+.text h1 div {
+    width: 50px;
 }
 
 /* ===================== MOST ACCESSED ===================== */
@@ -325,15 +328,13 @@ header form input[type="text"] {
 }
 
 .not-found img {
-    width: 450px;
-    height: 450px;
+    width: 200px;
 
-    margin-top: 88px;
+    margin-top: 56px;
 }
 
 .not-found h2 {
-    font-size: 32px;
-    letter-spacing: .6px;
+    font-size: 18px;
     
-    margin-top: 56px;
+    margin-top: 32px;
 }

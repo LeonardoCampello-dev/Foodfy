@@ -1,0 +1,19 @@
+{% macro animation(element, loopOption, file) %}
+
+<script src="/scripts/lottie.min.js"></script>
+
+<script>
+    
+    const element = document.querySelector('{{ element }}')
+    
+    lottie.loadAnimation({
+        container: element, 
+        renderer: 'svg',
+        loop: {{ loopOption }},
+        autoplay: true,
+        path: '/assets/animations/{{ file }}.json' 
+    })
+    
+</script>
+
+{% endmacro %}

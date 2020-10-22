@@ -1,7 +1,14 @@
+{% import "parts/lottie.njk" as lottie %}
+
 {% if error %}
 
 <div class="messages error">
-    {{ error }}
+    <div>{{ error }}</div>
+
+    <div class="animation"></div>
+
+    {{ lottie.animation('.messages .animation', true, 'chef') }}
+
 </div>
 
 {% endif %}
@@ -9,7 +16,12 @@
 {% if success %}
 
 <div class="messages success">
-    {{ success }}
+    <div>{{ success }}</div>
+
+    <div class="animation"></div>
+
+    {{ lottie.animation('.messages .animation', true, 'chef') }}
+
 </div>
 
 {% endif %}
