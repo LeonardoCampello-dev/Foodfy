@@ -3,17 +3,17 @@
     <img src="./public/assets/chef.png">
 </h1>
 
-<h1 align="center"> Foodfy 🍕 </h1>
+<h1 align="center"> Foodfy 🍝 </h1>
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/LeonardoCampello-dev/Foodfy?color=red)
-![License](https://img.shields.io/github/license/LeonardoCampello-dev/Foodfy?color=red)
 ![GitHub watchers](https://img.shields.io/github/watchers/LeonardoCampello-dev/Foodfy?color=red)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/LeonardoCampello-dev/Foodfy?color=red)
+![License](https://img.shields.io/github/license/LeonardoCampello-dev/Foodfy?color=red)
 
 ## 📌 Resources 
 
 - 👨‍🍳 Explore recipes and find amazing chefs.
-- 🦸‍♂️ Admin mode
+- 🦸‍♂️ Admin mode.
 
 ## 🚀 Technologies used
 
@@ -21,7 +21,6 @@ The following technologies were used
 
 - [x] [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 - [x] [Node.js](https://nodejs.org/en/)
-- [x] [Nunjucks](https://mozilla.github.io/nunjucks/)
 - [x] [PostgreSQL](https://www.postgresql.org/)
 
 ### 📜 **Libraries**
@@ -34,6 +33,7 @@ The following technologies were used
 - [x] [multer](https://www.npmjs.com/package/multer)
 - [x] [nodemailer](https://nodemailer.com/about/) 
 - [x] [express-session](https://www.npmjs.com/package/express-session) 
+- [x] [lottie web](https://github.com/airbnb/lottie-web)
 
 ## 🎨 Layout
 
@@ -93,7 +93,7 @@ The following technologies were used
 
 **Success / error messages** ❌
 
-![sending-emails](./.github/Messages.png)
+![sending-emails](./.github/Messages.gif)
 
 ---
 
