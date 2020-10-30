@@ -51,6 +51,22 @@ const Base = {
             console.error(error)
         }
     },
+    async findAllRecipes(filters) {
+        try {
+            const query = `
+            SELECT recipes.*, chefs.name AS chef_name
+            FROM recipes
+            LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+            ORDER BY updated_at DESC
+            `
+
+            const results = await db.query(query)
+
+            return results.rows
+        } catch (error) {
+            console.error(error)
+        }
+    },
     async create(fields) {
         try {
             let keys = [],

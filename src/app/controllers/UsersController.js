@@ -7,19 +7,27 @@ const mailer = require('../../libs/mailer')
 
 module.exports = {
     async profile(req, res) {
-        const user = await User.findOne({
-            where: { id: req.session.userId }
-        })
+        try {
+            const user = await User.findOne({
+                where: { id: req.session.userId }
+            })
 
-        return res.render('admin/users/profile.njk', { user })
+            return res.render('admin/users/profile.njk', { user })
+        } catch (error) {
+            console.error(error)
+        }
     },
     async list(req, res) {
-        const users = await User.findAll()
+        try {
+            const users = await User.findAll()
 
-        return res.render('admin/users/index.njk', {
-            users,
-            success: req.query.success
-        })
+            return res.render('admin/users/index.njk', {
+                users,
+                success: req.query.success
+            })
+        } catch (error) {
+            console.error(error)
+        }
     },
     create(req, res) {
         return res.render('admin/users/create.njk')
@@ -75,12 +83,16 @@ module.exports = {
         }
     },
     show(req, res) {
-        const user = req.user
+        try {
+            const user = req.user
 
-        return res.render('admin/users/edit.njk', {
-            user,
-            success: req.query.success
-        })
+            return res.render('admin/users/edit.njk', {
+                user,
+                success: req.query.success
+            })
+        } catch (error) {
+            console.error(error)
+        }
     },
     async put(req, res) {
         try {

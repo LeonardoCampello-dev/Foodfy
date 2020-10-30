@@ -1,4 +1,3 @@
-const { date } = require('../../libs/utils')
 const db = require('../../config/db')
 
 const Base = require('./Base')
@@ -7,51 +6,6 @@ Base.init({ table: 'recipes' })
 
 module.exports = {
     ...Base,
-    async all() {
-        try {
-            const query = `
-            SELECT recipes.*, chefs.name AS chef_name
-            FROM recipes
-            LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
-            ORDER BY updated_at DESC
-            `
-
-            const results = await db.query(query)
-
-            return results.rows
-        } catch (error) {
-            console.error(error)
-        }
-    },
-    async create(data) {
-        try {
-            const query = `
-            INSERT INTO recipes (
-                chef_id,
-                title,
-                ingredients,
-                preparation,
-                information,
-                created_at
-            ) VALUES ($1, $2, $3, $4, $5, $6)
-            RETURNING id
-            `
-
-            const values = [
-                data.chef,
-                data.title,
-                data.ingredients,
-                data.preparation,
-                data.information,
-                date(Date.now()).iso
-            ]
-
-            const results = await db.query(query, values)
-            return results.rows[0].id
-        } catch (error) {
-            console.error(error)
-        }
-    },
     async find(id) {
         try {
             const query = `
@@ -80,43 +34,6 @@ module.exports = {
         const results = await db.query(query)
 
         return results.rows
-    },
-    async update(data) {
-        try {
-            const query = `
-            UPDATE recipes SET
-                chef_id=($1),
-                title=($2),
-                ingredients=($3),
-                preparation=($4),
-                information=($5)
-            WHERE id = $6
-            `
-
-            const values = [
-                data.chef,
-                data.title,
-                data.ingredients,
-                data.preparation,
-                data.information,
-                data.id
-            ]
-
-            await db.query(query, values)
-
-            return
-        } catch (error) {
-            console.error(error)
-        }
-    },
-    async delete(id) {
-        try {
-            await db.query(`DELETE FROM recipes WHERE id = $1`, [id])
-
-            return
-        } catch (error) {
-            console.error(error)
-        }
     },
     async chefSelectOptions() {
         try {

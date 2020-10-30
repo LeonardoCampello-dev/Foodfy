@@ -4,7 +4,7 @@ const Chef = require('../models/Chef')
 module.exports = {
     async home(req, res) {
         try {
-            const recipes = await Recipe.all()
+            const recipes = await Recipe.findAllRecipes()
 
             if (!recipes) return res.send('Receitas não encontradas!')
 

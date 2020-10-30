@@ -52,7 +52,7 @@ module.exports = {
     },
     async create(req, res) {
         try {
-            let chefSelectOptions = await Recipe.chefSelectOptions()
+            const chefSelectOptions = await Recipe.chefSelectOptions()
 
             return res.render('admin/recipes/create.njk', { chefSelectOptions })
         } catch (error) {
@@ -69,22 +69,45 @@ module.exports = {
                 })
             }
 
-            let recipeId = await Recipe.create(req.body)
+            const {
+                chef,
+                title,
+                ingredients,
+                preparation,
+                information
+            } = req.body
+
+            console.log(req.body.preparation)
+
+            let recipe_id = await Recipe.create({
+                chef_id: chef,
+                title,
+                ingredients: `{${ingredients}}`,
+                preparation: `{${preparation}}`,
+                information,
+                user_id: req.session.userId,
+            })
 
             const filesPromises = req.files.map(file =>
-                File.createRecipeFiles({ ...file, recipe_id: recipeId }))
+                File.createRecipeFiles({ ...file, recipe_id }))
             await Promise.all(filesPromises)
 
-            res.redirect(`/admin/recipes/${recipeId}?success=Receitada criada!`)
+            res.redirect(`/admin/recipes/${recipe_id}?success=Receitada criada!`)
         } catch (error) {
             console.error(error)
+
+            const chefSelectOptions = await Recipe.chefSelectOptions()
+
             return res.render('admin/recipes/create.njk', {
-                error: 'Erro ao criar receita!'
+                error: 'Erro ao criar receita!',
+                chefSelectOptions
             })
         }
     },
     async show(req, res) {
-        let recipe = await Recipe.find(req.params.id)
+        let recipe = await Recipe.findOne({
+            where: { id: req.params.id }
+        })
 
         if (!recipe) return res.send('Receita não encontrada')
 
@@ -108,7 +131,7 @@ module.exports = {
                 error: 'Receita não encontrada!'
             })
 
-            chefSelectOptions = await Recipe.chefSelectOptions()
+            const chefSelectOptions = await Recipe.chefSelectOptions()
 
             results = await Recipe.files(recipe.id)
             let files = results
@@ -150,13 +173,31 @@ module.exports = {
                 await Promise.all(removedFilesPromises)
             }
 
-            await Recipe.update(req.body)
+            const {
+                chef,
+                title,
+                ingredients,
+                preparation,
+                information
+            } = req.body
+
+            await Recipe.update(req.body.id, {
+                chef_id: chef,
+                title,
+                ingredients: `{${ingredients}}`,
+                preparation: `{${preparation}}`,
+                information,
+            })
 
             return res.redirect(`/admin/recipes/${req.body.id}?success=Receita atualizada!`)
         } catch (error) {
             console.error(error)
+
+            const chefSelectOptions = await Recipe.chefSelectOptions()
+
             return res.render('admin/recipes/edit.njk', {
-                error: 'Erro ao atualizar receita!'
+                error: 'Erro ao atualizar receita!',
+                chefSelectOptions
             })
         }
     },
