@@ -1,4 +1,8 @@
+const { unlinkSync } = require('fs')
+
 const User = require('../models/User')
+const Recipe = require('../models/Recipe')
+
 const mailer = require('../../libs/mailer')
 
 module.exports = {
@@ -10,7 +14,7 @@ module.exports = {
         return res.render('admin/users/profile.njk', { user })
     },
     async list(req, res) {
-        const users = await User.all()
+        const users = await User.findAll()
 
         return res.render('admin/users/index.njk', {
             users,
@@ -22,7 +26,19 @@ module.exports = {
     },
     async post(req, res) {
         try {
-            const userId = await User.create(req.body)
+            const {
+                name,
+                email,
+                password,
+                is_admin
+            } = req.body
+
+            const userId = await User.create({
+                name,
+                email,
+                password,
+                is_admin
+            })
 
             req.session.userId = userId
 
@@ -88,7 +104,28 @@ module.exports = {
     },
     async delete(req, res) {
         try {
-            await User.delete(req.body.id)
+            const user_id = req.body.id
+
+            const recipes = await Recipe.findAll({
+                where: { user_id }
+            })
+
+            const allFilesPromises = recipes.map(recipe => Recipe.files(recipe.id))
+
+            let promiseResults = await Promise.all(allFilesPromises)
+
+            promiseResults.map(files => {
+                files.map(file => {
+                    try {
+                        unlinkSync(file.path)
+                    } catch (error) {
+                        console.error(error)
+                    }
+                })
+            })
+
+
+            await User.delete(user_id)
 
             return res.redirect('/admin/users?success=Usuário removido!')
         } catch (error) {
