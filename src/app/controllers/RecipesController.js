@@ -61,14 +61,6 @@ module.exports = {
     },
     async post(req, res) {
         try {
-            const keys = Object.keys(req.body)
-
-            for (key of keys) {
-                if (req.body[key] == '' && key != 'id') return res.render('admin/recipes/create.njk', {
-                    error: 'Por favor, preencha todos os campos!'
-                })
-            }
-
             const {
                 chef,
                 title,
@@ -76,8 +68,6 @@ module.exports = {
                 preparation,
                 information
             } = req.body
-
-            console.log(req.body.preparation)
 
             let recipe_id = await Recipe.create({
                 chef_id: chef,
@@ -148,14 +138,6 @@ module.exports = {
     },
     async put(req, res) {
         try {
-            const keys = Object.keys(req.body)
-
-            for (key of keys) {
-                if (req.body[key] == '' && key != 'removed_files') {
-                    return res.send('Por favor, preencha todos os campos.')
-                }
-            }
-
             if (req.files.length != 0) {
                 const newFilePromises = req.files.map(file =>
                     File.createRecipeFiles({ ...file, recipe_id: req.body.id }))

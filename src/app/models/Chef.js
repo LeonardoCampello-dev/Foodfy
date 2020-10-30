@@ -1,30 +1,12 @@
-const { date } = require('../../libs/utils')
 const db = require('../../config/db')
 const fs = require('fs')
 
-module.exports = {
-    async create(data, file_id) {
-        try {
-            const query = `
-            INSERT INTO chefs (
-                file_id,
-                name, 
-                created_at
-            ) VALUES ($1, $2, $3)
-            RETURNING id
-        `
-            const values = [
-                file_id,
-                data.name,
-                date(Date.now()).iso
-            ]
+const Base = require('./Base')
 
-            const results = await db.query(query, values)
-            return results.rows[0].id
-        } catch (error) {
-            console.error(error)
-        }
-    },
+Base.init({ table: 'chefs' })
+
+module.exports = {
+    ...Base,
     async find(id) {
         try {
             const query = `
@@ -59,13 +41,6 @@ module.exports = {
             ]
 
             return db.query(query, values)
-        } catch (error) {
-            console.error(error)
-        }
-    },
-    delete(id) {
-        try {
-            return db.query(`DELETE FROM chefs WHERE id = $1`, [id])
         } catch (error) {
             console.error(error)
         }

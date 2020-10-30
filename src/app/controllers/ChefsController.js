@@ -51,24 +51,16 @@ module.exports = {
     },
     async post(req, res) {
         try {
-            const keys = Object.keys(req.body)
-
-            for (key of keys) {
-                if (req.body[key] == '' && key != 'id') return res.render('admin/chefs/create.njk', {
-                    error: 'Por favor, preencha todos os campos!'
-                })
-            }
-
-            if (req.files.length == 0) res.render('admin/chefs/create.njk', {
-                chef: req.body,
-                error: 'Por favor, insira uma imagem!'
-            })
-
             const filePromise = req.files.map(file => File.create({ ...file }))
             let results = await filePromise[0]
             const fileId = results.rows[0].id
 
-            chefId = await Chef.create(req.body, fileId)
+            const values = {
+                name: req.body.name,
+                file_id: JSON.parse(fileId)
+            }
+
+            chefId = await Chef.create(values)
 
             return res.redirect(`admin/chefs/${chefId}?success=Chefe registrado!`)
         } catch (error) {
@@ -137,16 +129,6 @@ module.exports = {
     },
     async put(req, res) {
         try {
-            const keys = Object.keys(req.body)
-
-            for (key of keys) {
-                if (req.body[key] == '' && key != 'removed_files') {
-                    return res.render('admin/chefs/edit.njk', {
-                        error: 'Por favor, preencha todos os campos!'
-                    })
-                }
-            }
-
             if (req.files.length != 0) {
                 const newFilePromise = req.files.map(file => File.create(file))
 
