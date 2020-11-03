@@ -5,6 +5,7 @@ const Recipe = require('./src/app/models/Recipe')
 const Chef = require('./src/app/models/Chef')
 const User = require('./src/app/models/User')
 const File = require('./src/app/models/File')
+const Base = require('./src/app/models/Base')
 
 
 let userIds = [],
@@ -14,11 +15,12 @@ let userIds = [],
 
 const totalUsers = 6
 const totalChefs = 4
-const totalRecipes = 16
+const totalRecipes = 20
+const totalFiles = totalRecipes + totalChefs
 
 async function createUsers() {
     let users = []
-    const password = await hash('@foodfy', 8)
+    // const password = await hash('@foodfy', 8)
 
     const trueOrFalse = [true, false]
 
@@ -26,7 +28,7 @@ async function createUsers() {
         users.push({
             name: faker.name.findName(),
             email: faker.internet.email(),
-            password,
+            password: '@foodfy',
             is_admin: trueOrFalse[Math.round(Math.random())]
         })
     }
@@ -41,7 +43,7 @@ async function createChefs() {
 
     for (let file_id = 1; chefs.length < totalChefs; file_id++) {
         chefs.push({
-            name: faker.name.findName(),
+            name: faker.name.firstName(),
             file_id,
         })
     }
@@ -56,7 +58,7 @@ async function createFiles() {
 
     while (files.length < totalFiles) {
         files.push({
-            name: faker.image.image(),
+            name: faker.name.title(),
             path: `/images/placeholder.png`
         })
     }
@@ -71,12 +73,12 @@ async function createRecipes() {
 
     while (recipes.length < totalRecipes) {
         recipes.push({
-            chef_id: Math.ceil(Math.random() * 4),
-            user_id: userIds[Math.floor(Math.random() * totalUsers)],
-            title: faker.name.title,
-            ingredients: faker.lorem.paragraph(Math.ceil(Math.random() * 2)).split(' '),
-            preparation: faker.lorem.paragraph(Math.ceil(Math.random() * 2)).split(' '),
-            informatin: faker.lorem.paragraph(Math.ceil(Math.random() * 8))
+            chef_id: Math.ceil(Math.random() * totalChefs),
+            user_id: Math.ceil(Math.random() * totalUsers),
+            title: faker.name.title(),
+            ingredients: `{${faker.lorem.paragraph(1).split(' ')}}`,
+            preparation: `{${faker.lorem.paragraph(1).split(' ')}}`,
+            information: faker.lorem.paragraph()
         })
     }
 
@@ -85,10 +87,36 @@ async function createRecipes() {
     recipesIds = await Promise.all(recipesPromises)
 }
 
+async function createRelationshipsRecipesAndFiles() {
+    const relations = []
+
+    let recipe_id = 0
+
+    for (let file_id = totalChefs + 1; relations.length < totalRecipes; file_id++) {
+        recipe_id++
+
+        relations.push({
+            recipe_id,
+            file_id
+        })
+    }
+
+    const relationshipsPromises = relations.map(relation => {
+        Base.init({ table: 'recipe_files' })
+
+        Base.create(relation)
+    })
+
+    await Promise.all(relationshipsPromises)
+}
+
 async function init() {
     await createUsers()
-    await createChefs()
     await createFiles()
+    await createChefs()
     await createRecipes()
+    await createRelationshipsRecipesAndFiles()
 }
+
+init()
 
