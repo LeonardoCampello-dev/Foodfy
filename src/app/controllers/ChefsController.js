@@ -109,7 +109,8 @@ module.exports = {
                 chef,
                 recipes,
                 chefAvatar,
-                success: req.query.success
+                success: req.query.success,
+                error: req.query.error
             })
         } catch (error) {
             console.error(error)

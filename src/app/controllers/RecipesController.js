@@ -110,7 +110,8 @@ module.exports = {
         return res.render('admin/recipes/show.njk', {
             recipe,
             files,
-            success: req.query.success
+            success: req.query.success,
+            error: req.query.error
         })
     },
     async edit(req, res) {

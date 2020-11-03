@@ -20,9 +20,7 @@ module.exports = {
     },
     isAdmin(req, res, next) {
         if (!req.session.isAdmin) {
-            req.session.error = 'Somente administradores tem acesso à esta página.'
-
-            return res.redirect(`${req.headers.referer}`)
+            return res.redirect(`${req.headers.referer}?error=Acesso apenas para administradores!`)
         }
 
         next()
@@ -36,7 +34,7 @@ module.exports = {
         const recipe = await Recipe.find(req.params.id)
 
         if (req.session.userId !== recipe.user_id)
-            return res.redirect(`${req.headers.referer}`)
+            return res.redirect(`${req.headers.referer}?error=Somente o criador da receita pode editar!`)
 
         next()
     }
