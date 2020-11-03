@@ -13,28 +13,20 @@
         <div class="cards">
             
             {% for recipe in recipes %}
+            
                 <div class="card" id="{{ recipe.id }}">
                     <a href="/recipes/{{ recipe.id }}">
                         <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
                     </a>
+                    
                     <h3>{{ recipe.title }}</h3>
+                    
                     <p>por {{ recipe.chef_name }}</p>
                 </div>
+                
             {% endfor %}
 
         </div>
-
-        {% else %}
-        
-            <div class="not-found">
-                
-                <img src="/assets/not-found.svg" alt="Receitas não encontradas">
-
-                <h2>Nenhuma receita encontrada</h2>
-
-            </div>        
-        
-        {% endif %}
                 
     </div>
 

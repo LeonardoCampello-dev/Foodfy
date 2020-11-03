@@ -12,6 +12,7 @@
 
     font-size: 16px;
     line-height: 19px;
+    text-align: justify;
     
     display: flex;
     justify-content: center;
@@ -30,7 +31,7 @@
     right: 24px;
 
     opacity: 1;
-    animation: hidemessage .5s 3s ease-in-out forwards;
+    animation: hidemessage .6s 3s ease-in-out forwards;
 
     z-index: 999;
 }

@@ -25,26 +25,6 @@ module.exports = {
             console.error(error)
         }
     },
-    update(data) {
-        try {
-            const query = `
-            UPDATE chefs SET
-                file_id = ($1),
-                name=($2)
-            WHERE id = $3
-            `
-
-            const values = [
-                file_id,
-                data.name,
-                data.id
-            ]
-
-            return db.query(query, values)
-        } catch (error) {
-            console.error(error)
-        }
-    },
     async files(id) {
         try {
             const results = await db.query(`SELECT files.path FROM files WHERE files.id = $1 `, [id])

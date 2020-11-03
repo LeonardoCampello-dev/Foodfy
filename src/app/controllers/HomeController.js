@@ -4,7 +4,10 @@ const Chef = require('../models/Chef')
 module.exports = {
     async home(req, res) {
         try {
-            const recipes = await Recipe.findAllRecipes()
+            const allRecipes = await Recipe.findAllRecipes()
+
+            const recipes = allRecipes.
+                filter((recipe, index) => index > 5 ? false : true)
 
             if (!recipes) return res.send('Receitas não encontradas!')
 
@@ -23,7 +26,10 @@ module.exports = {
 
             const recipesFixed = await Promise.all(recipesPromises)
 
-            return res.render('site/index.njk', { recipes: recipesFixed })
+            return res.render('site/index.njk', {
+                recipes: recipesFixed,
+                error: req.query.error
+            })
         } catch (error) {
             console.error(error)
         }
@@ -69,7 +75,12 @@ module.exports = {
 
             const recipesFixed = await Promise.all(recipesPromises)
 
-            return res.render('site/recipes.njk', { recipes: recipesFixed, pagination, filter })
+            return res.render('site/recipes.njk', {
+                recipes: recipesFixed,
+                pagination,
+                filter,
+                error: req.query.error
+            })
         } catch (error) {
             console.error(error)
         }
@@ -172,6 +183,8 @@ module.exports = {
     async showResults(req, res) {
         try {
             const { filter } = req.query
+
+            if (!filter) return res.redirect('/recipes?error=Filtro vazio!')
 
             let recipes = await Recipe.findBy(filter)
 

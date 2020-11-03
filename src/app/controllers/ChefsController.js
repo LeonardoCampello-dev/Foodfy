@@ -43,7 +43,8 @@ module.exports = {
         return res.render('admin/chefs/index.njk', {
             chefs: chefAvatar,
             pagination,
-            success: req.query.success
+            success: req.query.success,
+            error: req.query.error
         })
     },
     create(req, res) {
@@ -51,9 +52,14 @@ module.exports = {
     },
     async post(req, res) {
         try {
-            const filePromise = req.files.map(file => File.create({ ...file }))
-            let results = await filePromise[0]
-            const fileId = results.rows[0].id
+            const { files } = req
+
+            const filesPromises = files.map(file => File.create({
+                name: file.name,
+                path: `/images/${file.filename}`
+            }))
+
+            const fileId = await Promise.all(filesPromises)
 
             const values = {
                 name: req.body.name,
@@ -130,21 +136,32 @@ module.exports = {
     async put(req, res) {
         try {
             if (req.files.length != 0) {
-                const newFilePromise = req.files.map(file => File.create(file))
+                const { files } = req
 
-                const results = await newFilePromise[0]
-                file_id = results.rows[0].id
+                const newFilesPromises = files.map(file => File.create({
+                    name: file.name,
+                    path: `/images/${file.filename}`
+                }))
+
+                const fileId = await Promise.all(newFilesPromises)
+
+                const values = {
+                    name: req.body.name,
+                    file_id: JSON.parse(fileId)
+                }
+
+                await Chef.update(req.body.id, values)
+
+                await File.delete(req.body.file_id)
+
+                return res.redirect(`/admin/chefs/${req.body.id}?success=Chefe atualizado!`)
             }
 
-            if (req.removed_files) {
-                const removedFiles = req.body.removed_files.split(',')
-                const lastIndex = removedFiles.length - 1
-                removedFiles.splice(lastIndex, 1)
-
-                await removedFiles.map(id => Chef.fileDelete(id))
+            const values = {
+                name: req.body.name
             }
 
-            await Chef.update(req.body, file_id)
+            await Chef.update(req.body.id, values)
 
             return res.redirect(`/admin/chefs/${req.body.id}?success=Chefe atualizado!`)
         } catch (error) {
@@ -156,6 +173,10 @@ module.exports = {
     },
     async delete(req, res) {
         try {
+            const chefRecipes = Chef.findChefRecipes(req.body.id)
+
+            if (chefRecipes) return res.redirect('/admin/chefs?error=Não é possível deletar um chefe com receitas!')
+
             await Chef.delete(req.body.id)
 
             return res.redirect('/admin/chefs?success=Chefe removido!')

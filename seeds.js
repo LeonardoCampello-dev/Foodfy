@@ -20,7 +20,7 @@ const totalFiles = totalRecipes + totalChefs
 
 async function createUsers() {
     let users = []
-    // const password = await hash('@foodfy', 8)
+    const password = await hash('@foodfy', 8)
 
     const trueOrFalse = [true, false]
 
@@ -28,7 +28,7 @@ async function createUsers() {
         users.push({
             name: faker.name.findName(),
             email: faker.internet.email(),
-            password: '@foodfy',
+            password,
             is_admin: trueOrFalse[Math.round(Math.random())]
         })
     }

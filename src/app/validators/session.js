@@ -1,5 +1,7 @@
 const User = require('../models/User')
 
+const { compare } = require('bcryptjs')
+
 module.exports = {
     async login(req, res, next) {
         try {
@@ -13,7 +15,9 @@ module.exports = {
                 error: 'Usuário não cadastrado!'
             })
 
-            if (password != user.password) return res.render('session/login.njk', {
+            const passed = await compare(password, user.password)
+
+            if (!passed) return res.render('session/login.njk', {
                 user: req.body,
                 error: 'Senha incorreta!'
             })
