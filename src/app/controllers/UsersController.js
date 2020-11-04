@@ -1,4 +1,7 @@
 const { unlinkSync } = require('fs')
+const { hash } = require('bcryptjs')
+
+const crypto = require('crypto')
 
 const User = require('../models/User')
 const Recipe = require('../models/Recipe')
@@ -23,7 +26,8 @@ module.exports = {
 
             return res.render('admin/users/index.njk', {
                 users,
-                success: req.query.success
+                success: req.query.success,
+                error: req.query.error
             })
         } catch (error) {
             console.error(error)
@@ -37,14 +41,16 @@ module.exports = {
             const {
                 name,
                 email,
-                password,
                 is_admin
             } = req.body
+
+            const password = crypto.randomBytes(10).toString('hex')
+            const encryptedPassword = await hash(password, 8)
 
             const userId = await User.create({
                 name,
                 email,
-                password,
+                password: encryptedPassword,
                 is_admin
             })
 
@@ -63,7 +69,7 @@ module.exports = {
 
                 <p>Você está recebendo sua senha de acesso à plataforma, ela é temporária e você pode alterá-la em seu perfil.</p>
 
-                <h4>Sua senha: ${user.password} 🔑</h4>
+                <h4>Sua senha: ${password} 🔑</h4>
 
                 <p>
                     <a href="http://localhost:3000/admin/users/login" target="_blank">
