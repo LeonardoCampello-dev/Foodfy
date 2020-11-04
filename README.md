@@ -80,7 +80,7 @@ The following technologies were used
 
 **Admin** 👑
 
-![admin](./.github/Admin.png)
+![adm](./.github/Adm.png)
 
 ---
 
