@@ -1,12 +1,11 @@
 
 <h1 align="center">
-    <img src="./public/assets/chef.png">
+    <img src="./public/assets/chef.png" width="150">
 </h1>
 
-<h1 align="center"> Foodfy 🍝 </h1>
+<h1 align="center">Foodfy 🍝</h1>
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/LeonardoCampello-dev/Foodfy?color=red)
-![GitHub watchers](https://img.shields.io/github/watchers/LeonardoCampello-dev/Foodfy?color=red)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/LeonardoCampello-dev/Foodfy?color=red)
 ![License](https://img.shields.io/github/license/LeonardoCampello-dev/Foodfy?color=red)
 
@@ -105,20 +104,49 @@ The following technologies were used
 
 ## Project installation 👷‍♂️
 
-First you need to have [Node.js](https://nodejs.org/en/) installed, then **run the following command:**
+First you need to have [Node.js](https://nodejs.org/en/) installed, **then perform the following steps:**
+
+Primeiro você precisa ter o [Node.js](https://nodejs.org/en/) instalado e, em seguida, **execute as seguintes etapas:**
 
 ``` bash 
-## To clone the project
+## Clone the project
+## Clone o projeto
+
 git clone https://github.com/LeonardoCampello-dev/Foodfy.git
 ```
 
 ``` bash 
-## To install the dependencies
+## Install the dependencies
+## Instale as dependências 
+
 npm install
 ```
 
+``` bash
+## Add your database access credentials to the src/config/db.js file (The database used in this project is PostgreSQL)
+
+## Adicione suas credenciais de acesso ao banco de dados no arquivo src/config/db.js (o banco de dados usado neste projeto é PostgreSQL)
+```
+
+``` bash
+## With the database active, run the following command at the root of the project to populate the tables:
+
+## Com o banco de dados ativo, execute o seguinte comando na raiz do projeto para preencher as tabelas:
+
+node seeds.js
+```
+
+``` bash
+## Add, if it does not already exist, an image in the public/images folder and use the name 'placeholder.png'. This file will serve as an image for all application entities.
+
+## Adicione, se ainda não existir, uma imagem na pasta public/images e use o nome 'placeholder.png'. Este arquivo servirá como uma imagem para todas as entidades do aplicativo.
+```
+
 ``` bash 
-## Running project
+## Finally, execute the command to start the application: 
+
+## Por fim, execute o comando para iniciar o app:
+
 npm start
 ```
 

@@ -58,7 +58,7 @@ module.exports = {
 
             const filesPromises = files.map(file => File.create({
                 name: file.filename,
-                path: `/images/${file.filename}`
+                path: `public/images/${file.filename}`
             }))
 
             const fileId = await Promise.all(filesPromises)
@@ -143,7 +143,7 @@ module.exports = {
 
                 const newFilesPromises = files.map(file => File.create({
                     name: file.filename,
-                    path: `/images/${file.filename}`
+                    path: `public/images/${file.filename}`
                 }))
 
                 const fileId = await Promise.all(newFilesPromises)
@@ -180,7 +180,7 @@ module.exports = {
 
             files.map(file => {
                 try {
-                    unlinkSync(`public${file.path}`)
+                    unlinkSync(file.path)
                 } catch (error) {
                     console.error(error)
                 }
