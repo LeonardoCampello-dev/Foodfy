@@ -1,5 +1,4 @@
 const db = require('../../config/db')
-const fs = require('fs')
 
 const Base = require('./Base')
 
@@ -29,20 +28,6 @@ module.exports = {
         try {
             const results = await db.query(`SELECT files.path FROM files WHERE files.id = $1 `, [id])
             return results.rows
-
-        } catch (error) {
-            console.error(error)
-        }
-    },
-    async fileDelete(id) {
-        try {
-            const results = await db.query(`SELECT * FROM files WHERE id = $1`, [id])
-            const file = results.rows[0]
-
-            fs.unlinkSync(file.path)
-
-            return db.query(`DELETE FROM files WHERE id = $1`, [id])
-
         } catch (error) {
             console.error(error)
         }

@@ -1,3 +1,5 @@
+const { unlinkSync } = require('fs')
+
 const Chef = require('../models/Chef')
 const File = require('../models/File')
 const Recipe = require('../models/Recipe')
@@ -55,7 +57,7 @@ module.exports = {
             const { files } = req
 
             const filesPromises = files.map(file => File.create({
-                name: file.name,
+                name: file.filename,
                 path: `/images/${file.filename}`
             }))
 
@@ -68,7 +70,7 @@ module.exports = {
 
             chefId = await Chef.create(values)
 
-            return res.redirect(`admin/chefs/${chefId}?success=Chefe registrado!`)
+            return res.redirect(`/admin/chefs/${chefId}?success=Chefe registrado!`)
         } catch (error) {
             console.error(error)
         }
@@ -140,7 +142,7 @@ module.exports = {
                 const { files } = req
 
                 const newFilesPromises = files.map(file => File.create({
-                    name: file.name,
+                    name: file.filename,
                     path: `/images/${file.filename}`
                 }))
 
@@ -152,8 +154,6 @@ module.exports = {
                 }
 
                 await Chef.update(req.body.id, values)
-
-                await File.delete(req.body.file_id)
 
                 return res.redirect(`/admin/chefs/${req.body.id}?success=Chefe atualizado!`)
             }
@@ -174,9 +174,17 @@ module.exports = {
     },
     async delete(req, res) {
         try {
-            const chefRecipes = Chef.findChefRecipes(req.body.id)
+            const chef = await Chef.find(req.body.id)
 
-            if (chefRecipes) return res.redirect('/admin/chefs?error=Não é possível deletar um chefe com receitas!')
+            const files = await Chef.files(chef.file_id)
+
+            files.map(file => {
+                try {
+                    unlinkSync(`public${file.path}`)
+                } catch (error) {
+                    console.error(error)
+                }
+            })
 
             await Chef.delete(req.body.id)
 
@@ -187,6 +195,6 @@ module.exports = {
                 error: 'Erro ao deletar o chefe!'
             })
         }
-    },
+    }
 }
 
