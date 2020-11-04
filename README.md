@@ -38,67 +38,49 @@ The following technologies were used
 
 **Home** 🏠
 
-![home](./.github/Home.png)
+![home](./.github/home.png)
 
 ---
 
 **Recipes** 🥘
 
-![recipes](./.github/Recipes.png)
+![recipes](./.github/recipes.png)
 
 ---
 
 **Recipe** 🍝
 
-![recipe](./.github/Recipe.png)
+![recipe](./.github/recipe.png)
 
 ---
 
 **Chefs** 👩‍🍳👨‍🍳
 
-![chefs](./.github/Chefs.png)
+![chefs](./.github/chefs.png)
 
 ---
 
 **Chef** 👨‍🍳
 
-![chef](./.github/Chef.png)
-
----
-
-**Filter** 🔎
-
-![filter](.github/Filter.png)
+![chef](./.github/chef.png)
 
 ---
 
 **Login** ✅
 
-![login](./.github/Login.png)
+![login](./.github/login.png)
 
 ---
 
 **Forgot password** 🔑
 
-![forgot](./.github/Forgot.png)
-
----
-
-**Sending emails** 📩
-
-![sending-emails](./.github/Emails.png)
+![forgot](./.github/forgot.png)
 
 ---
 
 **Success / error messages** ❌
 
-![sending-emails](./.github/Messages.gif)
-
----
-
-**GIF demonstration** 🎥
-
-![gif](./.github/Foodfy.gif)
+![sending-emails](./.github/messages.png)
 
 ---
 
