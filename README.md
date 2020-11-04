@@ -38,49 +38,55 @@ The following technologies were used
 
 **Home** 🏠
 
-![home](./.github/home.png)
+![home](./.github/Home.png)
 
 ---
 
 **Recipes** 🥘
 
-![recipes](./.github/recipes.png)
+![recipes](./.github/Recipes.png)
 
 ---
 
 **Recipe** 🍝
 
-![recipe](./.github/recipe.png)
+![recipe](./.github/Recipe.png)
 
 ---
 
 **Chefs** 👩‍🍳👨‍🍳
 
-![chefs](./.github/chefs.png)
+![chefs](./.github/Chefs.png)
 
 ---
 
 **Chef** 👨‍🍳
 
-![chef](./.github/chef.png)
+![chef](./.github/Chef.png)
 
 ---
 
 **Login** ✅
 
-![login](./.github/login.png)
+![login](./.github/Login.png)
 
 ---
 
 **Forgot password** 🔑
 
-![forgot](./.github/forgot.png)
+![forgot](./.github/Forgot.png)
+
+---
+
+**Admin** 👑
+
+![admin](./.github/Admin.png)
 
 ---
 
 **Success / error messages** ❌
 
-![sending-emails](./.github/messages.png)
+![sending-emails](./.github/Messages.png)
 
 ---
 
