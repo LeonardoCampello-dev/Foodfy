@@ -35,7 +35,7 @@ module.exports = {
         }
     },
     about(req, res) {
-        return res.render('site/about.njk')
+        return res.render('site/about.njk', { error: req.query.error })
     },
     async recipes(req, res) {
         try {
@@ -140,7 +140,11 @@ module.exports = {
 
             const chefAvatar = await Promise.all(chefsPromises)
 
-            return res.render('site/chefs.njk', { chefs: chefAvatar, pagination })
+            return res.render('site/chefs.njk', {
+                chefs: chefAvatar,
+                pagination,
+                error: req.query.error
+            })
         } catch (error) {
             console.error(error)
         }
@@ -184,7 +188,7 @@ module.exports = {
         try {
             const { filter } = req.query
 
-            if (!filter) return res.redirect('/recipes?error=Filtro vazio!')
+            if (!filter) return res.redirect(`${req.headers.referer}?error=Filtro vazio!`)
 
             let recipes = await Recipe.findBy(filter)
 
