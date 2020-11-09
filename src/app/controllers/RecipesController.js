@@ -1,3 +1,5 @@
+const { unlinkSync } = require('fs')
+
 const Recipe = require('../models/Recipe')
 const File = require('../models/File')
 
@@ -186,7 +188,20 @@ module.exports = {
     },
     async delete(req, res) {
         try {
-            await Recipe.delete(req.body.id)
+            const { id } = req.body
+
+            const files = await Recipe.files(id)
+
+            files.map(file => {
+                try {
+                    unlinkSync(file.path)
+                } catch (error) {
+                    console.error(error)
+                }
+            })
+
+            await Recipe.deleteDBfiles(id)
+            await Recipe.delete(id)
 
             return res.redirect('/admin/recipes?success=Receita removida!')
         } catch (error) {

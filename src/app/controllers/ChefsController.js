@@ -177,7 +177,6 @@ module.exports = {
             const { id } = req.body
 
             const chef = await Chef.find(id)
-
             const files = await Chef.files(chef.file_id)
 
             files.map(file => {
@@ -189,7 +188,6 @@ module.exports = {
             })
 
             await Chef.deleteDBfile(id)
-
             await Chef.delete(id)
 
             return res.redirect('/admin/chefs?success=Chefe removido!')
