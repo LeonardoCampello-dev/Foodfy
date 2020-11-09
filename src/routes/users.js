@@ -24,6 +24,8 @@ routes.post('/reset-password', SessionValidator.reset, SessionController.reset)
 // // Users
 
 routes.get('/profile', UsersController.profile)
+routes.put('/profile', UserValidator.profileValidator, UsersController.updateProfile)
+
 routes.get('/', onlyUsers, ifAdmin, UsersController.list)
 
 routes.get('/register', onlyUsers, isAdmin, UsersController.create)

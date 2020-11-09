@@ -97,7 +97,11 @@ module.exports = {
                 src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
             }))
 
-            return res.render('site/details/recipe.njk', { recipe, files })
+            return res.render('site/details/recipe.njk', {
+                recipe,
+                files,
+                error: req.query.error
+            })
         } catch (error) {
             console.error(error)
         }
@@ -179,7 +183,12 @@ module.exports = {
             chefAvatar = await Chef.getAvatar(chefId)
             chefAvatar.path = `${req.protocol}://${req.headers.host}${chefAvatar.path.replace('public', '')}`
 
-            return res.render('site/details/chef.njk', { chef, recipes, chefAvatar })
+            return res.render('site/details/chef.njk', { 
+                chef, 
+                recipes, 
+                chefAvatar,
+                error: req.query.error 
+            })
         } catch (error) {
             console.error(error)
         }

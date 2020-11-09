@@ -15,7 +15,22 @@ module.exports = {
                 where: { id: req.session.userId }
             })
 
-            return res.render('admin/users/profile.njk', { user })
+            return res.render('admin/users/profile.njk', { user, success: req.query.success })
+        } catch (error) {
+            console.error(error)
+        }
+    },
+    async updateProfile(req, res) {
+        try {
+            const { user } = req
+            const { name, email } = req.body
+
+            await User.update(user.id, {
+                name,
+                email
+            })
+
+            return res.redirect('/admin/users/profile?success=Perfil atualizado!')
         } catch (error) {
             console.error(error)
         }
