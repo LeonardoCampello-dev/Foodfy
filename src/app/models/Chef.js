@@ -86,5 +86,23 @@ module.exports = {
         } catch (error) {
             console.error(error)
         }
+    },
+    async deleteDBfile(id) {
+        try {
+            const query = `
+            SELECT files.* FROM FILES
+            LEFT JOIN chefs ON (chefs.file_id = files.id)
+            WHERE chefs.id = $1
+            `
+
+            const results = await db.query(query, [id])
+            const files = results.rows
+
+            files.map(async file => {
+                await db.query(`DELETE FROM files WHERE id = $1`, [file.id])
+            })
+        } catch (error) {
+            console.error(error)
+        }
     }
 }

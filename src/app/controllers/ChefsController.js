@@ -174,7 +174,9 @@ module.exports = {
     },
     async delete(req, res) {
         try {
-            const chef = await Chef.find(req.body.id)
+            const { id } = req.body
+
+            const chef = await Chef.find(id)
 
             const files = await Chef.files(chef.file_id)
 
@@ -186,7 +188,9 @@ module.exports = {
                 }
             })
 
-            await Chef.delete(req.body.id)
+            await Chef.deleteDBfile(id)
+
+            await Chef.delete(id)
 
             return res.redirect('/admin/chefs?success=Chefe removido!')
         } catch (error) {
