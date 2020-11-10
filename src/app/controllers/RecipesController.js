@@ -37,6 +37,8 @@ module.exports = {
             const recipesPromises = recipes.map(async recipe => {
                 recipe.image = await getImage(recipe.id)
 
+                if (recipe.user_id == req.session.userId) recipe.owner = true
+
                 return recipe
             })
 

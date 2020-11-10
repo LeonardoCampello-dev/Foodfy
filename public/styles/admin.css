@@ -85,6 +85,17 @@ header.header-admin {
     margin: 8px 0 8px;
 }
 
+.cards-admin .card .owner {   
+    background-color: var(--author);
+    color: #fff;
+
+    border-radius: 16px;
+    
+    padding: 4px 16px;
+
+    display: inline-block;
+}
+
 .card a,
 .card-chef a {
     color: var(--purple);
@@ -92,7 +103,7 @@ header.header-admin {
     line-height: 16px;
     font-weight: bold;
 
-    display: inline-block;
+    display: block;
 
     transition: .2s
 }
