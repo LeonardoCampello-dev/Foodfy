@@ -15,7 +15,7 @@
     </div>
 
     <div class="chef-detail">
-        <img src="{{ chefAvatar.path }}" alt="{{ chef.name }}">
+        <img src="{{ chef.avatar.path }}" alt="{{ chef.name }}">
         
         <h1>{{ chef.name }}</h1>
         <p>
@@ -42,7 +42,7 @@
 
     <div class="cards-admin">
 
-        {% for recipe in recipes %}
+        {% for recipe in chef.recipes %}
 
             <div class="card">
                 <img src="{{ recipe.image }}" alt="{{ recipe.title }}">

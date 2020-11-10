@@ -73,10 +73,10 @@ module.exports = {
                 return recipe
             })
 
-            const recipesFixed = await Promise.all(recipesPromises)
+            const formattedRecipes = await Promise.all(recipesPromises)
 
             return res.render('site/recipes.njk', {
-                recipes: recipesFixed,
+                recipes: formattedRecipes,
                 pagination,
                 filter,
                 error: req.query.error
@@ -91,15 +91,15 @@ module.exports = {
 
             if (!recipe) return res.send('Receita não encontrada')
 
-            results = await Recipe.files(recipe.id)
-            files = results.map(file => ({
+            let results = await Recipe.files(recipe.id)
+
+            recipe.files = results.map(file => ({
                 ...file,
                 src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
             }))
 
             return res.render('site/details/recipe.njk', {
                 recipe,
-                files,
                 error: req.query.error
             })
         } catch (error) {
@@ -130,7 +130,7 @@ module.exports = {
             if (!chefs) return res.send('Chefes não encontrados')
 
             async function getImage(chefId) {
-                let results = await Chef.getAvatar(chefId)
+                const results = await Chef.getAvatar(chefId)
 
                 return results.path
             }
@@ -142,10 +142,10 @@ module.exports = {
                 return chef
             })
 
-            const chefAvatar = await Promise.all(chefsPromises)
+            const formattedChefs = await Promise.all(chefsPromises)
 
             return res.render('site/chefs.njk', {
-                chefs: chefAvatar,
+                chefs: formattedChefs,
                 pagination,
                 error: req.query.error
             })
@@ -161,16 +161,17 @@ module.exports = {
 
             if (!chef) return res.send('Chefe não encontrado')
 
-            const chefRecipes = await Chef.findChefRecipes(chefId)
-            const thereIsRecipe = chefRecipes[0].id
+            chef.recipes = await Chef.findChefRecipes(chefId)
+            const thereIsRecipe = chef.recipes[0].id
 
-            if (thereIsRecipe != null) {
+            if (thereIsRecipe) {
                 async function getImage(recipeId) {
-                    let results = await Recipe.files(recipeId)
+                    const results = await Recipe.files(recipeId)
+
                     return results[0].path
                 }
 
-                const recipesPromises = chefRecipes.map(async recipe => {
+                const recipesPromises = chef.recipes.map(async recipe => {
                     recipe.image = await getImage(recipe.id)
                     recipe.image = `${req.protocol}://${req.headers.host}${recipe.image.replace('public', '')}`
 
@@ -180,14 +181,12 @@ module.exports = {
                 recipes = await Promise.all(recipesPromises)
             }
 
-            chefAvatar = await Chef.getAvatar(chefId)
-            chefAvatar.path = `${req.protocol}://${req.headers.host}${chefAvatar.path.replace('public', '')}`
+            chef.avatar = await Chef.getAvatar(chefId)
+            chef.avatar.path = `${req.protocol}://${req.headers.host}${chef.avatar.path.replace('public', '')}`
 
-            return res.render('site/details/chef.njk', { 
-                chef, 
-                recipes, 
-                chefAvatar,
-                error: req.query.error 
+            return res.render('site/details/chef.njk', {
+                chef,
+                error: req.query.error
             })
         } catch (error) {
             console.error(error)
@@ -214,9 +213,9 @@ module.exports = {
                 return recipe
             })
 
-            const recipesFixed = await Promise.all(recipesPromises)
+            const formattedRecipes = await Promise.all(recipesPromises)
 
-            return res.render('site/results.njk', { recipes: recipesFixed, filter })
+            return res.render('site/results.njk', { recipes: formattedRecipes, filter })
         } catch (error) {
             console.error(error)
         }

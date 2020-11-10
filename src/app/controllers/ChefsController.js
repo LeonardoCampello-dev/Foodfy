@@ -28,7 +28,7 @@ module.exports = {
         if (!chefs) return res.send('Chefes não encontrados')
 
         async function getImage(chefId) {
-            let results = await Chef.getAvatar(chefId)
+            const results = await Chef.getAvatar(chefId)
 
             return results.path
         }
@@ -40,10 +40,10 @@ module.exports = {
             return chef
         })
 
-        const chefAvatar = await Promise.all(chefsPromises)
+        const formattedChefs = await Promise.all(chefsPromises)
 
         return res.render('admin/chefs/index.njk', {
-            chefs: chefAvatar,
+            chefs: formattedChefs,
             pagination,
             success: req.query.success,
             error: req.query.error
@@ -77,24 +77,24 @@ module.exports = {
     },
     async show(req, res) {
         try {
-            const chefId = req.params.id
+            const { id } = req.params
 
-            let chef = await Chef.find(chefId)
+            let chef = await Chef.find(id)
 
             if (!chef) return res.render('admin/chefs/show.njk', {
                 error: 'Chefe não encontrado!'
             })
 
-            const chefRecipes = await Chef.findChefRecipes(chefId)
-            const thereIsRecipe = chefRecipes[0].id
+            chef.recipes = await Chef.findChefRecipes(id)
+            const thereIsRecipe = chef.recipes[0].id
 
-            if (thereIsRecipe != null) {
+            if (thereIsRecipe) {
                 async function getImage(recipeId) {
-                    let results = await Recipe.files(recipeId)
+                    const results = await Recipe.files(recipeId)
                     return results[0].path
                 }
 
-                const recipesPromises = chefRecipes.map(async recipe => {
+                const recipesPromises = chef.recipes.map(async recipe => {
                     recipe.image = await getImage(recipe.id)
                     recipe.image = `${req.protocol}://${req.headers.host}${recipe.image.replace('public', '')}`
 
@@ -104,13 +104,11 @@ module.exports = {
                 recipes = await Promise.all(recipesPromises)
             }
 
-            chefAvatar = await Chef.getAvatar(chefId)
-            chefAvatar.path = `${req.protocol}://${req.headers.host}${chefAvatar.path.replace('public', '')}`
+            chef.avatar = await Chef.getAvatar(id)
+            chef.avatar.path = `${req.protocol}://${req.headers.host}${chef.avatar.path.replace('public', '')}`
 
             return res.render('admin/chefs/show.njk', {
                 chef,
-                recipes,
-                chefAvatar,
                 success: req.query.success,
                 error: req.query.error
             })
@@ -120,24 +118,24 @@ module.exports = {
     },
     async edit(req, res) {
         try {
-            let chef = await Chef.find(req.params.id)
+            const { id } = req.params
+
+            let chef = await Chef.find(id)
 
             if (!chef) return res.send('Chefe não encontrado')
 
-            let avatar = await Chef.files(chef.file_id)
+            chef.avatar = await Chef.getAvatar(id)
+            chef.avatar.path = `${req.protocol}://${req.headers.host}${chef.avatar.path.replace('public', '')}`
 
-            avatar = avatar.map(file => ({
-                ...file,
-                src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
-            }))
-
-            return res.render('admin/chefs/edit.njk', { chef, avatar })
+            return res.render('admin/chefs/edit.njk', { chef })
         } catch (error) {
             console.error(error)
         }
     },
     async put(req, res) {
         try {
+            const { id } = req.body
+
             if (req.files.length != 0) {
                 const { files } = req
 
@@ -153,18 +151,18 @@ module.exports = {
                     file_id: JSON.parse(fileId)
                 }
 
-                await Chef.update(req.body.id, values)
+                await Chef.update(id, values)
 
-                return res.redirect(`/admin/chefs/${req.body.id}?success=Chefe atualizado!`)
+                return res.redirect(`/admin/chefs/${id}?success=Chefe atualizado!`)
             }
 
             const values = {
                 name: req.body.name
             }
 
-            await Chef.update(req.body.id, values)
+            await Chef.update(id, values)
 
-            return res.redirect(`/admin/chefs/${req.body.id}?success=Chefe atualizado!`)
+            return res.redirect(`/admin/chefs/${id}?success=Chefe atualizado!`)
         } catch (error) {
             console.error(error)
             return res.render('admin/chefs/edit.njk', {

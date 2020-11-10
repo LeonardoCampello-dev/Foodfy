@@ -5,7 +5,7 @@
 <div class="details">
 
     <div class="lightbox">
-        <img src="{{ files[0].src }}" alt="{{ files[0].name }}">
+        <img src="{{ recipe.files[0].src }}" alt="{{ recipe.files[0].name }}">
 
         <a 
             href="#" 
@@ -19,16 +19,16 @@
     <div class="photos">
     
         <img 
-            src="{{ files[0].src }}" 
+            src="{{ recipe.files[0].src }}" 
             alt="{{ recipe.title }}" 
             class="highlight"
             onclick="Lightbox.open()"
         >
 
-        {% if files %}
+        {% if recipe.files %}
         <div class="gallery-photos">
             
-            {% for image in files %}
+            {% for image in recipe.files %}
 
             <img 
                 src="{{ image.src }}" 
