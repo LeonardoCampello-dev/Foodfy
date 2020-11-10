@@ -55,6 +55,50 @@ textarea {
     min-height: 257px;
 }
 
+input[type="radio"] {
+    width: initial;
+    box-shadow: none;
+}
+
+.radio-options {
+    display: grid;
+    grid-template-columns: repeat(2, 108px);
+    gap: 16px;
+    align-items: center;
+}
+
+.radio-options .radio {
+    color: #fff;
+    
+    border-radius: 16px;
+    padding: 4px;
+
+    font-size: 14px;
+    line-height: 24px;
+
+    font-weight: normal;
+
+    text-align: center;
+
+    box-shadow: 2px 2px 5px -4px var(--title);
+    border: 1px solid #fff;
+}
+
+.radio-options .radio.yes {
+    background-color: var(--green);
+    
+    font-weight: normal;
+
+    font-size: 14px;
+    line-height: 24px;
+
+    margin: 0;
+}
+
+.radio-options .radio.no {
+    background-color: var(--red);
+} 
+
 .ingredient,
 .preparation {
     margin-top: 8px;

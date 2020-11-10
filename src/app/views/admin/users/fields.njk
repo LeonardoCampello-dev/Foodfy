@@ -26,17 +26,37 @@
         </div>
     </div>
 
-    <div>
-        <div class="checkbox-admin">
-            <input 
-                type="checkbox" 
-                name="is_admin"
-                {% if user.is_admin %}
-                checked="checked"
-                {% endif %}
-            >
+    <div class="item">
+        <div>Administrador</div>
 
-            <div>Administrador</div>
+        <div class="radio-options">
+
+            <div class="radio yes">
+                <input 
+                    type="radio" 
+                    name="is_admin" 
+                    id="yes" 
+                    value=true
+                    {% if user.is_admin == true %}
+                        checked
+                    {% endif %}
+                >
+                <label for="yes">Sim</label>
+            </div>
+
+            <div class="radio no">
+                <input 
+                    type="radio" 
+                    name="is_admin" 
+                    id="no" 
+                    value=false
+                    {% if user.is_admin == false %}
+                        checked
+                    {% endif %}
+                >
+                <label for="no">Não</label>
+            </div>
+
         </div>
     </div>
 
