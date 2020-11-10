@@ -91,7 +91,7 @@ header.header-admin {
 
     border-radius: 16px;
     
-    padding: 4px 16px;
+    padding: 4px 8px;
 
     display: inline-block;
 }
@@ -198,6 +198,22 @@ header.header-admin {
     line-height: 22px;
 
     margin-bottom: 4px;
+
+    display: flex;
+    align-items: center;
+}
+
+.card-user h2 .that-you {
+    background-color: var(--purple);
+    color: #fff;
+
+    padding: 2px 8px;
+    border-radius: 16px;
+
+    font-weight: normal;
+    font-size: 14px;
+
+    margin-left: 4px;
 }
 
 .card-user p,

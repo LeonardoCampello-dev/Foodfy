@@ -37,7 +37,15 @@ module.exports = {
     },
     async list(req, res) {
         try {
-            const users = await User.findAll()
+            let users = await User.findAll()
+
+            const usersPromises = users.map(user => {
+                if (user.id == req.session.userId) user.you = true
+
+                return user
+            })
+
+            users = await Promise.all(usersPromises)
 
             return res.render('admin/users/index.njk', {
                 users,
