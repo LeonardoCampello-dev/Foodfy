@@ -1,11 +1,10 @@
-![GitHub repo size](https://img.shields.io/github/repo-size/LeonardoCampello-dev/Foodfy?color=red)
-![GitHub package.json version](https://img.shields.io/github/package-json/v/LeonardoCampello-dev/Foodfy?color=red)
-![License](https://img.shields.io/github/license/LeonardoCampello-dev/Foodfy?color=red)
+![GitHub repo size](https://img.shields.io/github/repo-size/LeonardoCampello-dev/Foodfy?color=red&style=for-the-badge)
+![GitHub Repo stars](https://img.shields.io/github/stars/LeonardoCampello-dev/Foodfy?color=red&style=for-the-badge)
 
 <h1 align="center">
     <img 
         src="./public/assets/chef.png" 
-        width="150"
+        width="200"
         alt="chef"
         >
 </h1>
@@ -64,9 +63,11 @@ Application to manage recipes and chefs.
 
 ![home](./.github/Home.png)
 
+---
+
 ![recipes](./.github/Recipes.png)
 
-> To see more screenshots or videos, click [HERE.](./images.md)
+**To see more screenshots or videos, click [HERE.](./images.md)**
 
 ## ☕ Prerequisites
 
@@ -117,13 +118,32 @@ npm start
 
 ## 📮 Contributing 
 
-If this is your first contribution, [see the following tutorial.]()
+If this is your first contribution, [see the following tutorial.](https://github.com/firstcontributions/first-contributions)
 
 ## 🤟 Collaborators 
 
+We thank the following developers who contributed:  
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="#">
+        <img 
+          src="https://avatars0.githubusercontent.com/u/66227219?s=460&u=c99b9c6d3539ff9de7823673c83df61b28f33cf4&v=4" 
+          width="100" 
+          alt="Leonardo Campello"
+        /> <br>
+        <sub>
+          <b>Leonardo Campello</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
+
 ### 😎 Become a contributor  
 
-Would you like to be part of this project? Click [HERE](#-contributing) and read the instructions to contribute.
+Would you like to be part of this project? Click [HERE](https://github.com/firstcontributions/first-contributions) and read the instructions to contribute.
 
 ## 📜 License
 
