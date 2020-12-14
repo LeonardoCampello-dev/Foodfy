@@ -61,9 +61,13 @@ Application to manage recipes and chefs.
 
 ## 🎬 Demonstration
 
+**Home**
+
 ![home](./.github/Home.png)
 
 ---
+
+**Recipes**
 
 ![recipes](./.github/Recipes.png)
 
