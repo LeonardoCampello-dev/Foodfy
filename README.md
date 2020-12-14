@@ -1,28 +1,54 @@
-
-<h1 align="center">
-    <img src="./public/assets/chef.png" width="150">
-</h1>
-
-<h1 align="center">Foodfy 🍝</h1>
-
 ![GitHub repo size](https://img.shields.io/github/repo-size/LeonardoCampello-dev/Foodfy?color=red)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/LeonardoCampello-dev/Foodfy?color=red)
 ![License](https://img.shields.io/github/license/LeonardoCampello-dev/Foodfy?color=red)
 
-## 📌 Resources 
+<h1 align="center">
+    <img 
+        src="./public/assets/chef.png" 
+        width="150"
+        alt="chef"
+        >
+</h1>
+
+<h1 align="center">Foodfy 🍔</h1>
+
+<h4 align="center">
+
+· [Report bug](#-contribuindo)
+    
+</h4>
+
+<h2>📘 Index</h2> 
+
+- [👨‍🏫 About](#-about)
+  - [📌 Resources](#-resources)
+- [🚀 Technology](#-technology)
+  - [📚 Libraries](#-libraries)
+- [🎬 Demonstration](#-demonstration)
+- [☕ Prerequisites](#-prerequisites)
+- [🔧 Installing](#-installing)
+- [💿 Using](#-using)
+- [📮 Contributing](#-contributing)
+- [🤟 Collaborators](#-collaborators)
+  - [😎 Become a contributor](#-become-a-contributor)
+- [📜 License](#-license)
+
+## 👨‍🏫 About 
+
+Application to manage recipes and chefs.
+
+### 📌 Resources
 
 - 👨‍🍳 Explore recipes and find amazing chefs.
 - 🦸‍♂️ Admin mode.
 
-## 🚀 Technologies used
-
-The following technologies were used
+## 🚀 Technology 
 
 - [x] [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 - [x] [Node.js](https://nodejs.org/en/)
 - [x] [PostgreSQL](https://www.postgresql.org/)
 
-### 📜 **Libraries**
+### 📚 Libraries 
 
 - [x] [browsersync](https://www.browsersync.io/)
 - [x] [npm-run-all](https://www.npmjs.com/package/npm-run-all)
@@ -34,114 +60,73 @@ The following technologies were used
 - [x] [express-session](https://www.npmjs.com/package/express-session) 
 - [x] [lottie web](https://github.com/airbnb/lottie-web)
 
-## 🎨 Layout
-
-**Home** 🏠
+## 🎬 Demonstration
 
 ![home](./.github/Home.png)
 
----
-
-**Recipes** 🥘
-
 ![recipes](./.github/Recipes.png)
 
----
+> To see more screenshots or videos, click [HERE.](./images.md)
 
-**Recipe** 🍝
+## ☕ Prerequisites
 
-![recipe](./.github/Recipe.png)
+Before getting your hands dirty, make sure you meet the following requirements: 
 
----
+- [ ] Have Node.js installed
+- [ ] Have PostgreSQL installed
 
-**Chefs** 👩‍🍳👨‍🍳
+## 🔧 Installing 
 
-![chefs](./.github/Chefs.png)
-
----
-
-**Chef** 👨‍🍳
-
-![chef](./.github/Chef.png)
-
----
-
-**Login** ✅
-
-![login](./.github/Login.png)
-
----
-
-**Forgot password** 🔑
-
-![forgot](./.github/Forgot.png)
-
----
-
-**Admin** 👑
-
-![adm](./.github/Adm.png)
-
----
-
-**Success / error messages** ❌
-
-![sending-emails](./.github/Messages.png)
-
----
-
-## Project installation 👷‍♂️
-
-First you need to have [Node.js](https://nodejs.org/en/) installed, **then perform the following steps:**
-
-Primeiro você precisa ter o [Node.js](https://nodejs.org/en/) instalado e, em seguida, **execute as seguintes etapas:**
+To install, follow the steps:
 
 ``` bash 
 ## Clone the project
-## Clone o projeto
 
 git clone https://github.com/LeonardoCampello-dev/Foodfy.git
 ```
 
 ``` bash 
 ## Install the dependencies
-## Instale as dependências 
 
 npm install
 ```
 
 ``` bash
 ## Add your database access credentials to the src/config/db.js file (The database used in this project is PostgreSQL)
-
-## Adicione suas credenciais de acesso ao banco de dados no arquivo src/config/db.js (o banco de dados usado neste projeto é PostgreSQL)
 ```
 
 ``` bash
 ## With the database active, run the following command at the root of the project to populate the tables:
 
-## Com o banco de dados ativo, execute o seguinte comando na raiz do projeto para preencher as tabelas:
-
 node seeds.js
 ```
 
+## 💿 Using
+
+To use, follow the steps:
+
 ``` bash
 ## Add, if it does not already exist, an image in the public/images folder and use the name 'placeholder.png'. This file will serve as an image for all application entities.
-
-## Adicione, se ainda não existir, uma imagem na pasta public/images e use o nome 'placeholder.png'. Este arquivo servirá como uma imagem para todas as entidades do aplicativo.
 ```
 
 ``` bash 
 ## Finally, execute the command to start the application: 
 
-## Por fim, execute o comando para iniciar o app:
-
 npm start
 ```
 
----
+## 📮 Contributing 
 
-## 📜 License 
+If this is your first contribution, [see the following tutorial.]()
 
-Released in 2020. This project is under the [MIT license](/LICENSE).
+## 🤟 Collaborators 
 
-## Made with love by Leonardo Campello 💚 
+### 😎 Become a contributor  
+
+Would you like to be part of this project? Click [HERE](#-contributing) and read the instructions to contribute.
+
+## 📜 License
+
+Made in 2020. This project is under the [MIT license.]()
+
+<h2> Made with 💚 by Leonardo Campello </h2>
