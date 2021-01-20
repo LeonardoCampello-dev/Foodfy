@@ -1,47 +1,47 @@
 /* ===================== SESSION ===================== */
 
 .session-header {
-    margin: 48px 0 144px;
+  margin: 48px 0 144px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .container.session {
-    width: 510px;
-    margin: 0 auto;
+  width: 510px;
+  margin: 0 auto;
 }
 
 .container.session h2 {
-    text-align: center;
+  text-align: center;
 }
 
 .container.session h2 span img {
-    width: 24px;
-    height: 24px;
+  width: 24px;
+  height: 24px;
 
-    margin-left: 4px;
+  margin-left: 4px;
 }
 
 .container.session .footer-session {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    margin-top: 40px;
+  margin-top: 40px;
 }
 
 .container.session .footer-session a {
-    color: #777;
-    
-    font-size: 16px;
-    line-height: 19px;
-    font-weight: bold;
+  color: #777;
 
-    transition: .2s;
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: bold;
+
+  transition: 0.2s;
 }
 
 .container.session .footer-session a:hover {
-    color: var(--red);
+  color: var(--red);
 }

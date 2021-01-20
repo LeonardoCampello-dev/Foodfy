@@ -1,252 +1,246 @@
 /* ===================== HEADER ===================== */
 
 header.header-admin {
-    width: 100%;
-    background-color: #222;
-    padding: 24px;
+  width: 100%;
+  background-color: #222;
+  padding: 24px;
 
-    margin-bottom: 32px;
+  margin-bottom: 32px;
 
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .navbar {
-    width: 70%;
-    margin: 0 auto;
-    
-    display: flex;
-    align-items: center;
+  width: 70%;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
 }
 
 .navbar a,
 .logout button {
-    color: #fff;
-    font-size: 15px;
-    line-height: 18px;
+  color: #fff;
+  font-size: 15px;
+  line-height: 18px;
 
-    font-weight: bold;
-    text-transform: uppercase;
+  font-weight: bold;
+  text-transform: uppercase;
 
-    transition: .2s;
+  transition: 0.2s;
 
-    background-color: initial;
+  background-color: initial;
 }
 
 .navbar a:hover,
 .logout button:hover {
-    color: var(--red);
+  color: var(--red);
 }
 
 .navbar > a {
-    margin-right: 24px;
+  margin-right: 24px;
 }
 
 .navbar img {
-    margin-right: 32px;
+  margin-right: 32px;
 }
 
 .page-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    margin-bottom: 24px;
+  margin-bottom: 24px;
 }
 
 /* ===================== INDEX ===================== */
 
 .cards-admin {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 28px 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px 0;
 }
 
-.cards-admin .card {    
-    height: 80px;
-    
-    display: grid;
-    grid-template-columns: 35% 1fr;
-    align-items: center;
-    gap: 0 24px;
+.cards-admin .card {
+  height: 80px;
+
+  display: grid;
+  grid-template-columns: 35% 1fr;
+  align-items: center;
+  gap: 0 24px;
 }
 
 .cards-admin .card img {
-    width: 100%;
-    height: 90px;
-    border-radius: 8px;
-    
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, .3);
+  width: 100%;
+  height: 90px;
+  border-radius: 8px;
 
-    object-fit: cover;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+
+  object-fit: cover;
 }
 
 .cards-admin .card div p {
-    margin: 8px 0 8px;
+  margin: 8px 0 8px;
 }
 
-.cards-admin .card .owner {   
-    background-color: var(--author);
-    color: #fff;
+.cards-admin .card .owner {
+  background-color: var(--author);
+  color: #fff;
 
-    border-radius: 16px;
-    
-    padding: 4px 8px;
+  border-radius: 16px;
 
-    display: inline-block;
+  padding: 4px 8px;
+
+  display: inline-block;
 }
 
 .card a,
 .card-chef a {
-    color: var(--purple);
-    font-size: 14px;
-    line-height: 16px;
-    font-weight: bold;
+  color: var(--purple);
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: bold;
 
-    display: block;
+  display: block;
 
-    transition: .2s
+  transition: 0.2s;
 }
 
 .card a:hover,
 .card-chef a:hover {
-    color: var(--paragraph);
+  color: var(--paragraph);
 }
 
 /* ===================== DETAILS ICON ===================== */
 
 .page-header h2 {
-    display: flex;
-    align-items: baseline;
+  display: flex;
+  align-items: baseline;
 }
 
 .page-header h2 span {
-    color: var(--red);
-    margin-left: 8px;
+  color: var(--red);
+  margin-left: 8px;
 }
-
 
 /* ===================== CHEFS ===================== */
 
 .card-chef a {
-    margin-top: 8px;
+  margin-top: 8px;
 }
 
 #chef-delete {
-    right: 365px;
+  right: 365px;
 }
 
 .index .chef-recipes {
-    margin: 24px 0 16px 0;
+  margin: 24px 0 16px 0;
 }
 
 /* ===================== PAGINATION ===================== */
 
 .pagination {
-    position: absolute;
-    bottom: 5vh;
-    left: 50%;
+  position: absolute;
+  bottom: 5vh;
+  left: 50%;
 }
 
 /* ===================== USERS ===================== */
 
 .users-fields {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    align-items: center;
-    gap: 48px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 48px;
 }
 
 .checkbox-admin {
-    width: 150px;
-    
-    display: flex;
-    align-items: center;
+  width: 150px;
+
+  display: flex;
+  align-items: center;
 }
 
 .checkbox-admin input {
-    box-shadow: none;
+  box-shadow: none;
 }
 
 .checkbox-admin div:last-child {
-    font-size: 16px;
-    line-height: 19px;
-    font-weight: bold;  
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: bold;
 }
 
 #user-delete {
-    right: 385px;
+  right: 385px;
 }
 
 .input-error {
-    border: 1px solid var(--red);
+  border: 1px solid var(--red);
 }
 
 .input-error::placeholder {
-    color: var(--red);
+  color: var(--red);
 }
 
 .cards.users {
-    width: 100%;
-    column-gap: 72px;
+  width: 100%;
+  column-gap: 72px;
 }
 
 .card-user h2 {
-    color: var(--title);
-    
-    font-size: 18px;
-    line-height: 22px;
+  color: var(--title);
 
-    margin-bottom: 4px;
+  font-size: 18px;
+  line-height: 22px;
 
-    display: flex;
-    align-items: center;
+  margin-bottom: 4px;
+
+  display: flex;
+  align-items: center;
 }
 
 .card-user h2 .that-you {
-    background-color: var(--purple);
-    color: #fff;
+  background-color: var(--purple);
+  color: #fff;
 
-    padding: 2px 8px;
-    border-radius: 16px;
+  padding: 2px 8px;
+  border-radius: 16px;
 
-    font-weight: normal;
-    font-size: 14px;
+  font-weight: normal;
+  font-size: 14px;
 
-    margin-left: 4px;
+  margin-left: 4px;
 }
 
 .card-user p,
 .card-user a {
-    color: var(--author);
-    
-    font-size: 14px;
-    line-height: 17px;
+  color: var(--author);
 
-    margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 17px;
+
+  margin-bottom: 8px;
 }
 
 .card-user a {
-    font-weight: bold;
+  font-weight: bold;
 
-    transition: .2s;
+  transition: 0.2s;
 }
 
 .card-user a:first-child {
-    color: var(--purple);
+  color: var(--purple);
 }
 
 .card-user a:last-child {
-    color: var(--red);
+  color: var(--red);
 
-    margin-left: 8px;
+  margin-left: 8px;
 }
 
 .card-user a:hover {
-    color: var(--paragraph);
+  color: var(--paragraph);
 }
-
-
-
-
-

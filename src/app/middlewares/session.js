@@ -1,41 +1,44 @@
-const Recipe = require('../models/Recipe')
+const Recipe = require("../models/Recipe");
 
 module.exports = {
-    onlyUsers(req, res, next) {
-        if (!req.session.userId)
-            return res.redirect('/admin/users/login')
+  onlyUsers(req, res, next) {
+    if (!req.session.userId) return res.redirect("/admin/users/login");
 
-        next()
-    },
-    isLoggedRedirectToList(req, res, next) {
-        if (req.session.userId) {
-            if (req.session.isAdmin) {
-                return res.redirect('/admin/users')
-            } else {
-                return res.redirect('/admin/users/profile')
-            }
-        }
-
-        next()
-    },
-    isAdmin(req, res, next) {
-        if (!req.session.isAdmin) {
-            return res.redirect(`${req.headers.referer}?error=Acesso apenas para administradores!`)
-        }
-
-        next()
-    },
-    ifAdmin(req, res, next) {
-        if (!req.session.isAdmin) return res.redirect('/admin/users/profile')
-
-        next()
-    },
-    async isTheOwner(req, res, next) {
-        const recipe = await Recipe.find(req.params.id)
-
-        if (req.session.userId !== recipe.user_id)
-            return res.redirect(`${req.headers.referer}?error=Somente o criador da receita pode editar!`)
-
-        next()
+    next();
+  },
+  isLoggedRedirectToList(req, res, next) {
+    if (req.session.userId) {
+      if (req.session.isAdmin) {
+        return res.redirect("/admin/users");
+      } else {
+        return res.redirect("/admin/users/profile");
+      }
     }
-}
+
+    next();
+  },
+  isAdmin(req, res, next) {
+    if (!req.session.isAdmin) {
+      return res.redirect(
+        `${req.headers.referer}?error=Acesso apenas para administradores!`
+      );
+    }
+
+    next();
+  },
+  ifAdmin(req, res, next) {
+    if (!req.session.isAdmin) return res.redirect("/admin/users/profile");
+
+    next();
+  },
+  async isTheOwner(req, res, next) {
+    const recipe = await Recipe.find(req.params.id);
+
+    if (req.session.userId !== recipe.user_id)
+      return res.redirect(
+        `${req.headers.referer}?error=Somente o criador da receita pode editar!`
+      );
+
+    next();
+  },
+};

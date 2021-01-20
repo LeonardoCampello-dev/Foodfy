@@ -1,117 +1,115 @@
 /* ===================== FORM ===================== */
 
 #delete-button {
-    right: 380px;
+  right: 380px;
 }
 
 #delete-button,
 #chef-delete,
 #user-delete {
-    background-color: var(--paragraph);
-    
-    position: absolute;
+  background-color: var(--paragraph);
 
-    transition: .2s
+  position: absolute;
+
+  transition: 0.2s;
 }
 
 #delete-button:hover,
 #chef-delete:hover,
 #user-delete:hover {
-    background-color: #DC4747;
+  background-color: #dc4747;
 }
 
 .item {
-    margin-top: 32px;
+  margin-top: 32px;
 }
 
 .item div:first-child {
-    font-size: 16px;
-    line-height: 19px;
-    font-weight: bold;
-    
-    margin-bottom: 12px;
-}
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: bold;
 
+  margin-bottom: 12px;
+}
 
 textarea,
 input,
 select {
-    width: 100%;
-    padding: 16px;
-    
-    border: 1px solid #efefef;
-    border-radius: 4px;
-    
-    color: var(--paragraph);
-    font-size: 16px;
-    font-weight: bold;
+  width: 100%;
+  padding: 16px;
 
-    box-shadow: 2px 2px 5px -4px var(--title);
+  border: 1px solid #efefef;
+  border-radius: 4px;
+
+  color: var(--paragraph);
+  font-size: 16px;
+  font-weight: bold;
+
+  box-shadow: 2px 2px 5px -4px var(--title);
 }
 
 textarea {
-    opacity: .8;
-    resize: none;
-    min-height: 257px;
+  opacity: 0.8;
+  resize: none;
+  min-height: 257px;
 }
 
 input[type="radio"] {
-    width: initial;
-    box-shadow: none;
+  width: initial;
+  box-shadow: none;
 }
 
 .radio-options {
-    display: grid;
-    grid-template-columns: repeat(2, 108px);
-    gap: 16px;
-    align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 108px);
+  gap: 16px;
+  align-items: center;
 }
 
 .radio-options .radio {
-    color: #fff;
-    
-    border-radius: 16px;
-    padding: 4px;
+  color: #fff;
 
-    font-size: 14px;
-    line-height: 24px;
+  border-radius: 16px;
+  padding: 4px;
 
-    font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
 
-    text-align: center;
+  font-weight: normal;
 
-    box-shadow: 2px 2px 5px -4px var(--title);
-    border: 1px solid #fff;
+  text-align: center;
+
+  box-shadow: 2px 2px 5px -4px var(--title);
+  border: 1px solid #fff;
 }
 
 .radio-options .radio.yes {
-    background-color: var(--green);
-    
-    font-weight: normal;
+  background-color: var(--green);
 
-    font-size: 14px;
-    line-height: 24px;
+  font-weight: normal;
 
-    margin: 0;
+  font-size: 14px;
+  line-height: 24px;
+
+  margin: 0;
 }
 
 .radio-options .radio.no {
-    background-color: var(--red);
-} 
+  background-color: var(--red);
+}
 
 .ingredient,
 .preparation {
-    margin-top: 8px;
+  margin-top: 8px;
 }
 
-
-.add-ingredient, 
+.add-ingredient,
 .add-preparation {
-    color: var(--purple);
-    display: inline-block;
-    font-weight: bold;
-    
-    cursor: pointer;
-    
-    margin-top: 16px;
+  color: var(--purple);
+  display: inline-block;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  margin-top: 16px;
 }
